@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/',function(){
+    return view('welcome');
+});
+
 Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
     Route::get('welcome', ['uses'=>'Admin\IndexController@welcome','as'=>'welcome']);
     Route::get('/', ['uses'=>'Admin\IndexController@index','as'=>'/']);
@@ -18,6 +22,10 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
     Route::get('login', ['uses'=>'Admin\LoginController@showLogin','as'=>'login']);
     Route::post('login', ['uses'=>'Admin\LoginController@login','as'=>'postLogin']);
     Route::get('logout', ['uses'=>'Admin\LoginController@logout','as'=>'logout']);
+
+    Route::get('config/edit', ['uses'=>'Admin\ConfigController@edit','as'=>'config.edit']);
+    Route::post('config/save', ['uses'=>'Admin\ConfigController@save','as'=>'config.save']);
+
 
     Route::get('good/index', ['uses'=>'Admin\GoodController@index','as'=>'good.index']);
     Route::get('good/edit/{id}', ['uses'=>'Admin\GoodController@edit','as'=>'good.edit']);

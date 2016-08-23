@@ -12,6 +12,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public function __construct()
+    {
+        \App::setLocale('zh/admin');
+    }
+
     /**
      * @param string $content
      * @param string $link

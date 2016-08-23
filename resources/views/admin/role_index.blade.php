@@ -10,11 +10,11 @@
                         <table id="dt" class="table table-bordered table-striped table-hover">
                             <thead>
                             <tr align="center">
-                                <th class="text-center" width="60">@lang('admin/sys.id')</th>
-                                <th class="text-center">@lang('admin/role.display_name')</th>
-                                <th class="text-center">@lang('admin/role.name')</th>
-                                <th class="text-center">@lang('admin/role.description')</th>
-                                <th class="text-center" width="100">@lang('admin/sys.handle')</th>
+                                <th class="text-center" width="60">@lang('sys.id')</th>
+                                <th class="text-center">@lang('role.display_name')</th>
+                                <th class="text-center">@lang('role.name')</th>
+                                <th class="text-center">@lang('role.description')</th>
+                                <th class="text-center" width="100">@lang('sys.handle')</th>
                             </tr>
                             </thead>
                         </table>
@@ -60,7 +60,7 @@
                 ],
                 order: [[0, "desc"]]
             });
-            $('#dt_length').append("<a class='btn btn-primary pull-right' href='{{URL::route('admin.role.create')}}'>@lang('admin/role.create')</a>");
+            $('#dt_length').append("<a class='btn btn-primary pull-right' href='{{URL::route('admin.role.create')}}'>@lang('role.create')</a>");
         });
     </script>
 @endsection

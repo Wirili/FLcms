@@ -71,6 +71,20 @@
                 <li class="treeview">
                     <a href="javascript:void(0);">
                         <i class="fa fa-dashboard"></i>
+                        <span>网站配置</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="{{URL::route('admin.config.edit')}}" target="main-content"><i class="fa fa-circle-o"></i>基本配置</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-dashboard"></i>
                         <span>商品管理</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>

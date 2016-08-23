@@ -8,26 +8,26 @@
                 {!! csrf_field() !!}
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">@lang('admin/role.tab_basic')</a></li>
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">@lang('role.tab_basic')</a></li>
             </ul>
 
             <!-- Tab panes -->
             <div class="tab-content" style="margin-top: 8px;">
                 <div role="tabpanel" class="tab-pane active" id="home">
                     <div class="form-group">
-                        <label class="col-md-2 control-label" for="display_name">@lang('admin/role.display_name')</label>
+                        <label class="col-md-2 control-label" for="display_name">@lang('role.display_name')</label>
                         <div class="col-md-4"><input type="text" class="form-control input-sm" name="display_name" id="display_name" value="{{$role->display_name}}"></div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label" for="name">@lang('admin/role.name')</label>
+                        <label class="col-md-2 control-label" for="name">@lang('role.name')</label>
                         <div class="col-md-4"><input type="text" class="form-control input-sm" name="name" id="name" value="{{$role->name}}"></div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label" for="description">@lang('admin/role.description')</label>
+                        <label class="col-md-2 control-label" for="description">@lang('role.description')</label>
                         <div class="col-md-4"><input type="text" class="form-control input-sm" name="description" id="description" value="{{$role->description}}"></div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-2 control-label">@lang('admin/role.permission')</label>
+                        <label class="col-md-2 control-label">@lang('role.permission')</label>
                         <div class="col-md-6">
                             <div class="checkbox"><label style="margin:0 0 7px 10px ;"><input id="select_all" type="checkbox">全选</label></div>
                             <table class="table table-bordered">
@@ -48,8 +48,8 @@
             </div>
             <div class="text-center" style="padding: 10px 0; border-top: 1px solid #f4f4f4;">
                 <input type="hidden" name="id" value="{{$role->id}}">
-                <input type="submit" class="btn btn-primary" value="@lang('admin/sys.submit')">
-                <input type="reset" class="btn btn-default" value="@lang('admin/sys.reset')">
+                <input type="submit" class="btn btn-primary" value="@lang('sys.submit')">
+                <input type="reset" class="btn btn-default" value="@lang('sys.reset')">
             </div>
         </div>
     </form>

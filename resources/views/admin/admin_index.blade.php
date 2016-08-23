@@ -10,10 +10,10 @@
                         <table id="dt" class="table table-bordered table-striped table-hover">
                             <thead>
                             <tr align="center">
-                                <th class="text-center" width="60">@lang('admin/sys.id')</th>
-                                <th class="text-center">@lang('admin/admin.name')</th>
-                                <th class="text-center">@lang('admin/admin.email')</th>
-                                <th class="text-center" width="100">@lang('admin/sys.handle')</th>
+                                <th class="text-center" width="60">@lang('sys.id')</th>
+                                <th class="text-center">@lang('admin.name')</th>
+                                <th class="text-center">@lang('admin.email')</th>
+                                <th class="text-center" width="100">@lang('sys.handle')</th>
                             </tr>
                             </thead>
                         </table>
@@ -58,7 +58,7 @@
                 ],
                 order: [[0, "desc"]]
             });
-            $('#dt_length').append("<a class='btn btn-primary pull-right' href='{{URL::route('admin.admin.create')}}'>@lang('admin/admin.create')</a>");
+            $('#dt_length').append("<a class='btn btn-primary pull-right' href='{{URL::route('admin.admin.create')}}'>@lang('admin.create')</a>");
         });
     </script>
 @endsection

@@ -29,18 +29,19 @@ class AdminController extends Controller
 
     public function __construct()
     {
+        parent::__construct();
         $this->middleware('auth:admin');
-        $this->breadcrumb[]=['url'=>\URL::route('admin.admin.index'),'title'=>trans('admin/admin.list')];
+        $this->breadcrumb[]=['url'=>\URL::route('admin.admin.index'),'title'=>trans('admin.list')];
 
     }
 
     public function index()
     {
         if(!$this->adminGate('admin_show')){
-            return $this->Msg(trans('admin/sys.no_permission'),'','error');
+            return $this->Msg(trans('sys.no_permission'),'','error');
         }
         return view('admin.admin_index',[
-            'page_title'=>trans('admin/admin.list'),
+            'page_title'=>trans('admin.list'),
             'breadcrumb'=>$this->breadcrumb
         ]);
     }
@@ -48,9 +49,9 @@ class AdminController extends Controller
     public function edit($id)
     {
         if(!$this->adminGate('admin_edit')){
-            return $this->Msg(trans('admin/sys.no_permission'),'','error');
+            return $this->Msg(trans('sys.no_permission'),'','error');
         }
-        $this->breadcrumb[]=['url'=>'javascript:void(0)','title'=>trans('admin/admin.edit')];
+        $this->breadcrumb[]=['url'=>'javascript:void(0)','title'=>trans('admin.edit')];
         $admin = Admin::find($id);
         $roles = Role::all();
         $admin_roles=[];
@@ -66,7 +67,7 @@ class AdminController extends Controller
             }
         }
         return view('admin.admin_edit', [
-            'page_title'=>trans('admin/admin.edit'),
+            'page_title'=>trans('admin.edit'),
             'breadcrumb'=>$this->breadcrumb,
             'admin' => $admin,'roles'=>$roles,
             'admin_roles'=>$admin_roles,
@@ -78,9 +79,9 @@ class AdminController extends Controller
     public function create()
     {
         if(!$this->adminGate('admin_new')){
-            return $this->Msg(trans('admin/sys.no_permission'),'','error');
+            return $this->Msg(trans('sys.no_permission'),'','error');
         }
-        $this->breadcrumb[]=['url'=>'javascript:void(0)','title'=>trans('admin/admin.create')];
+        $this->breadcrumb[]=['url'=>'javascript:void(0)','title'=>trans('admin.create')];
         $admin = new Admin();
         $roles = Role::all();
         $admin_roles=[];
@@ -91,7 +92,7 @@ class AdminController extends Controller
         $permission = Permission::where('parent_id',0)->get();
         $perms=[];
         return view('admin.admin_edit', [
-            'page_title'=>trans('admin/admin.create'),
+            'page_title'=>trans('admin.create'),
             'breadcrumb'=>$this->breadcrumb,
             'admin' => $admin,
             'roles'=>$roles,
@@ -104,7 +105,7 @@ class AdminController extends Controller
     public function save(Request $request)
     {
         if(!$this->adminGate(['admin_edit','admin_new'])){
-            return $this->Msg(trans('admin/sys.no_permission'),'','error');
+            return $this->Msg(trans('sys.no_permission'),'','error');
         }
         $validator = Validator::make($request->all(), $this->rules, $this->messages);
         if ($validator->fails()) {
