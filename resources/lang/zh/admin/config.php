@@ -9,10 +9,12 @@ return [
     'web_desc' => '网站描述',
     'web_keys' => '网站关键词',
     'web_close' => '关闭网站',
-    'web_close' => '关闭网站',
-    'web_close' => '关闭网站',
-    'save_success' =>'商品类别保存成功！',
-    'del_success'=>'商品类别删除成功！',
-    'del_fail'=>'商品类别删除失败！<br>1、请确认商品类别是否存在<br>2、请确保商品类别下面没有商品',
-    'not_exist' =>'商品类别不存在！',
+    'range'=>[
+        'web_close'=>[
+            0=>'关闭',
+            1=>'打开',
+        ]
+    ],
+    'pls'=>'请选择',
+    'save_success' =>'网站配置保存成功！',
 ];

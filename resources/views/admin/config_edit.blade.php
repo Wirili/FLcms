@@ -3,7 +3,7 @@
 @section('content')
     @include('admin.header')
 <div class="content">
-    <form class="form-horizontal" role="form" method="POST" action="{{ URL::route('admin.config.save') }}">
+    <form class="form-horizontal" role="form" method="POST" action="{{ URL::route('admin.config.save') }}" enctype="multipart/form-data">
         <div class="nav-tabs-custom">
                 {!! csrf_field() !!}
             <!-- Nav tabs -->
@@ -24,9 +24,26 @@
                             <div class="col-md-4 form-inline">
                             @foreach($v->store_options as $o)
                             <label class="radio-inline">
-                                <input type="radio" name="config[{{$v->id}}]" value="{{$o}}">{{$o}}
+                                <input type="radio" name="config[{{$v->id}}]" value="{{$o}}" @if($v->value==$o) checked @endif>@lang('config.range.'.$v->code.'.'.$o)
                             </label>
                             @endforeach
+                            </div>
+                        @elseif($v->type=='options')
+                            <div class="col-md-4">
+                                <select class="form-control input-sm" name="config[{{$v->id}}]" class="select2">
+                                <option value="0">@lang('config.pls')</option>
+                                @foreach($v->store_options as $o)
+                                    <option value="{{$o}}" @if($v->value==$o) selected @endif>@lang('config.range.'.$v->code.'.'.$o)</option>
+                                @endforeach
+                                </select>
+                            </div>
+                        @elseif($v->type=='textarea')
+                            <div class="col-md-4">
+                                <textarea rows="3" class="form-control" name="config[{{$v->id}}]">{{$v->value}}</textarea>
+                            </div>
+                        @elseif($v->type=='file')
+                            <div class="col-md-4">
+                                <input type="file" name="config[{{$v->id}}]" />
                             </div>
                         @else
                             <div class="col-md-4">

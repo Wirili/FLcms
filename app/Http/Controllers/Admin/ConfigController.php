@@ -32,8 +32,16 @@ class ConfigController extends Controller
         ]);
     }
 
-    public function save()
+    public function save(Request $request)
     {
-        return $this->Msg(trans('config.save_success'),\URL::route('admin.config.index'));
+        $config=$request->config;
+        foreach ($config as $k=>$v){
+            $item=Config::find($k);
+            if($item){
+                $item->value=$v;
+                $item->update();
+            }
+        }
+        return $this->Msg(trans('config.save_success'),\URL::route('admin.config.edit'));
     }
 }
