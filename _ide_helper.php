@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.0-RC1 on 2016-08-21.
+ * Generated for Laravel 5.3.1 on 2016-08-24.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1352,7 +1352,7 @@ namespace {
         /**
          * Get the currently authenticated user.
          *
-         * @return \App\User|null 
+         * @return \App\Models\User|null 
          * @static 
          */
         public static function user(){
@@ -1456,7 +1456,7 @@ namespace {
          *
          * @param mixed $id
          * @param bool $remember
-         * @return \App\User|false 
+         * @return \App\Models\User|false 
          * @static 
          */
         public static function loginUsingId($id, $remember = false){
@@ -1467,7 +1467,7 @@ namespace {
          * Log the given user ID into the application without sessions or cookies.
          *
          * @param mixed $id
-         * @return \App\User|false 
+         * @return \App\Models\User|false 
          * @static 
          */
         public static function onceUsingId($id){
@@ -1561,7 +1561,7 @@ namespace {
         /**
          * Return the currently cached user.
          *
-         * @return \App\User|null 
+         * @return \App\Models\User|null 
          * @static 
          */
         public static function getUser(){
@@ -1603,7 +1603,7 @@ namespace {
         /**
          * Get the last user we attempted to authenticate.
          *
-         * @return \App\User 
+         * @return \App\Models\User 
          * @static 
          */
         public static function getLastAttempted(){
@@ -1643,7 +1643,7 @@ namespace {
         /**
          * Determine if the current user is authenticated.
          *
-         * @return \App\User 
+         * @return \App\Models\User 
          * @throws \Illuminate\Auth\AuthenticationException
          * @static 
          */
@@ -1728,6 +1728,17 @@ namespace {
          */
         public static function compileEchoDefaults($value){
             return \Illuminate\View\Compilers\BladeCompiler::compileEchoDefaults($value);
+        }
+        
+        /**
+         * Strip the parentheses from the given expression.
+         *
+         * @param string $expression
+         * @return string 
+         * @static 
+         */
+        public static function stripParentheses($expression){
+            return \Illuminate\View\Compilers\BladeCompiler::stripParentheses($expression);
         }
         
         /**
@@ -2258,27 +2269,7 @@ namespace {
          * @static 
          */
         public static function flush(){
-            \Illuminate\Cache\FileStore::flush();
-        }
-        
-        /**
-         * Get the Filesystem instance.
-         *
-         * @return \Illuminate\Filesystem\Filesystem 
-         * @static 
-         */
-        public static function getFilesystem(){
-            return \Illuminate\Cache\FileStore::getFilesystem();
-        }
-        
-        /**
-         * Get the working directory of the cache.
-         *
-         * @return string 
-         * @static 
-         */
-        public static function getDirectory(){
-            return \Illuminate\Cache\FileStore::getDirectory();
+            \Illuminate\Cache\ArrayStore::flush();
         }
         
         /**
@@ -2288,7 +2279,7 @@ namespace {
          * @static 
          */
         public static function getPrefix(){
-            return \Illuminate\Cache\FileStore::getPrefix();
+            return \Illuminate\Cache\ArrayStore::getPrefix();
         }
         
     }
@@ -2926,13 +2917,14 @@ namespace {
          * Execute a Closure within a transaction.
          *
          * @param \Closure $callback
+         * @param int $attempts
          * @return mixed 
          * @throws \Exception|\Throwable
          * @static 
          */
-        public static function transaction($callback){
+        public static function transaction($callback, $attempts = 1){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Illuminate\Database\MySqlConnection::transaction($callback);
+            return \Illuminate\Database\MySqlConnection::transaction($callback, $attempts);
         }
         
         /**
@@ -4863,7 +4855,7 @@ namespace {
          * Retrieve the minimum value of a given column.
          *
          * @param string $column
-         * @return float|int 
+         * @return mixed 
          * @static 
          */
         public static function min($column){
@@ -4874,7 +4866,7 @@ namespace {
          * Retrieve the maximum value of a given column.
          *
          * @param string $column
-         * @return float|int 
+         * @return mixed 
          * @static 
          */
         public static function max($column){
@@ -4885,7 +4877,7 @@ namespace {
          * Retrieve the sum of the values of a given column.
          *
          * @param string $column
-         * @return float|int 
+         * @return mixed 
          * @static 
          */
         public static function sum($column){
@@ -4896,7 +4888,7 @@ namespace {
          * Retrieve the average of the values of a given column.
          *
          * @param string $column
-         * @return float|int 
+         * @return mixed 
          * @static 
          */
         public static function avg($column){
@@ -4907,7 +4899,7 @@ namespace {
          * Alias for the "avg" method.
          *
          * @param string $column
-         * @return float|int 
+         * @return mixed 
          * @static 
          */
         public static function average($column){
@@ -9346,7 +9338,7 @@ namespace {
          * @param string $class
          * @param \Closure|null $callback
          * @return void 
-         * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+         * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
          * @static 
          */
         public static function model($key, $class, $callback = null){
@@ -10527,6 +10519,33 @@ namespace {
          */
         public static function put($path, $contents, $visibility = null){
             return \Illuminate\Filesystem\FilesystemAdapter::put($path, $contents, $visibility);
+        }
+        
+        /**
+         * Store the uploaded file on the disk.
+         *
+         * @param string $path
+         * @param \Illuminate\Http\UploadedFile $file
+         * @param string $visibility
+         * @return string|false 
+         * @static 
+         */
+        public static function putFile($path, $file, $visibility = null){
+            return \Illuminate\Filesystem\FilesystemAdapter::putFile($path, $file, $visibility);
+        }
+        
+        /**
+         * Store the uploaded file on the disk with a given name.
+         *
+         * @param string $path
+         * @param \Illuminate\Http\File|\Illuminate\Http\UploadedFile $file
+         * @param string $name
+         * @param string $visibility
+         * @return string|false 
+         * @static 
+         */
+        public static function putFileAs($path, $file, $name, $visibility = null){
+            return \Illuminate\Filesystem\FilesystemAdapter::putFileAs($path, $file, $name, $visibility);
         }
         
         /**

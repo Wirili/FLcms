@@ -14,12 +14,21 @@ class ConfigTableSeeder extends Seeder
     {
         //
         $lists=[[
-                'code'=>'tab_info',
-                'type'=>'group'
-            ],[
-                'code'=>'tab_basic',
-                'type'=>'group'
-            ],[
+            'code'=>'tab_info',
+            'type'=>'group'
+        ],[
+            'code'=>'tab_basic',
+            'type'=>'group'
+        ],[
+            'code'=>'tab_recommend',
+            'type'=>'group'
+        ],[
+            'code'=>'tab_level',
+            'type'=>'group'
+        ],[
+            'code'=>'tab_withdraw',
+            'type'=>'group'
+        ],[
             'parent_id'=>1,
             'code'=>'web_title',
             'type'=>'text',
@@ -34,6 +43,92 @@ class ConfigTableSeeder extends Seeder
             'code'=>'web_keys',
             'type'=>'text',
             'value'=>'复利系统'
+        ],[
+            'parent_id'=>1,
+            'code'=>'web_close',
+            'type'=>'select',
+            'store_range'=>'0,1',
+            'value'=>'1'
+        ],[
+            'parent_id'=>1,
+            'code'=>'web_qq',
+            'type'=>'text',
+            'value'=>'1'
+        ],[
+            'parent_id'=>3,
+            'code'=>'point2rem1',
+            'type'=>'text',
+            'value'=>'1'
+        ],[
+            'parent_id'=>3,
+            'code'=>'point2rem2',
+            'type'=>'text',
+            'value'=>'1'
+        ],[
+            'parent_id'=>3,
+            'code'=>'point2rem3',
+            'type'=>'text',
+            'value'=>'1'
+        ],[
+            'parent_id'=>3,
+            'code'=>'point2rem4',
+            'type'=>'text',
+            'value'=>'1'
+        ],[
+            'parent_id'=>3,
+            'code'=>'point2rem5',
+            'type'=>'text',
+            'value'=>'1'
+        ],[
+            'parent_id'=>3,
+            'code'=>'member_reg',
+            'type'=>'text',
+            'value'=>'1'
+        ],[
+            'parent_id'=>3,
+            'code'=>'member_active',
+            'type'=>'text',
+            'value'=>'1'
+        ],[
+            'parent_id'=>4,
+            'code'=>'level1',
+            'type'=>'text',
+            'value'=>'0'
+        ],[
+            'parent_id'=>4,
+            'code'=>'level2',
+            'type'=>'text',
+            'value'=>'10'
+        ],[
+            'parent_id'=>4,
+            'code'=>'level3',
+            'type'=>'text',
+            'value'=>'20'
+        ],[
+            'parent_id'=>4,
+            'code'=>'level4',
+            'type'=>'text',
+            'value'=>'50'
+        ],[
+            'parent_id'=>4,
+            'code'=>'level5',
+            'type'=>'text',
+            'value'=>'100'
+        ],[
+            'parent_id'=>5,
+            'code'=>'withdraw_fee',
+            'type'=>'text',
+            'value'=>'10'
+        ],[
+            'parent_id'=>5,
+            'code'=>'withdraw_member',
+            'type'=>'text',
+            'value'=>'0'
+        ],[
+            'parent_id'=>5,
+            'code'=>'withdraw_minmoney',
+            'type'=>'text',
+            'value'=>'100'
         ]];
         foreach ($lists as $list) {
             Config::create($list);

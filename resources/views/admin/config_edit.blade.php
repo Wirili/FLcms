@@ -19,37 +19,30 @@
                 <div role="tabpanel" class="tab-pane @if($loop->first) active @endif" id="{{$item->code}}">
                     @foreach($item ->children as $v)
                         <div class="form-group">
-                        <label class="col-md-2 control-label" for="{{$v->id}}">@lang('config.'.$v->code)</label>
+                        <label class="col-sm-2 control-label" for="{{$v->id}}">@lang('config.'.$v->code)</label>
+                        <div class="col-sm-4">
                         @if($v->type=='select')
-                            <div class="col-md-4 form-inline">
                             @foreach($v->store_options as $o)
                             <label class="radio-inline">
                                 <input type="radio" name="config[{{$v->id}}]" value="{{$o}}" @if($v->value==$o) checked @endif>@lang('config.range.'.$v->code.'.'.$o)
                             </label>
                             @endforeach
-                            </div>
                         @elseif($v->type=='options')
-                            <div class="col-md-4">
-                                <select class="form-control input-sm" name="config[{{$v->id}}]" class="select2">
-                                <option value="0">@lang('config.pls')</option>
-                                @foreach($v->store_options as $o)
-                                    <option value="{{$o}}" @if($v->value==$o) selected @endif>@lang('config.range.'.$v->code.'.'.$o)</option>
-                                @endforeach
-                                </select>
-                            </div>
+                            <select class="form-control input-sm" name="config[{{$v->id}}]" class="select2">
+                            <option value="0">@lang('config.pls')</option>
+                            @foreach($v->store_options as $o)
+                                <option value="{{$o}}" @if($v->value==$o) selected @endif>@lang('config.range.'.$v->code.'.'.$o)</option>
+                            @endforeach
+                            </select>
                         @elseif($v->type=='textarea')
-                            <div class="col-md-4">
-                                <textarea rows="3" class="form-control" name="config[{{$v->id}}]">{{$v->value}}</textarea>
-                            </div>
+                            <textarea rows="3" class="form-control" name="config[{{$v->id}}]">{{$v->value}}</textarea>
                         @elseif($v->type=='file')
-                            <div class="col-md-4">
-                                <input type="file" name="config[{{$v->id}}]" />
-                            </div>
+                            <input type="file" name="config[{{$v->id}}]" />
                         @else
-                            <div class="col-md-4">
-                                <input type="text" class="form-control input-sm" name="config[{{$v->id}}]" value="{{$v->value}}">
-                            </div>
+                            <input type="text" class="form-control input-sm" name="config[{{$v->id}}]" value="{{$v->value}}">
                         @endif
+                        </div>
+                        @if(trans('config.desc.'.$v->code)!=='config.desc.'.$v->code)<p class="col-sm-6 help-block">@lang('config.desc.'.$v->code)</p>@endif
                         </div>
                     @endforeach
                 </div>
