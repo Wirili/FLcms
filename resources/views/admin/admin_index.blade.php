@@ -50,8 +50,8 @@
                         className: 'text-center',
                         orderable: false,
                         render: function (data, type, row) {
-                            data = "<a href='/admin/admin/edit/" + data + "' data-toggle='tooltip' data-placement='bottom' title='{{ trans('admin/sys.edit') }}' style='padding:0 5px;'><i class='fa fa-edit'></i></a>"
-                                    + "<a href='/admin/admin/del/" + data + "' class='text-danger' data-toggle='tooltip' data-placement='bottom' title='{{ trans('admin/sys.del') }}' style='padding:0 5px;'><i class='fa fa-remove'></i></a>";
+                            data = "<a href='/admin/admin/edit/" + data + "' data-toggle='tooltip' data-placement='bottom' title='@lang('sys.edit')' style='padding:0 5px;'><i class='fa fa-edit'></i></a>"
+                                    + "<a href='/admin/admin/del/" + data + "' class='text-danger' data-toggle='tooltip' data-placement='bottom' title='@lang('sys.del')' style='padding:0 5px;'><i class='fa fa-remove'></i></a>";
                             return data;
                         }
                     }

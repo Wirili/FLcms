@@ -144,7 +144,22 @@ class RoleTableSeeder extends Seeder
         ],[
             'name'=>'admin_del',
             'parent_id'=>'29',
-            'display_name'=>'删除供货商'
+            'display_name'=>'删除管理员'
+        ],[
+            'name'=>'pet_show',
+            'display_name'=>'宠物设置'
+        ],[
+            'name'=>'pet_new',
+            'parent_id'=>'29',
+            'display_name'=>'新增宠物'
+        ],[
+            'name'=>'pet_edit',
+            'parent_id'=>'29',
+            'display_name'=>'修改宠物'
+        ],[
+            'name'=>'pet_del',
+            'parent_id'=>'29',
+            'display_name'=>'删除宠物'
         ]];
         $permission_role=[[
             'permission_id'=>1,
@@ -241,6 +256,18 @@ class RoleTableSeeder extends Seeder
             'role_id'=>1
         ],[
             'permission_id'=>32,
+            'role_id'=>1
+        ],[
+            'permission_id'=>33,
+            'role_id'=>1
+        ],[
+            'permission_id'=>34,
+            'role_id'=>1
+        ],[
+            'permission_id'=>35,
+            'role_id'=>1
+        ],[
+            'permission_id'=>36,
             'role_id'=>1
         ]];
 

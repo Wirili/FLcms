@@ -33,26 +33,12 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
     Route::post('good/save', ['uses'=>'Admin\GoodController@save','as'=>'good.save']);
     Route::post('good/ajax', ['uses'=>'Admin\GoodController@ajax','as'=>'good.ajax']);
 
-    Route::get('brand/index', ['uses'=>'Admin\BrandController@index','as'=>'brand.index']);
-    Route::get('brand/edit/{id}', ['uses'=>'Admin\BrandController@edit','as'=>'brand.edit']);
-    Route::get('brand/create', ['uses'=>'Admin\BrandController@create','as'=>'brand.create']);
-    Route::get('brand/del/{id}', ['uses'=>'Admin\BrandController@del','as'=>'brand.del']);
-    Route::post('brand/save', ['uses'=>'Admin\BrandController@save','as'=>'brand.save']);
-    Route::post('brand/ajax', ['uses'=>'Admin\BrandController@ajax','as'=>'brand.ajax']);
-    Route::post('brand/toggle_show', ['uses'=>'Admin\BrandController@toggle_show','as'=>'brand.toggle_show']);
-
-    Route::get('category/index', ['uses'=>'Admin\CategoryController@index','as'=>'category.index']);
-    Route::get('category/edit/{id}', ['uses'=>'Admin\CategoryController@edit','as'=>'category.edit']);
-    Route::get('category/create', ['uses'=>'Admin\CategoryController@create','as'=>'category.create']);
-    Route::get('category/del/{id}', ['uses'=>'Admin\CategoryController@del','as'=>'category.del']);
-    Route::post('category/save', ['uses'=>'Admin\CategoryController@save','as'=>'category.save']);
-
-    Route::get('suppliers/index', ['uses'=>'Admin\SupplierController@index','as'=>'suppliers.index']);
-    Route::get('suppliers/edit/{id}', ['uses'=>'Admin\SupplierController@edit','as'=>'suppliers.edit']);
-    Route::get('suppliers/create', ['uses'=>'Admin\SupplierController@create','as'=>'suppliers.create']);
-    Route::get('suppliers/del/{id}', ['uses'=>'Admin\SupplierController@del','as'=>'suppliers.del']);
-    Route::post('suppliers/save', ['uses'=>'Admin\SupplierController@save','as'=>'suppliers.save']);
-    Route::post('suppliers/ajax', ['uses'=>'Admin\SupplierController@ajax','as'=>'suppliers.ajax']);
+    //宠物管理路由
+    Route::get('pet/index', ['uses'=>'Admin\PetController@index','as'=>'pet.index']);
+    Route::get('pet/edit/{id}', ['uses'=>'Admin\PetController@edit','as'=>'pet.edit']);
+    Route::get('pet/create', ['uses'=>'Admin\PetController@create','as'=>'pet.create']);
+    Route::post('pet/save', ['uses'=>'Admin\PetController@save','as'=>'pet.save']);
+    Route::post('pet/ajax', ['uses'=>'Admin\PetController@ajax','as'=>'pet.ajax']);
 
     //权限控制路由
     Route::get('role/index',['uses'=>'Admin\RoleController@index','as'=>'role.index']);

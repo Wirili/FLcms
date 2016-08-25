@@ -80,6 +80,9 @@
                         <li>
                             <a href="{{URL::route('admin.config.edit')}}" target="main-content"><i class="fa fa-circle-o"></i>基本配置</a>
                         </li>
+                        <li>
+                            <a href="{{URL::route('admin.pet.index')}}" target="main-content"><i class="fa fa-circle-o"></i>宠物设置</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -93,12 +96,6 @@
                     <ul class="treeview-menu">
                         <li>
                             <a href="{{URL::route('admin.good.index')}}" target="main-content"><i class="fa fa-circle-o"></i>商品列表</a>
-                        </li>
-                        <li>
-                            <a href="{{URL::route('admin.category.index')}}" target="main-content"><i class="fa fa-circle-o"></i>商品分类</a>
-                        </li>
-                        <li>
-                            <a href="{{URL::route('admin.brand.index')}}" target="main-content"><i class="fa fa-circle-o"></i>商品品牌</a>
                         </li>
                         <li>
                             <a href="index.html" target="main-content"><i class="fa fa-circle-o"></i>商品类型</a>
@@ -142,9 +139,6 @@
                         </li>
                         <li>
                             <a href="{{URL::route('admin.role.index')}}" target="main-content"><i class="fa fa-circle-o"></i>角色管理</a>
-                        </li>
-                        <li>
-                            <a href="{{URL::route('admin.suppliers.index')}}" target="main-content"><i class="fa fa-circle-o"></i>供货商列表</a>
                         </li>
                     </ul>
                 </li>
