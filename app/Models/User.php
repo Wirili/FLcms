@@ -24,4 +24,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public $timestamps=false;
+
+    public function parent()
+    {
+        return $this->hasOne(User::class,'parent_id','user_id');
+    }
 }

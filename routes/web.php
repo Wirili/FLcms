@@ -57,6 +57,13 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
     Route::post('article_cat/save', ['uses'=>'Admin\ArticleCatController@save','as'=>'article_cat.save']);
     Route::post('article_cat/ajax', ['uses'=>'Admin\ArticleCatController@ajax','as'=>'article_cat.ajax']);
 
+    //文章管理路由
+    Route::get('user/index', ['uses'=>'Admin\UserController@index','as'=>'user.index']);
+    Route::get('user/edit/{id}', ['uses'=>'Admin\UserController@edit','as'=>'user.edit']);
+    Route::get('user/create', ['uses'=>'Admin\UserController@create','as'=>'user.create']);
+    Route::get('user/del/{id}', ['uses'=>'Admin\UserController@del','as'=>'user.del']);
+    Route::post('user/save', ['uses'=>'Admin\UserController@save','as'=>'user.save']);
+    Route::post('user/ajax', ['uses'=>'Admin\UserController@ajax','as'=>'user.ajax']);
 
     //权限控制路由
     Route::get('role/index',['uses'=>'Admin\RoleController@index','as'=>'role.index']);
