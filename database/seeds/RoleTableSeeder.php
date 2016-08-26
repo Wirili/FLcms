@@ -150,15 +150,15 @@ class RoleTableSeeder extends Seeder
             'display_name'=>'宠物设置'
         ],[
             'name'=>'pet_new',
-            'parent_id'=>'29',
+            'parent_id'=>'33',
             'display_name'=>'新增宠物'
         ],[
             'name'=>'pet_edit',
-            'parent_id'=>'29',
+            'parent_id'=>'33',
             'display_name'=>'修改宠物'
         ],[
             'name'=>'pet_del',
-            'parent_id'=>'29',
+            'parent_id'=>'33',
             'display_name'=>'删除宠物'
         ]];
         $permission_role=[[

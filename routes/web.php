@@ -37,8 +37,26 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
     Route::get('pet/index', ['uses'=>'Admin\PetController@index','as'=>'pet.index']);
     Route::get('pet/edit/{id}', ['uses'=>'Admin\PetController@edit','as'=>'pet.edit']);
     Route::get('pet/create', ['uses'=>'Admin\PetController@create','as'=>'pet.create']);
+    Route::get('pet/del/{id}', ['uses'=>'Admin\PetController@del','as'=>'pet.del']);
     Route::post('pet/save', ['uses'=>'Admin\PetController@save','as'=>'pet.save']);
     Route::post('pet/ajax', ['uses'=>'Admin\PetController@ajax','as'=>'pet.ajax']);
+
+    //文章管理路由
+    Route::get('article/index', ['uses'=>'Admin\ArticleController@index','as'=>'article.index']);
+    Route::get('article/edit/{id}', ['uses'=>'Admin\ArticleController@edit','as'=>'article.edit']);
+    Route::get('article/create', ['uses'=>'Admin\ArticleController@create','as'=>'article.create']);
+    Route::get('article/del/{id}', ['uses'=>'Admin\ArticleController@del','as'=>'article.del']);
+    Route::post('article/save', ['uses'=>'Admin\ArticleController@save','as'=>'article.save']);
+    Route::post('article/ajax', ['uses'=>'Admin\ArticleController@ajax','as'=>'article.ajax']);
+
+    //文章类别路由
+    Route::get('article_cat/index', ['uses'=>'Admin\ArticleCatController@index','as'=>'article_cat.index']);
+    Route::get('article_cat/edit/{id}', ['uses'=>'Admin\ArticleCatController@edit','as'=>'article_cat.edit']);
+    Route::get('article_cat/create', ['uses'=>'Admin\ArticleCatController@create','as'=>'article_cat.create']);
+    Route::get('article_cat/del/{id}', ['uses'=>'Admin\ArticleCatController@del','as'=>'article_cat.del']);
+    Route::post('article_cat/save', ['uses'=>'Admin\ArticleCatController@save','as'=>'article_cat.save']);
+    Route::post('article_cat/ajax', ['uses'=>'Admin\ArticleCatController@ajax','as'=>'article_cat.ajax']);
+
 
     //权限控制路由
     Route::get('role/index',['uses'=>'Admin\RoleController@index','as'=>'role.index']);
