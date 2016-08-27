@@ -25,10 +25,27 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $appends = ['parent_name','child_count'];
+
     public $timestamps=false;
 
     public function parent()
     {
         return $this->hasOne(User::class,'parent_id','user_id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(User::class,'parent_id','user_id');
+    }
+
+    public function getParentNameAttribute()
+    {
+        return $this->parent->name??'';
+    }
+
+    public function getChildCountAttribute()
+    {
+        return $this->children()->count();
     }
 }

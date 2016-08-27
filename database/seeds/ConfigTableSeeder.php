@@ -56,27 +56,27 @@ class ConfigTableSeeder extends Seeder
             'value'=>'1'
         ],[
             'parent_id'=>3,
-            'code'=>'point2rem1',
+            'code'=>'point2rem.1',
             'type'=>'text',
             'value'=>'1'
         ],[
             'parent_id'=>3,
-            'code'=>'point2rem2',
+            'code'=>'point2rem.2',
             'type'=>'text',
             'value'=>'1'
         ],[
             'parent_id'=>3,
-            'code'=>'point2rem3',
+            'code'=>'point2rem.3',
             'type'=>'text',
             'value'=>'1'
         ],[
             'parent_id'=>3,
-            'code'=>'point2rem4',
+            'code'=>'point2rem.4',
             'type'=>'text',
             'value'=>'1'
         ],[
             'parent_id'=>3,
-            'code'=>'point2rem5',
+            'code'=>'point2rem.5',
             'type'=>'text',
             'value'=>'1'
         ],[
@@ -91,27 +91,27 @@ class ConfigTableSeeder extends Seeder
             'value'=>'1'
         ],[
             'parent_id'=>4,
-            'code'=>'level1',
+            'code'=>'level.1',
             'type'=>'text',
             'value'=>'0'
         ],[
             'parent_id'=>4,
-            'code'=>'level2',
+            'code'=>'level.2',
             'type'=>'text',
             'value'=>'10'
         ],[
             'parent_id'=>4,
-            'code'=>'level3',
+            'code'=>'level.3',
             'type'=>'text',
             'value'=>'20'
         ],[
             'parent_id'=>4,
-            'code'=>'level4',
+            'code'=>'level.4',
             'type'=>'text',
             'value'=>'50'
         ],[
             'parent_id'=>4,
-            'code'=>'level5',
+            'code'=>'level.5',
             'type'=>'text',
             'value'=>'100'
         ],[

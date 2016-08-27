@@ -96,15 +96,19 @@ class UserController extends Controller
             $user=User::find($request->id);
         } else {
             $user = new User();
-            $user->add_time=date('Y-m-d H:i:s');
+            $user->name=$request->name;
+            $user->reg_time = date('Y-m-d H:i:s');
         }
 
-        $user->title = $request->title;
-        $user->cat_id = $request->cat_id;
-        $user->description = $request->description;
-        $user->keywords = $request->keywords;
-        $user->description = $request->description;
-        $user->contents = $request->input('contents','');
+        $parent=User::whereName($request->parent_name);
+        $user->parent_id = $request->has('parent_id')?User::find($request->parent_id)->parent_id:0;
+        $user->is_pass = $request->is_pass;
+        $user->level = $request->level;
+        if($request->has('password'))
+            $user->password = $request->password;
+        if($request->has('password2'))
+            $user->password2 = $request->password2;
+        $user->reg_ip = $request->getClientIp();
         $user->save();
 
         return $this->Msg(trans('user.save_success'),\URL::route('admin.user.index'));
