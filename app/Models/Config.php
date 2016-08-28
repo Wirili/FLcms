@@ -21,4 +21,14 @@ class Config extends Model
         else
             return false;
     }
+
+    public static function getConfig()
+    {
+        $config=[];
+        foreach (self::where('parent_id','<>',0)->get() as $k=>$v)
+        {
+            $config[$v->code]=$v->value;
+        }
+        return $config;
+    }
 }
