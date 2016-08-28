@@ -51,7 +51,13 @@
                     {data: 'user_id',className:'text-center'},
                     {data: 'name'},
                     {data: 'fullname'},
-                    {data: 'parent_name'},
+                    {data: 'parent_id',
+                    render:function(data,type,row){
+                        if(row.parent)
+                            return row.parent.name;
+                        return '';
+                    }
+                    },
                     {
                         data: 'child_count',
                         className: 'text-center',

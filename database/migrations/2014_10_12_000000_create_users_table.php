@@ -38,7 +38,7 @@ class CreateUsersTable extends Migration
             $table->dateTime('settle_time')->nullable()->comment('结算时间');
             $table->unsignedInteger('login_count')->default(0)->comment('登陆次数');
             $table->rememberToken();
-            $table->timestamps();
+            //$table->timestamps();
         });
     }
 

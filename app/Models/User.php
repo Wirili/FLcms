@@ -31,7 +31,7 @@ class User extends Authenticatable
 
     public function parent()
     {
-        return $this->hasOne(User::class,'parent_id','user_id');
+        return $this->hasOne(User::class,'user_id','parent_id');
     }
 
     public function children()
@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function getChildCountAttribute()
     {
-        return $this->children()->count();
+        return $this->children()->where('is_pass',1)->count();
     }
 }

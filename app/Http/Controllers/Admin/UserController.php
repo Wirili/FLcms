@@ -6,23 +6,12 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Models\User;
+use Validator;
 
 class UserController extends Controller
 {
     //
     protected $breadcrumb=[];
-
-    protected $rules = [
-        'name' => 'required',
-        'email' => 'required',
-        'password' => 'same:password_confirm',
-    ];
-
-    protected $messages = [
-        'name.required' => '请输入管理员名称',
-        'email.required' => '请输入电子邮件',
-        'password.same' => '两次密码不相同',
-    ];
 
     public function __construct()
     {
@@ -88,27 +77,38 @@ class UserController extends Controller
         if(!$this->adminGate(['user_new','user_edit'])){
             return $this->Msg(trans('sys.no_permission'),'','error');
         }
-//        $validator = Validator::make($request->all(), $this->rules, $this->messages);
-//        if ($validator->fails()) {
-//            return $this->Msg('',null,'error')->withErrors($validator);
-//        }
+        $validator = Validator::make($request->all(), [
+                'name' => 'required|unique:users,name,'.$request->id.',user_id',
+                'password'=>'alpha_dash|size:6',
+            ],[
+                'name.required' => '请输入管理员名称',
+                'name.unique' => '登陆名已存在，请输入其他用户名',
+                'password.alpha_dash' => '只能包含字母和数字，以及破折号和下划线，6个字符以上',
+                'password.size' => '6个字符以上',
+            ]);
+
+        if ($validator->fails()) {
+            return $this->Msg('',null,'error')->withErrors($validator);
+        }
         if ($request->has('id')) {
             $user=User::find($request->id);
         } else {
             $user = new User();
             $user->name=$request->name;
             $user->reg_time = date('Y-m-d H:i:s');
+            $user->reg_ip = $request->getClientIp();
         }
 
-        $parent=User::whereName($request->parent_name);
-        $user->parent_id = $request->has('parent_id')?User::find($request->parent_id)->parent_id:0;
+        $parent=User::where('name',$request->parent_name)->first();
+        $user->parent_id = $parent?$parent->user_id:0;
         $user->is_pass = $request->is_pass;
+        if(!$user->pass_time&&$user->is_pass==1)
+            $user->pass_time = date('Y-m-d H:i:s');
         $user->level = $request->level;
         if($request->has('password'))
-            $user->password = $request->password;
+            $user->password = \Hash::make($request->password);
         if($request->has('password2'))
-            $user->password2 = $request->password2;
-        $user->reg_ip = $request->getClientIp();
+            $user->password2 = \Hash::make($request->password2);
         $user->save();
 
         return $this->Msg(trans('user.save_success'),\URL::route('admin.user.index'));
@@ -117,7 +117,7 @@ class UserController extends Controller
     public function ajax(Request $request)
     {
         $filter = $request->only(['draw', 'columns', 'order', 'start', 'length']);
-        $data = User::orderBy($filter['columns'][$filter['order'][0]['column']]['data'], $filter['order'][0]['dir'])->forPage($filter['start'] / $filter['length'] + 1, $filter['length'])->get();
+        $data = User::with('parent')->orderBy($filter['columns'][$filter['order'][0]['column']]['data'], $filter['order'][0]['dir'])->forPage($filter['start'] / $filter['length'] + 1, $filter['length'])->get();
         $recordsTotal = User::count();
         $recordsFiltered = User::count();
         return [
