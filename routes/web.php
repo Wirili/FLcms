@@ -15,6 +15,7 @@ Route::get('/',['uses'=>'Home\IndexController@index','as'=>'index']);
 Route::get('login', 'Home\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Home\LoginController@login');
 Route::get('index',['uses'=>'Home\IndexController@index','as'=>'index']);
+Route::get('farm','Home\IndexController@farm')->name('farm');
 
 
 Route::group(['prefix' => 'admin','as'=>'admin.'], function () {

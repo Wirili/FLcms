@@ -23,4 +23,9 @@ class IndexController extends Controller
     {
         return view('home.index');
     }
+
+    public function farm()
+    {
+        return view('home.farm');
+    }
 }
