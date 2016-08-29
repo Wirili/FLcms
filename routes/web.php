@@ -12,6 +12,8 @@
 */
 
 Route::get('/',['uses'=>'Home\IndexController@index','as'=>'index']);
+Route::get('login', 'Home\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Home\LoginController@login');
 Route::get('index',['uses'=>'Home\IndexController@index','as'=>'index']);
 
 

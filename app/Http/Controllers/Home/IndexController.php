@@ -16,7 +16,7 @@ class IndexController extends Controller
     public function __construct()
     {
         parent::__construct();
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     public function index()
