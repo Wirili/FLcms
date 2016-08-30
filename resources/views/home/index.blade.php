@@ -3,9 +3,9 @@
 @section('right')
 <div class="row">
     <div class="col-md-12">
-        <h3>乐园首页</h3>
+        <h3>@lang('menu.home')</h3>
         <ol class="breadcrumb">
-            <li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a href="{{URL::route('index')}}">主页</a></li>
+            <li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a href="{{URL::route('index')}}">@lang('menu.index')</a></li>
         </ol>
     </div>
     <div class="col-md-12">
@@ -32,12 +32,14 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <label for="" class="control-label col-md-2">推广连接</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control input-sm">
-                    </div>
-                    <div class="col-md-2">
-                        <a href="#" class="btn btn-info">复制连接</a>
+                    <div class="form-horizontal">
+                        <label for="" class="control-label col-md-2">@lang('user.referral_link')</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control input-sm">
+                        </div>
+                        <div class="col-md-2">
+                            <a href="#" class="btn btn-info">@lang('user.click_copy')</a>
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -46,15 +48,27 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                最新系统公告 <a href="">查看全部公告</a>
+                @lang('new.new') <a href="">@lang('new.all')</a>
             </div>
             <table class="table table-striped table-hover">
                 <tr>
-                    <td>标题</td>
-                    <td>发布时间</td>
+                    <td>@lang('new.title')</td>
+                    <td>@lang('new.add_time')</td>
                 </tr>
+                @foreach($article as $item)
+                    <tr>
+                        <td><a href="#">{{$item->title}}</a></td>
+                        <td>{{$item->add_time}}</td>
+                    </tr>
+                @endforeach
             </table>
         </div>
     </div>
 </div>
+@endsection
+
+@section('footer')
+    <script>
+        $("#mlindex").addClass("btn-long16");
+    </script>
 @endsection

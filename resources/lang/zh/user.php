@@ -26,4 +26,6 @@ return [
     'point2' => '金币余额',
     'point2sum' => '金币收益',
     'point1'=>'激活币',
+    'referral_link'=>'推广链接',
+    'click_copy'=>'点击复制',
 ];

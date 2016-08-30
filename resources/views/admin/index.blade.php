@@ -81,7 +81,7 @@
                             <a href="{{URL::route('admin.config.edit')}}" target="main-content"><i class="fa fa-circle-o"></i>基本配置</a>
                         </li>
                         <li>
-                            <a href="{{URL::route('admin.pet.index')}}" target="main-content"><i class="fa fa-circle-o"></i>宠物设置</a>
+                            <a href="{{URL::route('admin.farm.index')}}" target="main-content"><i class="fa fa-circle-o"></i>宠物设置</a>
                         </li>
                         <li>
                             <a href="{{URL::route('admin.article.index')}}" target="main-content"><i class="fa fa-circle-o"></i>文章列表</a>

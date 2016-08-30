@@ -8,19 +8,19 @@
             </div>
             <div class="col-sm-8 an">
                 <div class="btn-group btn-group-lg">
-                    <button type="button" class="btn btn-default clearfix"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> 乐园公告</button>
-                    <button type="button" class="btn btn-default clearfix"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> 站内信</button>
+                    <button type="button" class="btn btn-default clearfix"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> @lang('menu.home')</button>
+                    <button type="button" class="btn btn-default clearfix"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> @lang('menu.mail')</button>
                     <div class="btn-group btn-group-lg" role="group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{Auth::user()->name}}
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{Auth::user()->name}}
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#">修改资料</a></li>
-                            <li><a href="#">密码保护</a></li>
-                            <li><a href="#">登陆日志</a></li>
+                            <li><a href="#"> @lang('menu.modify_user')</a></li>
+                            <li><a href="#"> @lang('menu.password_protected')</a></li>
+                            <li><a href="#"> @lang('menu.login_log')</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-off"></span> 注销登陆</a></li>
+                            <li><a href="{{URL::route('logout')}}"><span class="glyphicon glyphicon-off"></span> @lang('menu.logout')</a></li>
                         </ul>
                     </div>
                 </div>
@@ -33,32 +33,32 @@
             <div class="btn-group-vertical">
                 <ul>
                     <li>
-                        <a class="btn btn-long" href="{{URL::route('index')}}" id="mlindex"><span class="glyphicon glyphicon-home llong0" aria-hidden="true"></span><span class="llong2">乐园首页</span></a>
+                        <a class="btn btn-long" href="{{URL::route('index')}}" id="mlindex"><span class="glyphicon glyphicon-home llong0" aria-hidden="true"></span><span class="llong2">@lang('menu.home')</span></a>
                     </li>
                     <li>
-                        <a class="btn btn-long" href="#" role="button"><span class="glyphicon glyphicon-piggy-bank llong0" aria-hidden="true"></span><span class="llong2">乐园管理</span><span class="glyphicon glyphicon-menu-left llong1"></span></a>
+                        <a class="btn btn-long" href="#" role="button"><span class="glyphicon glyphicon-piggy-bank llong0" aria-hidden="true"></span><span class="llong2">@lang('menu.farm_manager')</span><span class="glyphicon glyphicon-menu-left llong1"></span></a>
                         <ul class="sub-menu">
-                            <li><a class="btn btn-long8" href="{{URL::route('farm')}}" id="m11">我的乐园</a></li>
-                            <li><a class="btn btn-long8" href="/member/my_farm_detailed.php" id="m13">我的乐园(详单)</a></li>
-                            <li><a class="btn btn-long8" href="/member/farm_shop.php" id="m12">乐园商店</a></li>
+                            <li><a class="btn btn-long8" href="{{URL::route('farm')}}" id="m11">@lang('menu.farm')</a></li>
+                            <li><a class="btn btn-long8" href="/member/my_farm_detailed.php" id="m12">@lang('menu.farm_detail')</a></li>
+                            <li><a class="btn btn-long8" href="/member/farm_shop.php" id="m13">@lang('menu.farm_shop')</a></li>
                         </ul>
                     </li>
                     <li>
-                        <a class="btn btn-long" href="#" role="button"><span class="glyphicon glyphicon-user llong0" aria-hidden="true"></span><span class="llong2">账户管理</span><span class="glyphicon glyphicon-menu-left llong1"></span></a>
+                        <a class="btn btn-long" href="#" role="button"><span class="glyphicon glyphicon-user llong0" aria-hidden="true"></span><span class="llong2">@lang('menu.user_manager')</span><span class="glyphicon glyphicon-menu-left llong1"></span></a>
                         <ul class="sub-menu">
-                            <li><a class="btn btn-long8" href="/member/rr.php" id="m21">推荐结构</a></li>
-                            <li><a class="btn btn-long8" href="/member/com_list.php" id="m22">直推列表</a></li>
-                            <li><a class="btn btn-long8" href="/member/act_mer.php" id="m23">激活账号</a></li>
-                            <li><a class="btn btn-long8" href="/member/act_mer_log.php" id="m26">激活记录</a></li>
+                            <li><a class="btn btn-long8" href="/member/rr.php" id="m21">@lang('menu.user_child')</a></li>
+                            <li><a class="btn btn-long8" href="/member/com_list.php" id="m22">@lang('menu.child_list')</a></li>
+                            <li><a class="btn btn-long8" href="/member/act_mer.php" id="m23">@lang('menu.point1_user')</a></li>
+                            <li><a class="btn btn-long8" href="/member/act_mer_log.php" id="m26">@lang('menu.point1_log')</a></li>
 
                         </ul>
                     </li>
                     <li>
-                        <a class="btn btn-long" href="#" role="button"><span class="glyphicon glyphicon-usd llong0" aria-hidden="true"></span><span class="llong2">收支明细</span><span class="glyphicon glyphicon-menu-left llong1"></span></a>
+                        <a class="btn btn-long" href="#" role="button"><span class="glyphicon glyphicon-usd llong0" aria-hidden="true"></span><span class="llong2">@lang('menu.account_detail')</span><span class="glyphicon glyphicon-menu-left llong1"></span></a>
                         <ul class="sub-menu">
 
-                            <li><a class="btn btn-long8" href="/member/point2_log_in.php" id="m31">金币收入</a></li>
-                            <li><a class="btn btn-long8" href="/member/point2_log_out.php" id="m32">金币支出</a></li>
+                            <li><a class="btn btn-long8" href="/member/point2_log_in.php" id="m31">@lang('menu.account_point2_in')</a></li>
+                            <li><a class="btn btn-long8" href="/member/point2_log_out.php" id="m32">@lang('menu.account_point2_ex')</a></li>
                         </ul>
                     </li>
                     <li>

@@ -146,18 +146,18 @@ class RoleTableSeeder extends Seeder
             'parent_id'=>'29',
             'display_name'=>'删除管理员'
         ],[
-            'name'=>'pet_show',
+            'name'=>'farm_show',
             'display_name'=>'宠物设置'
         ],[
-            'name'=>'pet_new',
+            'name'=>'farm_new',
             'parent_id'=>'33',
             'display_name'=>'新增宠物'
         ],[
-            'name'=>'pet_edit',
+            'name'=>'farm_edit',
             'parent_id'=>'33',
             'display_name'=>'修改宠物'
         ],[
-            'name'=>'pet_del',
+            'name'=>'farm_del',
             'parent_id'=>'33',
             'display_name'=>'删除宠物'
         ],[

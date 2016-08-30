@@ -14,8 +14,9 @@
 Route::get('/',['uses'=>'Home\IndexController@index','as'=>'index']);
 Route::get('login', 'Home\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Home\LoginController@login');
+Route::get('logout', 'Home\LoginController@logout')->name('logout');
 Route::get('index',['uses'=>'Home\IndexController@index','as'=>'index']);
-Route::get('farm','Home\IndexController@farm')->name('farm');
+Route::get('farm','Home\FarmController@farm')->name('farm');
 
 
 Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
@@ -37,12 +38,12 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
     Route::post('good/ajax', ['uses'=>'Admin\GoodController@ajax','as'=>'good.ajax']);
 
     //宠物管理路由
-    Route::get('pet/index', ['uses'=>'Admin\PetController@index','as'=>'pet.index']);
-    Route::get('pet/edit/{id}', ['uses'=>'Admin\PetController@edit','as'=>'pet.edit']);
-    Route::get('pet/create', ['uses'=>'Admin\PetController@create','as'=>'pet.create']);
-    Route::get('pet/del/{id}', ['uses'=>'Admin\PetController@del','as'=>'pet.del']);
-    Route::post('pet/save', ['uses'=>'Admin\PetController@save','as'=>'pet.save']);
-    Route::post('pet/ajax', ['uses'=>'Admin\PetController@ajax','as'=>'pet.ajax']);
+    Route::get('farm/index', ['uses'=>'Admin\FarmController@index','as'=>'farm.index']);
+    Route::get('farm/edit/{id}', ['uses'=>'Admin\FarmController@edit','as'=>'farm.edit']);
+    Route::get('farm/create', ['uses'=>'Admin\FarmController@create','as'=>'farm.create']);
+    Route::get('farm/del/{id}', ['uses'=>'Admin\FarmController@del','as'=>'farm.del']);
+    Route::post('farm/save', ['uses'=>'Admin\FarmController@save','as'=>'farm.save']);
+    Route::post('farm/ajax', ['uses'=>'Admin\FarmController@ajax','as'=>'farm.ajax']);
 
     //文章管理路由
     Route::get('article/index', ['uses'=>'Admin\ArticleController@index','as'=>'article.index']);

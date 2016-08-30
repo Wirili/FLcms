@@ -28,3 +28,14 @@ function leftmu(){
         });
     });
 }
+
+function mgo(x){
+    var zcd=$("#m"+x.toString());
+    var zcc=$(zcd).parent("li").parent(".sub-menu").prev();
+    $(zcd).addClass("btn-long32");
+    $(zcc).addClass("btn-long16");
+    $(zcc).find(".llong1").removeClass("glyphicon-menu-left");
+    $(zcc).find(".llong1").addClass("glyphicon-menu-down");
+    $(zcd).parent("li").parent(".sub-menu").show();
+    //alert($(zcd).parent("li").parent(".sub-menu").prev().html())
+}

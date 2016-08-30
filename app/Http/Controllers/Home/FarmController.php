@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Models\Article;
+use App\Models\UserFarm;
 
-class IndexController extends Controller
+class FarmController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -20,11 +20,11 @@ class IndexController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function farm()
     {
-        $article=Article::orderBy('id','desc')->take(5)->get();
-        return view('home.index',[
-            'article'=>$article
+        $farm=UserFarm::where('user_id',\Auth::user()->user_id)->paginate(12);
+        return view('home.farm',[
+            'farm'=>$farm
         ]);
     }
 }

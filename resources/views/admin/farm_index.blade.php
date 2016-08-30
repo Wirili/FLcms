@@ -11,9 +11,9 @@
                             <thead>
                             <tr align="center">
                                 <th class="text-center" width="60">@lang('sys.id')</th>
-                                <th class="text-center" width="80">@lang('pet.title')</th>
-                                <th class="text-center" width="150">@lang('pet.image')</th>
-                                <th class="text-center">@lang('pet.description')</th>
+                                <th class="text-center" width="80">@lang('farm.title')</th>
+                                <th class="text-center" width="150">@lang('farm.image')</th>
+                                <th class="text-center">@lang('farm.description')</th>
                                 <th class="text-center" width="100">@lang('sys.handle')</th>
                             </tr>
                             </thead>
@@ -40,10 +40,10 @@
                 stateSave: true,
                 ajax: {
                     type:'POST',
-                    url: "{{URL::route('admin.pet.ajax',['_token'=>csrf_token()])}}"
+                    url: "{{URL::route('admin.farm.ajax',['_token'=>csrf_token()])}}"
                 },
                 columns: [
-                    {data: 'pet_id',className:'text-center'},
+                    {data: 'id',className:'text-center'},
                     {data: 'title'},
                     {
                         data: 'image',
@@ -58,29 +58,29 @@
                         data: 'description',
                         orderable:false,
                         render:function(data, type, row){
-                            data="<p style='margin-bottom:0;'>@lang('pet.title')："+row.title+"</p>";
-                            data+="<p style='margin-bottom:0;'>@lang('pet.life')："+row.life+"</p>";
-                            data+="<p style='margin-bottom:0;'>@lang('pet.money')："+row.money+"</p>";
-                            data+="<p style='margin-bottom:0;'>@lang('pet.min_level')："+row.min_level+"</p>";
-                            data+="<p style='margin-bottom:0;'>@lang('pet.buy_limit')："+row.buy_limit+"</p>";
-                            data+="<p style='margin-bottom:0;'>@lang('pet.max_limit')："+row.max_limit+"</p>";
+                            data="<p style='margin-bottom:0;'>@lang('farm.title')："+row.title+"</p>";
+                            data+="<p style='margin-bottom:0;'>@lang('farm.life')："+row.life+"</p>";
+                            data+="<p style='margin-bottom:0;'>@lang('farm.money')："+row.money+"</p>";
+                            data+="<p style='margin-bottom:0;'>@lang('farm.min_level')："+row.min_level+"</p>";
+                            data+="<p style='margin-bottom:0;'>@lang('farm.buy_limit')："+row.buy_limit+"</p>";
+                            data+="<p style='margin-bottom:0;'>@lang('farm.max_limit')："+row.max_limit+"</p>";
                             return data;
                         }
                     },
                     {
-                        data: 'pet_id',
+                        data: 'id',
                         className: 'text-center',
                         orderable: false,
                         render: function (data, type, row) {
-                            data = "<a href='/admin/pet/edit/" + data + "' data-toggle='tooltip' data-placement='bottom' title='@lang('sys.edit')' style='padding:0 5px;'><i class='fa fa-edit'></i></a>"
-                                    + "<a href='/admin/pet/del/" + data + "' class='text-danger' data-toggle='tooltip' data-placement='bottom' title='@lang('sys.del')' style='padding:0 5px;'><i class='fa fa-remove'></i></a>";
+                            data = "<a href='/admin/farm/edit/" + data + "' data-toggle='tooltip' data-placement='bottom' title='@lang('sys.edit')' style='padding:0 5px;'><i class='fa fa-edit'></i></a>"
+                                    + "<a href='/admin/farm/del/" + data + "' class='text-danger' data-toggle='tooltip' data-placement='bottom' title='@lang('sys.del')' style='padding:0 5px;'><i class='fa fa-remove'></i></a>";
                             return data;
                         }
                     }
                 ],
                 order: [[0, "desc"]]
             });
-            $('#dt_length').append("<a class='btn btn-primary pull-right' href='{{URL::route('admin.pet.create')}}'>@lang('pet.create')</a>");
+            $('#dt_length').append("<a class='btn btn-primary pull-right' href='{{URL::route('admin.farm.create')}}'>@lang('farm.create')</a>");
         });
     </script>
 @endsection
