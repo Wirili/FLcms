@@ -57,7 +57,7 @@
                     <tr><td colspan="3" class="text-center">没有数据</td></tr>
                 @endforelse
                     <tr>
-                        <td colspan="3" class="text-center">
+                        <td colspan="3" class="text-center custom-pagination">
                         @if($farm->count()>0)
                             {{$farm->render()}}
                         @endif

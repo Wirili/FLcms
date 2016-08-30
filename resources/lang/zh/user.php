@@ -31,6 +31,10 @@ return [
     'point2' => '金币余额',
     'point2sum' => '金币收益',
     'point1'=>'激活币',
+    'point1_bal'=>'激活币余额',
+    'point1_act'=>'所需激活币',
+    'act_user_label'=>'激活玩家编号',
+    'act_user_btn'=>'激活玩家',
     'referral_link'=>'推广链接',
     'click_copy'=>'点击复制',
 ];

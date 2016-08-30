@@ -48,8 +48,8 @@
                         <ul class="sub-menu">
                             <li><a class="btn btn-long8" href="/member/rr.php" id="m21">@lang('menu.user_child')</a></li>
                             <li><a class="btn btn-long8" href="{{URL::route('child_list')}}" id="m22">@lang('menu.child_list')</a></li>
-                            <li><a class="btn btn-long8" href="/member/act_mer.php" id="m23">@lang('menu.point1_user')</a></li>
-                            <li><a class="btn btn-long8" href="/member/act_mer_log.php" id="m26">@lang('menu.point1_log')</a></li>
+                            <li><a class="btn btn-long8" href="{{URL::route('act_user')}}" id="m23">@lang('menu.act_user')</a></li>
+                            <li><a class="btn btn-long8" href="{{URL::route('act_user_log')}}" id="m26">@lang('menu.act_user_log')</a></li>
 
                         </ul>
                     </li>

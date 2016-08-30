@@ -18,8 +18,8 @@ return [
     'user_manager' => '账号管理',
     'user_child' => '推荐结构',
     'child_list' => '直推列表',
-    'point1_user' => '激活会员',
-    'point1_user_log' => '激活记录',
+    'act_user' => '激活会员',
+    'act_user_log' => '激活记录',
 
     'account_detail'=>'账号明细',
     'account_point2_in'=>'金币收入',

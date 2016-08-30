@@ -81,14 +81,24 @@ class ConfigTableSeeder extends Seeder
             'value'=>'1'
         ],[
             'parent_id'=>3,
-            'code'=>'member_reg',
+            'code'=>'user_reg',
             'type'=>'text',
             'value'=>'1'
         ],[
             'parent_id'=>3,
-            'code'=>'member_active',
+            'code'=>'user_act',
             'type'=>'text',
             'value'=>'1'
+        ],[
+            'parent_id'=>3,
+            'code'=>'user_act_point1',
+            'type'=>'text',
+            'value'=>'50'
+        ],[
+            'parent_id'=>3,
+            'code'=>'user_act_point2',
+            'type'=>'text',
+            'value'=>'20'
         ],[
             'parent_id'=>4,
             'code'=>'level.1',

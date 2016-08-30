@@ -21,6 +21,8 @@ Route::get('lock_fail', 'Home\IndexController@lock_fail')->name('lock_fail');
 Route::get('farm','Home\FarmController@farm')->name('farm');
 Route::get('farm_detail','Home\FarmController@farm_detail')->name('farm_detail');
 Route::get('child_list','Home\UserController@child_list')->name('child_list');
+Route::any('act_user','Home\UserController@act_user')->name('act_user');
+Route::get('act_user_log','Home\UserController@act_user_log')->name('act_user_log');
 
 
 Route::group(['prefix' => 'admin','as'=>'admin.'], function () {

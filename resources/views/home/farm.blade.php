@@ -41,7 +41,7 @@
             </div>
             @if($farm->count()>0)
             <div class="row">
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center custom-pagination">
                     {{$farm->render()}}
                 </div>
             </div>

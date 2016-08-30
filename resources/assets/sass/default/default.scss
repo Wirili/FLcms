@@ -1,6 +1,11 @@
 body{
   font-family: "微软雅黑";
 }
+.custom-pagination{
+  .pagination{
+    margin:0;
+  }
+}
 .login-box{
   padding:15px;
   width:300px;
