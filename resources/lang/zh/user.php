@@ -15,6 +15,11 @@ return [
         0=>'未激活',
         1=>'已激活',
     ],
+    'is_lock' => '账号状态',
+    'is_lock_option' => [
+        0=>'正常',
+        1=>'已锁定',
+    ],
     'level_label'=>'等级',
     'level'=>[
         1=>'<span class="label label-default">VIP</span>',

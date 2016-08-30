@@ -12,12 +12,15 @@
 */
 
 Route::get('/',['uses'=>'Home\IndexController@index','as'=>'index']);
-Route::get('login', 'Home\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Home\LoginController@login');
+Route::get('login', 'Home\LoginController@showLoginForm')->name('login');
 Route::get('logout', 'Home\LoginController@logout')->name('logout');
 Route::get('index',['uses'=>'Home\IndexController@index','as'=>'index']);
+Route::get('pass_fail', 'Home\IndexController@pass_fail')->name('pass_fail');
+Route::get('lock_fail', 'Home\IndexController@lock_fail')->name('lock_fail');
 Route::get('farm','Home\FarmController@farm')->name('farm');
 Route::get('farm_detail','Home\FarmController@farm_detail')->name('farm_detail');
+Route::get('child_list','Home\UserController@child_list')->name('child_list');
 
 
 Route::group(['prefix' => 'admin','as'=>'admin.'], function () {

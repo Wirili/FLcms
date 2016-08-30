@@ -47,7 +47,7 @@
                         <a class="btn btn-long" href="#" role="button"><span class="glyphicon glyphicon-user llong0" aria-hidden="true"></span><span class="llong2">@lang('menu.user_manager')</span><span class="glyphicon glyphicon-menu-left llong1"></span></a>
                         <ul class="sub-menu">
                             <li><a class="btn btn-long8" href="/member/rr.php" id="m21">@lang('menu.user_child')</a></li>
-                            <li><a class="btn btn-long8" href="/member/com_list.php" id="m22">@lang('menu.child_list')</a></li>
+                            <li><a class="btn btn-long8" href="{{URL::route('child_list')}}" id="m22">@lang('menu.child_list')</a></li>
                             <li><a class="btn btn-long8" href="/member/act_mer.php" id="m23">@lang('menu.point1_user')</a></li>
                             <li><a class="btn btn-long8" href="/member/act_mer_log.php" id="m26">@lang('menu.point1_log')</a></li>
 

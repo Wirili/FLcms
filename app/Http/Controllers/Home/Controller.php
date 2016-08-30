@@ -8,12 +8,15 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Config;
 
+
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function __construct()
     {
+        $this->middleware('auth',['except' => ['pass_fail','lock_fail']]);
         view()->share('C',Config::getConfig());
     }
 }
