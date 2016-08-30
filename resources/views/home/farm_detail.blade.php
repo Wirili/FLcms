@@ -17,6 +17,18 @@
             </div>
             <div class="panel-body">
                 <div class="row">
+                    <div class="col-md-12">
+                        @forelse($farm_sum as $item)
+                            @if($loop->first)
+                                共有：
+                            @else
+                                、
+                            @endif
+                            {{$item->title.'×'.$item->num}}
+                        @empty
+                            <div class="text-center">没有数据</div>
+                        @endforelse
+                    </div>
                 </div>
             </div>
             <table class="table table-striped table-hover">
