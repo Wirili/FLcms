@@ -22,8 +22,15 @@ class FarmController extends Controller
 
     public function farm()
     {
-        $farm=UserFarm::where('user_id',\Auth::user()->user_id)->paginate(12);
+        $farm=UserFarm::where('is_end',0)->where('user_id',\Auth::user()->user_id)->paginate(12);
         return view('home.farm',[
+            'farm'=>$farm
+        ]);
+    }
+    public function farm_detail()
+    {
+        $farm=UserFarm::where('is_end',0)->where('user_id',\Auth::user()->user_id)->paginate(12);
+        return view('home.farm_detail',[
             'farm'=>$farm
         ]);
     }

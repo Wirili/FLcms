@@ -1,5 +1,5 @@
 $(function(){
-    $(".right").css('height',($(window).height()-70)+'px');
+    $(".right").css('min-height',($(window).height()-70)+'px');
     leftmu();
 })
 

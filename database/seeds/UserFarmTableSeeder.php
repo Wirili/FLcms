@@ -21,7 +21,8 @@ class UserFarmTableSeeder extends Seeder
             'point2_day'=>9,
             'life'=>7,
             'money'=>55,
-            'add_time'=>date('Y-m-d')
+            'add_time'=>date('Y-m-d'),
+            'end_time'=>date('Y-m-d',strtotime('+7 day'))
         ]];
         foreach ($lists as $list) {
             UserFarm::create($list);

@@ -39,11 +39,13 @@
                     <div class="text-center">没有数据</div>
                 @endforelse
             </div>
+            @if($farm->count()>0)
             <div class="row">
                 <div class="col-md-12 text-center">
                     {{$farm->render()}}
                 </div>
             </div>
+            @endif
         </div>
     </div>
     </div>

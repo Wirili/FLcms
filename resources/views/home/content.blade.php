@@ -39,7 +39,7 @@
                         <a class="btn btn-long" href="#" role="button"><span class="glyphicon glyphicon-piggy-bank llong0" aria-hidden="true"></span><span class="llong2">@lang('menu.farm_manager')</span><span class="glyphicon glyphicon-menu-left llong1"></span></a>
                         <ul class="sub-menu">
                             <li><a class="btn btn-long8" href="{{URL::route('farm')}}" id="m11">@lang('menu.farm')</a></li>
-                            <li><a class="btn btn-long8" href="/member/my_farm_detailed.php" id="m12">@lang('menu.farm_detail')</a></li>
+                            <li><a class="btn btn-long8" href="{{URL::route('farm_detail')}}" id="m12">@lang('menu.farm_detail')</a></li>
                             <li><a class="btn btn-long8" href="/member/farm_shop.php" id="m13">@lang('menu.farm_shop')</a></li>
                         </ul>
                     </li>
