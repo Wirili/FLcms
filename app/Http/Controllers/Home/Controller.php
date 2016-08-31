@@ -13,10 +13,11 @@ use App\Models\Config;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
+    protected $config=null;
     public function __construct()
     {
         $this->middleware('auth',['except' => ['pass_fail','lock_fail']]);
-        view()->share('C',Config::getConfig());
+        $this->config=Config::getConfig();
+        view()->share('C',$this->config);
     }
 }

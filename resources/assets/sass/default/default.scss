@@ -1,46 +1,47 @@
-body{
+body {
   font-family: "微软雅黑";
 }
-.custom-pagination{
-  .pagination{
-    margin:0;
-  }
-}
-.login-box{
-  padding:15px;
-  width:300px;
-  margin:7% auto;
-  background: url(../images/tm30.png);
-  .login-box-body{
+
+.custom-pagination {
+  .pagination {
+    margin: 0;
   }
 }
 
-.top{
+.login-box {
+  padding: 15px;
+  width: 300px;
+  margin: 7% auto;
+  background: url(../images/tm30.png);
+  .login-box-body {
+  }
+}
+
+.top {
   position: relative;
   background: url(../images/top.jpg) center -105px #212121;
-  .logo{
-    padding:15px;
+  .logo {
+    padding: 5px;
   }
-  .an{
+  .an {
     text-align: right;
-    padding:25px 15px;
+    padding: 30px 15px;
   }
 }
-
 
 .main {
   position: relative;
   background: #84c415 url("../images/cc.png") no-repeat scroll left bottom;
   .left {
     position: absolute;
-    left:0;
-    top:0;
-    bottom:0;
+    left: 0;
+    top: 0;
+    bottom: 0;
     width: 200px;
-    z-index:800;
+    z-index: 800;
     overflow: hidden;
     transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
-    .btn,.llong2{
+    .btn, .llong2 {
       white-space: nowrap;
     }
     .choujiang {
@@ -169,24 +170,25 @@ body{
     //left:200px;
     //bottom:0;
     //right:0;
-    margin-left:200px;
-    z-index:820;
+    margin-left: 200px;
+    z-index: 820;
     background: #FFF;
   }
 }
 
 @media (max-width: 768px) {
-  .top{
+  .top {
     background: url(../images/top.jpg) center;
-    .logo{
+    .logo {
       text-align: center;
     }
-    .an{
+    .an {
       text-align: center;
-      padding-top:0px;
+      padding-top: 0px;
+      padding-bottom: 5px;
     }
   }
-  .login-box{
+  .login-box {
     width: 90%;
     margin-top: 20px;
   }

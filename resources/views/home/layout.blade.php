@@ -18,8 +18,12 @@
     <script src="{{asset('build/common/js/bootstrap.min.js')}}"></script>
     <!-- 背景图 -->
     <script src="{{asset('build/common/plugin/backstretch/jquery.backstretch.min.js')}}"></script>
-
     <!-- end -->
+
+    <!-- layer -->
+    <link href="{{asset('build/common/plugin/layer/skin/layer.css')}}" rel="stylesheet" type='text/css'>
+    <script src="{{asset('build/common/plugin/layer/layer.js')}}"></script>
+    <!-- end layer -->
     <script src="{{asset('build/default/js/app.js')}}"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

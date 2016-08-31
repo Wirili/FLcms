@@ -16,7 +16,7 @@
             @lang('menu.act_user')
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" action="{{URL::route('act_user')}}" method="post">
+            <div class="form-horizontal">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="">@lang('user.point1_bal')</label>
@@ -27,21 +27,21 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="">@lang('user.point1_act')</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control input-sm" disabled value="{{intval($C['user_act_point1'])}}">
+                        <input type="text" id="user_act_point1" class="form-control input-sm" disabled value="{{intval($C['user_act_point1'])}}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="">@lang('user.act_user_label')</label>
                     <div class="col-md-4">
-                        <input type="text" class="form-control input-sm" value="">
+                        <input type="text" class="form-control input-sm" id="act_user" value="">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-4 col-md-offset-2">
-                        <button type="submit" class="btn btn-warning">@lang('user.act_user_btn')</button>
+                        <button type="submit" class="btn btn-warning act_user_btn">@lang('user.act_user_btn')</button>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
     </div>
@@ -51,5 +51,32 @@
 @section('footer')
     <script>
         mgo('11');
+        $(function(){
+            $('.act_user_btn').on('click',function(e){
+                $.ajax({
+                    type: 'POST',
+                    url: '{{URL::route('act_user')}}',
+                    data: {_token:'{{csrf_token()}}',act_user:$('#act_user').val()},
+                    complete:function(result,status){
+                        if(result.status==422){
+                            $.each(result.responseJSON,function(id,arr){
+                                var str="";
+                                $.each(arr,function(a,b){
+                                    str+=b+"<br>";
+                                });
+                                layer.tips(str, '#'+id,{
+                                    tips: [1, '#ec971f'],
+                                    time: 2000,
+                                    tipsMore:true
+                                });
+                            });
+                        }else if(result.status==200){
+                            alert('成功');
+                        }
+                    },
+                    dataType: 'json'
+                });
+            });
+        });
     </script>
 @endsection
