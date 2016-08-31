@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Models\Config;
 
 class LoginController extends Controller
 {
@@ -34,6 +35,8 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+        $this->config=Config::getConfig();
+        view()->share('C',$this->config);
     }
 
     public function showLoginForm()
