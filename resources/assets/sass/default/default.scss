@@ -192,4 +192,12 @@ body {
     width: 90%;
     margin-top: 20px;
   }
+  .main {
+    .right {
+      margin-left: 0;
+    }
+    .left {
+      width: 0;
+    }
+  }
 }

@@ -16,7 +16,8 @@ class UserTableSeeder extends Seeder
         //
         $lists=[[
             'name'=>'101',
-            'password'=>\Hash::make('111111')
+            'password'=>\Hash::make('111111'),
+            'point1'=>1000
         ],[
             'name'=>'102',
             'parent_id'=>1,

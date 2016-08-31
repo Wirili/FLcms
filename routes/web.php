@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('phpinfo',function(Request $request){
+    dd(phpinfo());
+});
 Route::get('/',['uses'=>'Home\IndexController@index','as'=>'index']);
 Route::post('login', 'Home\LoginController@login');
 Route::get('login', 'Home\LoginController@showLoginForm')->name('login');
@@ -22,6 +25,7 @@ Route::get('farm','Home\FarmController@farm')->name('farm');
 Route::get('farm_detail','Home\FarmController@farm_detail')->name('farm_detail');
 Route::get('child_list','Home\UserController@child_list')->name('child_list');
 Route::any('act_user','Home\UserController@act_user')->name('act_user');
+Route::post('get_user','Home\UserController@get_user')->name('get_user');
 Route::get('act_user_log','Home\UserController@act_user_log')->name('act_user_log');
 
 

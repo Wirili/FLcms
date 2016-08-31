@@ -5,9 +5,13 @@ namespace App\Http\Controllers\home;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Models\User;
-use Validator;
 use Illuminate\Http\JsonResponse;
+use Validator;
+use App\Models\User;
+use App\Models\LogPoint1;
+use App\Models\LogPoint2;
+
+
 
 class UserController extends Controller
 {
@@ -45,7 +49,34 @@ class UserController extends Controller
             $user->is_pass=1;
             $user->pass_time=date('Y-m-d H:i:s');
             $user->save();
+
+            $log=new LogPoint1();
+            $log->user_id=\Auth::user()->user_id;
+            $log->price=50;
+            $log->about='';
+            $log->ip=$request->getClientIp();
+            $log->type='激活玩家';
+            $log->add_time=date('Y-m-d H:i:s');
+            $log->save();
+//            LogPoint1::create([
+//                'user_id'=>\Auth::user()->user_id,
+//                'price'=>50,
+//                'about'=>'adsf',
+//                'ip'=>$request->getClientIp(),
+//                'type'=>'激活玩家',
+//                'add_time'=>date('Y-m-d H:i:s')
+//            ]);
+
         }else
             return view('home.act_user');
+    }
+
+    public function get_user(Request $request)
+    {
+        $user=User::where('name',$request->act_user)->first();
+        if($user){
+            return new JsonResponse('玩家姓名：'.($user->fullname?$user->fullname:'(未填写)').'，激活状态：'.(trans('user.is_pass_option')[$user->is_pass]).'，注册时间：'.$user->reg_time.'，上级编号：'.$user->parent_name,200);
+        }
+        return new JsonResponse('您输入的玩家编号不存在',200);
     }
 }
