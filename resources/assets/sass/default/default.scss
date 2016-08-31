@@ -193,6 +193,16 @@ body {
     margin-top: 20px;
   }
   .main {
+    overflow: hidden;
+    &.active{
+      .right{
+        margin-left:200px;
+        margin-right:-200px;
+      }
+      .left{
+        width:200px;
+      }
+    }
     .right {
       margin-left: 0;
     }

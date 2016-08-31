@@ -21,9 +21,9 @@
                     <td>玩家姓名</td>
                     <td>VIP等级</td>
                     <td>激活状态</td>
-                    <td>账号状态</td>
-                    <td>最后登录时间</td>
-                    <td>注册时间</td>
+                    <td class="hidden-xs">账号状态</td>
+                    <td class="hidden-xs">最后登录时间</td>
+                    <td class="hidden-xs">注册时间</td>
                 </tr>
                 @forelse($child_list as $item)
                     <tr>
@@ -31,15 +31,15 @@
                         <td>{{$item->fullname}}</td>
                         <td>{!! trans('user.level')[$item->level] !!}</td>
                         <td>{{ trans('user.is_pass_option')[$item->is_pass] }}</td>
-                        <td>{{ trans('user.is_lock_option')[$item->is_lock]}}</td>
-                        <td>{{$item->last_time}}</td>
-                        <td>{{$item->reg_time}}</td>
+                        <td class="hidden-xs">{{ trans('user.is_lock_option')[$item->is_lock]}}</td>
+                        <td class="hidden-xs">{{$item->last_time}}</td>
+                        <td class="hidden-xs">{{$item->reg_time}}</td>
                     </tr>
                 @empty
                     <tr><td colspan="7" class="text-center">没有数据</td></tr>
                 @endforelse
                     <tr>
-                        <td colspan="7" class="text-center">
+                        <td colspan="7" class="text-center custom-pagination">
                         @if($child_list->count()>0)
                             {{$child_list->render()}}
                         @endif
@@ -53,6 +53,6 @@
 
 @section('footer')
     <script>
-        mgo('12');
+        mgo('22');
     </script>
 @endsection

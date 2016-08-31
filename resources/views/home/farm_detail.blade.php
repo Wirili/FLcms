@@ -34,13 +34,13 @@
             <table class="table table-striped table-hover">
                 <tr>
                     <td class="text-center">市场</td>
-                    <td class="text-center">属性</td>
+                    <td class="text-center hidden-xs">属性</td>
                     <td class="text-center">结算</td>
                 </tr>
                 @forelse($farm as $item)
                     <tr>
                         <td class="text-center"><img src="{{$item->image}}" alt="{{$item->title}}" height="100"></td>
-                        <td>
+                        <td class="hidden-xs">
                             <b>{{$item->title}}</b><br>
                             数量：{{$item->num}}<br>
                             每日生产金币数：{{$item->point2_day}}<br>

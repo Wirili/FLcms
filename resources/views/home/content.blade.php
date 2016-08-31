@@ -8,8 +8,9 @@
             </div>
             <div class="col-sm-8 an">
                 <div class="btn-group btn-group-lg">
-                    <button type="button" class="btn btn-default clearfix"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> @lang('menu.home')</button>
-                    <button type="button" class="btn btn-default clearfix"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> @lang('menu.mail')</button>
+                    <button type="button" class="btn btn-default clearfix visible-xs-block menu-btn"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></button>
+                    <button type="button" class="btn btn-default clearfix"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span><span class="hidden-xs"> @lang('menu.home')</span></button>
+                    <button type="button" class="btn btn-default clearfix"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span class="hidden-xs"> @lang('menu.mail')</span></button>
                     <div class="btn-group btn-group-lg" role="group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{Auth::user()->name}}

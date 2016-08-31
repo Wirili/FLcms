@@ -53,7 +53,7 @@
 
 @section('footer')
     <script>
-        mgo('11');
+        mgo('23');
         $(function(){
             $('.act_user_btn').on('click',function(e){
                 var load=layer.load();

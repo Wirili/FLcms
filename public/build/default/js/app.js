@@ -1,9 +1,22 @@
 $(function(){
     $(".right").css('min-height',($(window).height()-70)+'px');
     leftmu();
+    $('.menu-btn').on('click',function(e){
+        if($('.main').hasClass('active')){
+            $('.main').removeClass('active');
+        }else{
+            $('.main').addClass('active');
+        }
+    });
+
+    $('body').on('click','.main.active .right',function(e){
+        if($('.main').hasClass('active')){
+            $('.main').removeClass('active');
+        }else{
+            $('.main').addClass('active');
+        }
+    });
 })
-
-
 
 function leftmu(){
     //$(selector).toggle(speed,callback);
