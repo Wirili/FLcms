@@ -3,35 +3,26 @@
 @section('right')
 <div class="row">
     <div class="col-md-12">
-        <h3>@lang('menu.account_detail') <small>@lang('menu.point2_log_out')</small></h3>
+        <h3>@lang('menu.user_center') <small>@lang('menu.log_login')</small></h3>
         <ol class="breadcrumb">
             <li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a href="{{URL::route('index')}}">@lang('menu.index')</a></li>
-            <li>@lang('menu.account_detail')</li>
-            <li class="active">@lang('menu.point2_log_out')</li>
+            <li>@lang('menu.user_center')</li>
+            <li class="active">@lang('menu.log_login')</li>
         </ol>
     </div>
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                @lang('menu.point2_log_out')
-            </div>
-            <div class="panel-body">
-                <p class="col-sm-6 col-md-3">@lang('log2.out_total',['value'=>App\Models\LogPoint2::where('price','<',0)->where('user_id',\Auth::user()->user_id)->sum('price')??'0.00'])</p>
+                @lang('menu.log_login')
             </div>
             <table class="table table-striped table-hover">
                 <tr>
-                    <td>@lang('log2.label.id')</td>
-                    <td>@lang('log2.label.type')</td>
-                    <td>@lang('log2.label.price')</td>
-                    <td>@lang('log2.label.about')</td>
-                    <td class="hidden-xs">@lang('log2.label.add_time')</td>
+                    <td>@lang('user.log_login.ip')</td>
+                    <td class="hidden-xs">@lang('user.log_login.add_time')</td>
                 </tr>
                 @forelse($log as $item)
                     <tr>
-                        <td>{{$item->id}}</td>
-                        <td>{{$item->type}}</td>
-                        <td>{{$item->price}}</td>
-                        <td>{{$item->about}}</td>
+                        <td>{{$item->ip}}</td>
                         <td class="hidden-xs">{{$item->add_time}}</td>
                     </tr>
                 @empty
@@ -52,6 +43,6 @@
 
 @section('footer')
     <script>
-        mgo('32');
+        mgo('31');
     </script>
 @endsection

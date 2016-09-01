@@ -33,7 +33,7 @@
                 @forelse($log as $item)
                     <tr>
                         <td>{{$item->id}}</td>
-                        <td>{{$item->typ}}</td>
+                        <td>{{$item->type}}</td>
                         <td>{{$item->price}}</td>
                         <td>{{$item->about}}</td>
                         <td class="hidden-xs">{{$item->add_time}}</td>

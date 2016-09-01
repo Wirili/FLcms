@@ -30,6 +30,7 @@ Route::get('act_user_log','Home\UserController@act_user_log')->name('act_user_lo
 Route::any('user_child','Home\UserController@user_child')->name('user_child');
 Route::get('point2_log_in','Home\UserController@point2_log_in')->name('point2_log_in');
 Route::get('point2_log_out','Home\UserController@point2_log_out')->name('point2_log_out');
+Route::get('log_login','Home\UserController@log_login')->name('log_login');
 
 
 Route::group(['prefix' => 'admin','as'=>'admin.'], function () {

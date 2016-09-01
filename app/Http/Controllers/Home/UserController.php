@@ -10,6 +10,7 @@ use Validator;
 use App\Models\User;
 use App\Models\LogPoint1;
 use App\Models\LogPoint2;
+use App\Models\LogUserLogin;
 
 
 class UserController extends Controller
@@ -102,6 +103,11 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * 金币收入明细
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function point2_log_in()
     {
         $log = LogPoint2::where('user_id', \Auth::user()->user_id)->where('price','>','0')->paginate(12);
@@ -110,6 +116,11 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * 金币支出明细
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function point2_log_out()
     {
         $log = LogPoint2::where('user_id', \Auth::user()->user_id)->where('price','<','0')->paginate(12);
@@ -118,6 +129,23 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * 用户登陆日志
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function log_login()
+    {
+        $log=LogUserLogin::where('user_id',\Auth::user()->user_id)->paginate(12);
+        return view('home.log_login',[
+            'log'=>$log
+        ]);
+    }
+
+    public function user_info()
+    {
+        return view('home.user_info');
+    }
 
     /**
      * ajax获取用户信息

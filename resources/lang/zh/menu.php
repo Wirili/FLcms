@@ -4,10 +4,11 @@ return [
     'home' => '乐园首页',
     'index' => '首页',
     'new' => '乐园公告',
+    'user_center' => '个人中心',
     'mail' => '站内信',
     'modify_user' => '修改资料',
     'password_protected' => '密码保护',
-    'login_log' => '登陆日志',
+    'log_login' => '登陆日志',
     'logout' => '登陆注销',
 
     'farm_manager' => '乐园管理',

@@ -19,7 +19,7 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="#"> @lang('menu.modify_user')</a></li>
                             <li><a href="#"> @lang('menu.password_protected')</a></li>
-                            <li><a href="#"> @lang('menu.login_log')</a></li>
+                            <li><a href="{{URL::route('log_login')}}"> @lang('menu.log_login')</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{{URL::route('logout')}}"><span class="glyphicon glyphicon-off"></span> @lang('menu.logout')</a></li>
                         </ul>

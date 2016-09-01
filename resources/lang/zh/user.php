@@ -53,4 +53,10 @@ return [
         'exist'=>'玩家姓名：:name，激活状态：:is_pass，注册时间：:reg_time，上级编号：:parent_name',
         'not_exist'=>'您输入的玩家编号不存在',
     ],
+
+    //log_login
+    'log_login'=>[
+        'ip'=>'登陆IP',
+        'add_time'=>'登陆时间',
+    ],
 ];
