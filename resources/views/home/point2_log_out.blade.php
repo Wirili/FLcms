@@ -3,24 +3,20 @@
 @section('right')
 <div class="row">
     <div class="col-md-12">
-        <h3>@lang('menu.account_detail') <small>@lang('menu.point2_log_in')</small></h3>
+        <h3>@lang('menu.account_detail') <small>@lang('menu.point2_log_out')</small></h3>
         <ol class="breadcrumb">
             <li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a href="{{URL::route('index')}}">@lang('menu.index')</a></li>
             <li>@lang('menu.account_detail')</li>
-            <li class="active">@lang('menu.point2_log_in')</li>
+            <li class="active">@lang('menu.point2_log_out')</li>
         </ol>
     </div>
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                @lang('menu.point2_log_in')
+                @lang('menu.point2_log_out')
             </div>
             <div class="panel-body">
-                <p class="col-sm-6 col-md-3">@lang('log2.in_total.point2',['value'=>\Auth::user()->point2])</p>
-                <p class="col-sm-6 col-md-3">@lang('log2.in_total.point2_in',['value'=>App\Models\LogPoint2::where('price','>',0)->where('user_id',\Auth::user()->user_id)->sum('price')??'0.00'])</p>
-                <p class="col-sm-6 col-md-3">@lang('log2.in_total.farm_return',['value'=>App\Models\LogPoint2::where('type',trans('log2.type.farm_return'))->where('user_id',\Auth::user()->user_id)->sum('price')??'0.00'])</p>
-                <p class="col-sm-6 col-md-3">@lang('log2.in_total.act_user_point2',['value'=>App\Models\LogPoint2::where('type',trans('log2.type.act_user_point2'))->where('user_id',\Auth::user()->user_id)->sum('price')??'0.00'])</p>
-                <p class="col-sm-6 col-md-3">@lang('log2.in_total.rem_return',['value'=>App\Models\LogPoint2::where('type',trans('log2.type.rem_return'))->where('user_id',\Auth::user()->user_id)->sum('price')??'0.00'])</p>
+                <p class="col-sm-6 col-md-3">@lang('log2.out_total',['value'=>App\Models\LogPoint2::where('price','<',0)->where('user_id',\Auth::user()->user_id)->sum('price')??'0.00'])</p>
             </div>
             <table class="table table-striped table-hover">
                 <tr>
@@ -56,6 +52,6 @@
 
 @section('footer')
     <script>
-        mgo('31');
+        mgo('32');
     </script>
 @endsection
