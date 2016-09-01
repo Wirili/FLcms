@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{$C['web_title'] or '网站首页'}}</title>
+    <title>{{$page_title or ''}} - {{$C['web_title'] or '网站首页'}}</title>
 
     <!-- Styles -->
     <link href="{{asset('build/common/css/bootstrap.min.css')}}" rel="stylesheet" type='text/css'>

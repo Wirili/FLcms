@@ -28,7 +28,9 @@ class UserController extends Controller
             $tree[] = $this->getTree(\Auth::user()->user_id);
             return new JsonResponse($tree, 200);
         }
-        return view('home.user_child');
+        return view('home.user_child',[
+            'page_title'=>trans('menu.user_child')
+        ]);
     }
 
     /**
