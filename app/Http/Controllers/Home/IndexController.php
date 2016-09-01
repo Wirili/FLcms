@@ -13,6 +13,7 @@ class IndexController extends Controller
     {
         $article=Article::orderBy('id','desc')->take(5)->get();
         return view('home.index',[
+            'page_title'=>trans('menu.home'),
             'article'=>$article
         ]);
     }

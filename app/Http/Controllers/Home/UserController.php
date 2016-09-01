@@ -42,6 +42,7 @@ class UserController extends Controller
     {
         $child_list = \Auth::user()->children()->paginate(12);;
         return view('home.child_list', [
+            'page_title'=>trans('menu.child_list'),
             'child_list' => $child_list
         ]);
     }
@@ -88,7 +89,9 @@ class UserController extends Controller
             $log->save();
             return new JsonResponse(['msg' => trans('user.act_user_success', ['name' => $request->act_user])], 200);
         } else
-            return view('home.act_user');
+            return view('home.act_user',[
+                'page_title'=>trans('menu.act_user')
+            ]);
     }
 
     /**
@@ -101,6 +104,7 @@ class UserController extends Controller
     {
         $log = LogPoint1::where('user_id', \Auth::user()->user_id)->paginate(12);
         return view('home.act_user_log', [
+            'page_title'=>trans('menu.act_user_log'),
             'log' => $log
         ]);
     }
@@ -114,6 +118,7 @@ class UserController extends Controller
     {
         $log = LogPoint2::where('user_id', \Auth::user()->user_id)->where('price','>','0')->paginate(12);
         return view('home.point2_log_in', [
+            'page_title'=>trans('menu.point2_log_in'),
             'log' => $log
         ]);
     }
@@ -127,6 +132,7 @@ class UserController extends Controller
     {
         $log = LogPoint2::where('user_id', \Auth::user()->user_id)->where('price','<','0')->paginate(12);
         return view('home.point2_log_out', [
+            'page_title'=>trans('menu.point2_log_out'),
             'log' => $log
         ]);
     }
@@ -140,13 +146,52 @@ class UserController extends Controller
     {
         $log=LogUserLogin::where('user_id',\Auth::user()->user_id)->paginate(12);
         return view('home.log_login',[
+            'page_title'=>trans('menu.log_login'),
             'log'=>$log
         ]);
     }
 
-    public function user_info()
+    public function user_info(Request $request)
     {
-        return view('home.user_info');
+        $user=\Auth::user();
+        if($request->isMethod('post')){
+            //数据验证
+            $validator = Validator::make($request->all(), [
+                'addr_tel'=>'regex',
+                'password'=>'required',
+            ], [
+                'addr_tel.regex'=>'手机格式不正确',
+                'password.required'=>'当前密码'
+            ]);
+            $validator->after(function($validator) {
+                if (!\Hash::check($validator->getData()['password'], \Auth::user()->password)) {
+                    $validator->errors()->add('password', '密码不正确');
+                }
+            });
+            if ($validator->fails()) {
+                if ($request->expectsJson()) {
+                    return new JsonResponse($validator->errors()->getMessages(), 422);
+                }
+            }
+
+            //当前时间
+            $date = date('Y-m-d H:i:s');
+            $user->fullname=$request->fullname;
+            $user->weixin=$request->weixin;
+            $user->alipay_name=$request->alipay_name;
+            $user->alipay_fullname=$request->alipay_fullname;
+            $user->addr_name=$request->addr_name;
+            $user->addr_address=$request->addr_address;
+            $user->addr_tel=$request->addr_tel;
+            $user->addr_postcode=$request->addr_postcode;
+            $user->save();
+            return new JsonResponse(['msg' => '更新成功'], 200);
+
+        }
+        return view('home.user_info',[
+            'page_title'=>trans('menu.user_info'),
+            'user'=>$user
+        ]);
     }
 
     /**

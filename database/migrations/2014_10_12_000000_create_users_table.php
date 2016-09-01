@@ -23,7 +23,12 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('parent_id')->default(0)->comment('推荐人ID');
             $table->integer('level')->default(1)->comment('等级');
             $table->unsignedTinyInteger('sex')->default(0)->comment('性别');
-            $table->string('qq',100)->default('')->comment('QQ');
+            $table->string('alipay_name',100)->default('')->comment('支付宝');
+            $table->string('alipay_fullname',100)->default('')->comment('支付宝姓名');
+            $table->string('addr_address',100)->default('')->comment('收货人地址');
+            $table->string('addr_postcode',100)->default('')->comment('收货人邮编');
+            $table->string('addr_name',100)->default('')->comment('收货人');
+            $table->string('addr_tel',100)->default('')->comment('收货人电话');
             $table->string('weixin',100)->default('')->comment('微信');
             $table->decimal('point1',10,2)->default(0)->comment('激活币');
             $table->decimal('point2',10,2)->default(0)->comment('金币');

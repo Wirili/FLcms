@@ -17,7 +17,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="#"> @lang('menu.modify_user')</a></li>
+                            <li><a href="{{URL::route('user_info')}}"> @lang('menu.user_info')</a></li>
                             <li><a href="#"> @lang('menu.password_protected')</a></li>
                             <li><a href="{{URL::route('log_login')}}"> @lang('menu.log_login')</a></li>
                             <li role="separator" class="divider"></li>

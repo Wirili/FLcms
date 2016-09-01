@@ -15,6 +15,7 @@
 
     <!-- JavaScripts -->
     <script src="{{asset('build/common/js/jquery-1.12.3.min.js')}}"></script>
+    <script src="{{asset('build/common/js/jquery.json.js')}}"></script>
     <script src="{{asset('build/common/js/bootstrap.min.js')}}"></script>
     <!-- 背景图 -->
     <script src="{{asset('build/common/plugin/backstretch/jquery.backstretch.min.js')}}"></script>

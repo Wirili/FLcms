@@ -13,6 +13,7 @@ class FarmController extends Controller
     {
         $farm=UserFarm::where('is_end',0)->where('user_id',\Auth::user()->user_id)->paginate(12);
         return view('home.farm',[
+            'page_title'=>trans('menu.farm'),
             'farm'=>$farm
         ]);
     }
@@ -21,6 +22,7 @@ class FarmController extends Controller
         $farm_sum=UserFarm::where('is_end',0)->where('user_id',\Auth::user()->user_id)->groupBy('farm_id')->select(\DB::raw('max(title) as title,sum(num) as num'))->get();
         $farm=UserFarm::where('is_end',0)->where('user_id',\Auth::user()->user_id)->paginate(12);
         return view('home.farm_detail',[
+            'page_title'=>trans('menu.farm_detail'),
             'farm'=>$farm,
             'farm_sum'=>$farm_sum,
         ]);

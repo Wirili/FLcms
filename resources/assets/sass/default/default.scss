@@ -8,6 +8,16 @@ body {
   }
 }
 
+.custom{
+  .tab-content{
+    border:1px solid #ddd;
+    border-top:none;
+  }
+  .tab-pane{
+    padding: 30px 10px 10px 10px;
+  }
+}
+
 .login-box {
   padding: 15px;
   width: 300px;
