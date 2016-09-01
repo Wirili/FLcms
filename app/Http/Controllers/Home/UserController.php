@@ -159,13 +159,16 @@ class UserController extends Controller
             $validator = Validator::make($request->all(), [
                 'addr_tel'=>'regex',
                 'password'=>'required',
+                'password_new'=>'required_with:password|confirmed',
             ], [
                 'addr_tel.regex'=>'手机格式不正确',
-                'password.required'=>'当前密码'
+                'password.required'=>'请输入当前的登陆密码',
+                'password_new.required_with'=>'请输入新密码',
+                'password_new.confirmed'=>'确认密码不正确'
             ]);
             $validator->after(function($validator) {
                 if (!\Hash::check($validator->getData()['password'], \Auth::user()->password)) {
-                    $validator->errors()->add('password', '密码不正确');
+                    $validator->errors()->add('password', '当前的登陆密码不正确');
                 }
             });
             if ($validator->fails()) {
@@ -174,16 +177,18 @@ class UserController extends Controller
                 }
             }
 
-            //当前时间
-            $date = date('Y-m-d H:i:s');
-            $user->fullname=$request->fullname;
-            $user->weixin=$request->weixin;
-            $user->alipay_name=$request->alipay_name;
-            $user->alipay_fullname=$request->alipay_fullname;
-            $user->addr_name=$request->addr_name;
-            $user->addr_address=$request->addr_address;
-            $user->addr_tel=$request->addr_tel;
-            $user->addr_postcode=$request->addr_postcode;
+            if($request->act=='info') {
+                $user->fullname = $request->fullname;
+                $user->weixin = $request->weixin;
+                $user->alipay_name = $request->alipay_name;
+                $user->alipay_fullname = $request->alipay_fullname;
+                $user->addr_name = $request->addr_name;
+                $user->addr_address = $request->addr_address;
+                $user->addr_tel = $request->addr_tel;
+                $user->addr_postcode = $request->addr_postcode;
+            }elseif($request->act=='x-password'){
+                $user->password=\Hash::make($request->password_new);
+            }
             $user->save();
             return new JsonResponse(['msg' => '更新成功'], 200);
 

@@ -88,19 +88,19 @@
                                 <div class="form-group">
                                     <label for="" class="col-md-2 control-label">当前密码</label>
                                     <div class="col-md-4">
-                                        <input type="text" id="password" name="password" class="form-control input-sm" placeholder="请填写您当前密码" value="{{$user->addr_postcode}}">
+                                        <input type="password" id="password" name="password" class="form-control input-sm" placeholder="请填写您当前密码">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="col-md-2 control-label">新密码</label>
                                     <div class="col-md-4">
-                                        <input type="text" name="password_new" class="form-control input-sm" placeholder="新的密码" value="{{$user->addr_postcode}}">
+                                        <input type="password" id="password_new" name="password_new" class="form-control input-sm" placeholder="新的密码" >
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="col-md-2 control-label">确认密码</label>
                                     <div class="col-md-4">
-                                        <input type="text" name="password_new_confirmation" class="form-control input-sm" placeholder="确认密码" value="{{$user->addr_postcode}}">
+                                        <input type="password" id="password_new_confirmation" name="password_new_confirmation" class="form-control input-sm" placeholder="确认密码" >
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -128,6 +128,7 @@
                 var load=layer.load();
                 var data={};
                 data['_token']='{{csrf_token()}}';
+                data['act']='info';
                 $('#info input').each(function(e,val){
                     data[val.name]=val.value;
                 });
@@ -162,6 +163,7 @@
                 var load=layer.load();
                 var data={};
                 data['_token']='{{csrf_token()}}';
+                data['act']='x-password';
                 $('#x-password input').each(function(e,val){
                     data[val.name]=val.value;
                 });
