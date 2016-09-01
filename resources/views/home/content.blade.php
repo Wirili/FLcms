@@ -58,8 +58,8 @@
                         <a class="btn btn-long" href="#" role="button"><span class="glyphicon glyphicon-usd llong0" aria-hidden="true"></span><span class="llong2">@lang('menu.account_detail')</span><span class="glyphicon glyphicon-menu-left llong1"></span></a>
                         <ul class="sub-menu">
 
-                            <li><a class="btn btn-long8" href="/member/point2_log_in.php" id="m31">@lang('menu.account_point2_in')</a></li>
-                            <li><a class="btn btn-long8" href="/member/point2_log_out.php" id="m32">@lang('menu.account_point2_ex')</a></li>
+                            <li><a class="btn btn-long8" href="{{URL::route('point2_log_in')}}" id="m31">@lang('menu.point2_log_in')</a></li>
+                            <li><a class="btn btn-long8" href="{{URL::route('point2_log_out')}}" id="m32">@lang('menu.point2_log_out')</a></li>
                         </ul>
                     </li>
                     <li>

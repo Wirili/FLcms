@@ -28,6 +28,8 @@ Route::any('act_user','Home\UserController@act_user')->name('act_user');
 Route::post('get_user','Home\UserController@get_user')->name('get_user');
 Route::get('act_user_log','Home\UserController@act_user_log')->name('act_user_log');
 Route::any('user_child','Home\UserController@user_child')->name('user_child');
+Route::get('point2_log_in','Home\UserController@point2_log_in')->name('point2_log_in');
+Route::get('point2_log_out','Home\UserController@point2_log_out')->name('point2_log_out');
 
 
 Route::group(['prefix' => 'admin','as'=>'admin.'], function () {

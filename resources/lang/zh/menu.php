@@ -22,6 +22,6 @@ return [
     'act_user_log' => '激活记录',
 
     'account_detail'=>'账号明细',
-    'account_point2_in'=>'金币收入',
-    'account_point2_ex'=>'金币支出',
+    'point2_log_in'=>'金币收入',
+    'point2_log_out'=>'金币支出',
 ];

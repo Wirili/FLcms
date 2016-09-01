@@ -15,6 +15,26 @@ use App\Models\LogPoint2;
 class UserController extends Controller
 {
 
+    /**
+     * 推荐结构
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|JsonResponse|\Illuminate\View\View
+     */
+    public function user_child(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+            $tree[] = $this->getTree(\Auth::user()->user_id);
+            return new JsonResponse($tree, 200);
+        }
+        return view('home.user_child');
+    }
+
+    /**
+     * 直推列表
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function child_list()
     {
         $child_list = \Auth::user()->children()->paginate(12);;
@@ -23,6 +43,12 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * 激活玩家
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|JsonResponse|\Illuminate\View\View
+     */
     public function act_user(Request $request)
     {
         if ($request->isMethod('POST')) {
@@ -62,6 +88,43 @@ class UserController extends Controller
             return view('home.act_user');
     }
 
+    /**
+     * 激活记录
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function act_user_log(Request $request)
+    {
+        $log = LogPoint1::where('user_id', \Auth::user()->user_id)->paginate(12);
+        return view('home.act_user_log', [
+            'log' => $log
+        ]);
+    }
+
+    public function point2_log_in()
+    {
+        $log = LogPoint2::where('user_id', \Auth::user()->user_id)->where('price','>','0')->paginate(12);
+        return view('home.point2_log_in', [
+            'log' => $log
+        ]);
+    }
+
+    public function point2_log_out()
+    {
+        $log = LogPoint2::where('user_id', \Auth::user()->user_id)->where('price','<','0')->paginate(12);
+        return view('home.point2_log_out', [
+            'log' => $log
+        ]);
+    }
+
+
+    /**
+     * ajax获取用户信息
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function get_user(Request $request)
     {
         $user = User::where('name', $request->act_user)->first();
@@ -76,23 +139,12 @@ class UserController extends Controller
         return new JsonResponse(trans('user.get_user_info.not_exist'), 200);
     }
 
-    public function act_user_log(Request $request)
-    {
-        $log = LogPoint1::where('user_id', \Auth::user()->user_id)->paginate(12);
-        return view('home.act_user_log', [
-            'log' => $log
-        ]);
-    }
-
-    public function user_child(Request $request)
-    {
-        if ($request->isMethod('POST')) {
-            $tree[] = $this->getTree(\Auth::user()->user_id);
-            return new JsonResponse($tree, 200);
-        }
-        return view('home.user_child');
-    }
-
+    /**
+     * 递归获取推荐用户
+     *
+     * @param $user_id
+     * @return mixed
+     */
     protected function getTree($user_id)
     {
         $user = User::with('children')->find($user_id);
