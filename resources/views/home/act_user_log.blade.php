@@ -5,8 +5,8 @@
     <div class="col-md-12">
         <h3>@lang('menu.farm_manager') <small>@lang('menu.act_user_log')</small></h3>
         <ol class="breadcrumb">
-            <li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a href="/member/">@lang('menu.index')</a></li>
-            <li><a href="#">@lang('menu.user_manager')</a></li>
+            <li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a href="{{URL::route('index')}}">@lang('menu.index')</a></li>
+            <li>@lang('menu.user_manager')</li>
             <li class="active">@lang('menu.act_user_log')</li>
         </ol>
     </div>

@@ -5,8 +5,8 @@
     <div class="col-md-12">
         <h3>@lang('menu.farm_manager') <small>@lang('menu.farm')</small></h3>
         <ol class="breadcrumb">
-            <li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a href="/member/">@lang('menu.index')</a></li>
-            <li><a href="#">@lang('menu.farm_manager')</a></li>
+            <li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a href="{{URL::route('index')}}">@lang('menu.index')</a></li>
+            <li>@lang('menu.farm_manager')</li>
             <li class="active">@lang('menu.farm')</li>
         </ol>
     </div>
@@ -23,15 +23,22 @@
                         <img src="{{$item->image}}" alt="{{$item->title}}">
                         <div class="caption">
                             <h3>
-                                {{$item->title.$item->id}}号<span class="badge">{{$item->num}}</span>
+                                @lang('farm.caption',[
+                                    'no'=>$item->title.$item->id,
+                                    'num'=>$item->num
+                                ])
                             </h3>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: {{floatval($item->settle_len)/floatval($item->life)*100}}%;">
-                                    {{$item->settle_len}}天
+                                    @lang('farm.progress',['settle_len'=>$item->settle_len])
                                 </div>
                             </div>
-                            <p>已产金币：<strong>{{$item->num*$item->point2_day*$item->settle_len}}</strong>/待产金币：<strong>{{$item->num*$item->point2_day*($item->life-$item->settle_len)}}</strong></p>
-                            <p>购买日期：{{date('Y-m-d',strtotime($item->add_time))}}</p>
+                            <p>
+                                @lang('farm.detail',[
+                                    'settle_money'=>$item->num*$item->point2_day*$item->settle_len,
+                                    'left_money'=>$item->num*$item->point2_day*($item->life-$item->settle_len),
+                                ])
+                            <p>@lang('farm.add_time',['add_time'=>date('Y-m-d',strtotime($item->add_time))])</p>
                         </div>
                     </div>
                 </div>

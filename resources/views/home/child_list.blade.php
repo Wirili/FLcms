@@ -3,17 +3,17 @@
 @section('right')
 <div class="row">
     <div class="col-md-12">
-        <h3>@lang('menu.farm_manager') <small>@lang('menu.farm')</small></h3>
+        <h3>@lang('menu.user_manager') <small>@lang('menu.child_list')</small></h3>
         <ol class="breadcrumb">
-            <li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a href="/member/">@lang('menu.index')</a></li>
-            <li><a href="#">@lang('menu.farm_manager')</a></li>
-            <li class="active">@lang('menu.farm')</li>
+            <li><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <a href="{{URL::route('index')}}">@lang('menu.index')</a></li>
+            <li>@lang('menu.user_manager')</li>
+            <li class="active">@lang('menu.child_list')</li>
         </ol>
     </div>
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                @lang('menu.farm')
+                @lang('menu.child_list')
             </div>
             <table class="table table-striped table-hover">
                 <tr>
