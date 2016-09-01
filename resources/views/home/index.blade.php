@@ -55,12 +55,16 @@
                     <td>@lang('new.title')</td>
                     <td>@lang('new.add_time')</td>
                 </tr>
-                @foreach($article as $item)
+                @forelse($article as $item)
                     <tr>
                         <td><a href="#">{{$item->title}}</a></td>
                         <td>{{$item->add_time}}</td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="2" class="text-center">@lang('web.no_data')</td>
+                    </tr>
+                @endforelse
             </table>
         </div>
     </div>

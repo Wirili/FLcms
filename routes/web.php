@@ -27,6 +27,7 @@ Route::get('child_list','Home\UserController@child_list')->name('child_list');
 Route::any('act_user','Home\UserController@act_user')->name('act_user');
 Route::post('get_user','Home\UserController@get_user')->name('get_user');
 Route::get('act_user_log','Home\UserController@act_user_log')->name('act_user_log');
+Route::any('user_child','Home\UserController@user_child')->name('user_child');
 
 
 Route::group(['prefix' => 'admin','as'=>'admin.'], function () {

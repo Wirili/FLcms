@@ -62,6 +62,7 @@
                     url: '{{URL::route('act_user')}}',
                     data: {_token:'{{csrf_token()}}',act_user:$('#act_user').val()},
                     complete:function(result,status){
+                        debugger;
                         layer.close(load);
                         if(result.status==422){
                             $.each(result.responseJSON,function(id,arr){
@@ -76,7 +77,7 @@
                                 });
                             });
                         }else if(result.status==200){
-                            layer.alert('激活玩家成功！', {
+                            layer.alert(result.responseJSON.msg, {
                                 closeBtn: 0
                             }, function(){
                                 window.location.reload(true);

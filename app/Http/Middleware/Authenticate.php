@@ -34,7 +34,7 @@ class Authenticate
             return redirect()->guest('lock_fail');
         }
         //用户是否激活
-        if(!$guard&&Auth::user()->is_pass){
+        if(!$guard&&!Auth::user()->is_pass){
             return redirect()->guest('pass_fail');
         }
 

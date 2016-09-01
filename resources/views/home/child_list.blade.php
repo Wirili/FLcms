@@ -17,13 +17,13 @@
             </div>
             <table class="table table-striped table-hover">
                 <tr>
-                    <td>玩家编号</td>
-                    <td>玩家姓名</td>
-                    <td>VIP等级</td>
-                    <td>激活状态</td>
-                    <td class="hidden-xs">账号状态</td>
-                    <td class="hidden-xs">最后登录时间</td>
-                    <td class="hidden-xs">注册时间</td>
+                    <td>@lang('user.name')</td>
+                    <td>@lang('user.fullname')</td>
+                    <td>@lang('user.level_label')</td>
+                    <td>@lang('user.is_pass')</td>
+                    <td class="hidden-xs">@lang('user.is_lock')</td>
+                    <td class="hidden-xs">@lang('user.last_time')</td>
+                    <td class="hidden-xs">@lang('user.reg_time')</td>
                 </tr>
                 @forelse($child_list as $item)
                     <tr>
@@ -36,7 +36,7 @@
                         <td class="hidden-xs">{{$item->reg_time}}</td>
                     </tr>
                 @empty
-                    <tr><td colspan="7" class="text-center">没有数据</td></tr>
+                    <tr><td colspan="7" class="text-center">@lang('web.no_data')</td></tr>
                 @endforelse
                     <tr>
                         <td colspan="7" class="text-center custom-pagination">

@@ -54,7 +54,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="3" class="text-center">没有数据</td></tr>
+                    <tr><td colspan="3" class="text-center">@lang('web.no_data')</td></tr>
                 @endforelse
                     <tr>
                         <td colspan="3" class="text-center custom-pagination">

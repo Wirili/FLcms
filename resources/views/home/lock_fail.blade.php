@@ -4,11 +4,11 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 text-center">
-            账号锁定中，请联系网站客服！
+            @lang('web.lock_fail')
             @if(Auth::check())
-                <a href="{{URL::route('logout')}}">注销</a>
+                <a href="{{URL::route('logout')}}">@lang('web.logout')</a>
             @else
-                <a href="{{URL::route('login')}}">返回</a>
+                <a href="{{URL::route('login')}}">@lang('web.back')</a>
             @endif
         </div>
     </div>

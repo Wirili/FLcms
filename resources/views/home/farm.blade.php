@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 @empty
-                    <div class="text-center">没有数据</div>
+                    <div class="text-center">@lang('web.no_data')</div>
                 @endforelse
             </div>
             @if($farm->count()>0)
