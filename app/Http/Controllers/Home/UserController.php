@@ -178,20 +178,16 @@ class UserController extends Controller
             } elseif ($request->act == 'x-password') {
                 //数据验证
                 $validator = Validator::make($request->all(), [
-                    'password' => 'required|required_with:password_new',
+                    'password' => 'required|required_with:password_new|password:admin',
                     'password_new' => 'required',
                     'password_new_confirmation' => 'required|same:password_new',
                 ], [
                     'password.required' => '请输入登陆密码',
+                    'password.password' => '登陆密码不正确',
                     'password_new.required' => '请输入新密码',
                     'password_new_confirmation.required' => '请输入确认密码',
                     'password_new_confirmation.same' => '确认密码不正确'
                 ]);
-                $validator->after(function($validator) {
-                    if (!\Hash::check($validator->getData()['password'], \Auth::user()->password)) {
-                        $validator->errors()->add('password', '登陆密码不正确');
-                    }
-                });
                 if ($validator->fails()) {
                     if ($request->expectsJson()) {
                         return new JsonResponse(['status' => 'error', 'msg' => $validator->errors()->getMessages()]);
