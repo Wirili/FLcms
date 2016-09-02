@@ -61,11 +61,11 @@
                     type: 'POST',
                     url: '{{URL::route('act_user')}}',
                     data: {_token:'{{csrf_token()}}',act_user:$('#act_user').val()},
-                    complete:function(result,status){
+                    success:function(result){
                         debugger;
                         layer.close(load);
-                        if(result.status==422){
-                            $.each(result.responseJSON,function(id,arr){
+                        if(result.status=='error'){
+                            $.each(result.msg,function(id,arr){
                                 var str="";
                                 $.each(arr,function(a,b){
                                     str+=b+"<br>";
@@ -76,8 +76,8 @@
                                     tipsMore:true
                                 });
                             });
-                        }else if(result.status==200){
-                            layer.alert(result.responseJSON.msg, {
+                        }else if(result.status=='success'){
+                            layer.alert(result.msg, {
                                 closeBtn: 0
                             }, function(){
                                 window.location.reload(true);

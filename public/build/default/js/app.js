@@ -1,4 +1,11 @@
 $(function(){
+    //设置ajax，csrf令牌
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     $(".right").css('min-height',($(window).height()-70)+'px');
     leftmu();
     $('.menu-btn').on('click',function(e){

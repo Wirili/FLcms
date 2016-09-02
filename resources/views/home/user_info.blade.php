@@ -111,7 +111,31 @@
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="messages">
-
+                            <div id="x-password2" class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="" class="col-md-2 control-label">当前安全密码</label>
+                                    <div class="col-md-4">
+                                        <input type="password" id="password2" name="password2" class="form-control input-sm" placeholder="请填写您当前安全密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-md-2 control-label">新安全密码</label>
+                                    <div class="col-md-4">
+                                        <input type="password" id="password2_new" name="password2_new" class="form-control input-sm" placeholder="新的安全密码" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-md-2 control-label">确认密码</label>
+                                    <div class="col-md-4">
+                                        <input type="password" id="password2_new_confirmation" name="password2_new_confirmation" class="form-control input-sm" placeholder="确认密码" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-4">
+                                        <button id="x-password2-btn" class="btn btn-warning">马上修改</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -127,7 +151,6 @@
             $('#info-btn').on('click',function(e){
                 var load=layer.load();
                 var data={};
-                data['_token']='{{csrf_token()}}';
                 data['act']='info';
                 $('#info input').each(function(e,val){
                     data[val.name]=val.value;
@@ -136,10 +159,10 @@
                     type:'POST',
                     url: '{{URL::route('user_info')}}',
                     data: data,
-                    complete:function(result,status){
+                    success:function(result){
                         layer.close(load);
-                        if(result.status==422){
-                            $.each(result.responseJSON,function(id,arr){
+                        if(result.status=='error'){
+                            $.each(result.msg,function(id,arr){
                                 var str="";
                                 $.each(arr,function(a,b){
                                     str+=b+"<br>";
@@ -150,19 +173,19 @@
                                     tipsMore:true
                                 });
                             });
-                        }else if(result.status==200){
-                            layer.msg(result.responseJSON.msg);
+                        }else if(result.status=='success'){
+                            layer.msg(result.msg);
                             window.location.reload(true);
+                        }else{
+                            layer.msg(result.msg);
                         }
-                    },
-                    dataType: 'json'
+                    }
                 });
             });
 
             $('#x-password-btn').on('click',function(e){
                 var load=layer.load();
                 var data={};
-                data['_token']='{{csrf_token()}}';
                 data['act']='x-password';
                 $('#x-password input').each(function(e,val){
                     data[val.name]=val.value;
@@ -171,10 +194,10 @@
                     type:'POST',
                     url: '{{URL::route('user_info')}}',
                     data: data,
-                    complete:function(result,status){
+                    success:function(result){
                         layer.close(load);
-                        if(result.status==422){
-                            $.each(result.responseJSON,function(id,arr){
+                        if(result.status=='error'){
+                            $.each(result.msg,function(id,arr){
                                 var str="";
                                 $.each(arr,function(a,b){
                                     str+=b+"<br>";
@@ -185,12 +208,48 @@
                                     tipsMore:true
                                 });
                             });
-                        }else if(result.status==200){
-                            layer.msg(result.responseJSON.msg);
+                        }else if(result.status=='success'){
+                            layer.msg(result.msg);
                             window.location.reload(true);
+                        }else{
+                            layer.msg(result.msg);
                         }
-                    },
-                    dataType: 'json'
+                    }
+                });
+            });
+
+            $('#x-password2-btn').on('click',function(e){
+                var load=layer.load();
+                var data={};
+                data['act']='x-password2';
+                $('#x-password input').each(function(e,val){
+                    data[val.name]=val.value;
+                });
+                $.ajax({
+                    type:'POST',
+                    url: '{{URL::route('user_info')}}',
+                    data: data,
+                    success:function(result){
+                        layer.close(load);
+                        if(result.status=='error'){
+                            $.each(result.msg,function(id,arr){
+                                var str="";
+                                $.each(arr,function(a,b){
+                                    str+=b+"<br>";
+                                });
+                                layer.tips(str, '#'+id,{
+                                    tips: [1, '#ec971f'],
+                                    time: 2000,
+                                    tipsMore:true
+                                });
+                            });
+                        }else if(result.status=='success'){
+                            layer.msg(result.msg);
+                            window.location.reload(true);
+                        }else{
+                            layer.msg(result.msg);
+                        }
+                    }
                 });
             });
         });

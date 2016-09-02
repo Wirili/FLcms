@@ -26,10 +26,10 @@ class UserController extends Controller
     {
         if ($request->isMethod('POST')) {
             $tree[] = $this->getTree(\Auth::user()->user_id);
-            return new JsonResponse($tree, 200);
+            return new JsonResponse($tree);
         }
-        return view('home.user_child',[
-            'page_title'=>trans('menu.user_child')
+        return view('home.user_child', [
+            'page_title' => trans('menu.user_child')
         ]);
     }
 
@@ -42,7 +42,7 @@ class UserController extends Controller
     {
         $child_list = \Auth::user()->children()->paginate(12);;
         return view('home.child_list', [
-            'page_title'=>trans('menu.child_list'),
+            'page_title' => trans('menu.child_list'),
             'child_list' => $child_list
         ]);
     }
@@ -63,7 +63,7 @@ class UserController extends Controller
             ], trans('user.act_user_validator'));
             if ($validator->fails()) {
                 if ($request->expectsJson()) {
-                    return new JsonResponse($validator->errors()->getMessages(), 422);
+                    return new JsonResponse(['status' => 'error', 'msg' => $validator->errors()->getMessages()]);
                 }
             }
 
@@ -87,10 +87,10 @@ class UserController extends Controller
             $log->type = trans('log1.type.act_user');
             $log->add_time = $date;
             $log->save();
-            return new JsonResponse(['msg' => trans('user.act_user_success', ['name' => $request->act_user])], 200);
+            return new JsonResponse(['status' => 'success', 'msg' => trans('user.act_user_success', ['name' => $request->act_user])]);
         } else
-            return view('home.act_user',[
-                'page_title'=>trans('menu.act_user')
+            return view('home.act_user', [
+                'page_title' => trans('menu.act_user')
             ]);
     }
 
@@ -104,7 +104,7 @@ class UserController extends Controller
     {
         $log = LogPoint1::where('user_id', \Auth::user()->user_id)->paginate(12);
         return view('home.act_user_log', [
-            'page_title'=>trans('menu.act_user_log'),
+            'page_title' => trans('menu.act_user_log'),
             'log' => $log
         ]);
     }
@@ -116,9 +116,9 @@ class UserController extends Controller
      */
     public function point2_log_in()
     {
-        $log = LogPoint2::where('user_id', \Auth::user()->user_id)->where('price','>','0')->paginate(12);
+        $log = LogPoint2::where('user_id', \Auth::user()->user_id)->where('price', '>', '0')->paginate(12);
         return view('home.point2_log_in', [
-            'page_title'=>trans('menu.point2_log_in'),
+            'page_title' => trans('menu.point2_log_in'),
             'log' => $log
         ]);
     }
@@ -130,9 +130,9 @@ class UserController extends Controller
      */
     public function point2_log_out()
     {
-        $log = LogPoint2::where('user_id', \Auth::user()->user_id)->where('price','<','0')->paginate(12);
+        $log = LogPoint2::where('user_id', \Auth::user()->user_id)->where('price', '<', '0')->paginate(12);
         return view('home.point2_log_out', [
-            'page_title'=>trans('menu.point2_log_out'),
+            'page_title' => trans('menu.point2_log_out'),
             'log' => $log
         ]);
     }
@@ -144,40 +144,29 @@ class UserController extends Controller
      */
     public function log_login()
     {
-        $log=LogUserLogin::where('user_id',\Auth::user()->user_id)->paginate(12);
-        return view('home.log_login',[
-            'page_title'=>trans('menu.log_login'),
-            'log'=>$log
+        $log = LogUserLogin::where('user_id', \Auth::user()->user_id)->paginate(12);
+        return view('home.log_login', [
+            'page_title' => trans('menu.log_login'),
+            'log' => $log
         ]);
     }
 
     public function user_info(Request $request)
     {
-        $user=\Auth::user();
-        if($request->isMethod('post')){
-            //数据验证
-            $validator = Validator::make($request->all(), [
-                'addr_tel'=>'regex',
-                'password'=>'required',
-                'password_new'=>'required_with:password|confirmed',
-            ], [
-                'addr_tel.regex'=>'手机格式不正确',
-                'password.required'=>'请输入当前的登陆密码',
-                'password_new.required_with'=>'请输入新密码',
-                'password_new.confirmed'=>'确认密码不正确'
-            ]);
-            $validator->after(function($validator) {
-                if (!\Hash::check($validator->getData()['password'], \Auth::user()->password)) {
-                    $validator->errors()->add('password', '当前的登陆密码不正确');
+        $user = \Auth::user();
+        if ($request->isMethod('post')) {
+            if ($request->act == 'info') {
+                //数据验证
+                $validator = Validator::make($request->all(), [
+                    'addr_tel' => 'regex:/^1[34578][0-9]{9}$/',
+                ], [
+                    'addr_tel.regex' => '手机格式不正确',
+                ]);
+                if ($validator->fails()) {
+                    if ($request->expectsJson()) {
+                        return new JsonResponse(['status' => 'error', 'msg' => $validator->errors()->getMessages()]);
+                    }
                 }
-            });
-            if ($validator->fails()) {
-                if ($request->expectsJson()) {
-                    return new JsonResponse($validator->errors()->getMessages(), 422);
-                }
-            }
-
-            if($request->act=='info') {
                 $user->fullname = $request->fullname;
                 $user->weixin = $request->weixin;
                 $user->alipay_name = $request->alipay_name;
@@ -186,16 +175,61 @@ class UserController extends Controller
                 $user->addr_address = $request->addr_address;
                 $user->addr_tel = $request->addr_tel;
                 $user->addr_postcode = $request->addr_postcode;
-            }elseif($request->act=='x-password'){
-                $user->password=\Hash::make($request->password_new);
+            } elseif ($request->act == 'x-password') {
+                //数据验证
+                $validator = Validator::make($request->all(), [
+                    'password' => 'required|required_with:password_new',
+                    'password_new' => 'required',
+                    'password_new_confirmation' => 'required|same:password_new',
+                ], [
+                    'password.required' => '请输入登陆密码',
+                    'password_new.required' => '请输入新密码',
+                    'password_new_confirmation.required' => '请输入确认密码',
+                    'password_new_confirmation.same' => '确认密码不正确'
+                ]);
+                $validator->after(function($validator) {
+                    if (!\Hash::check($validator->getData()['password'], \Auth::user()->password)) {
+                        $validator->errors()->add('password', '登陆密码不正确');
+                    }
+                });
+                if ($validator->fails()) {
+                    if ($request->expectsJson()) {
+                        return new JsonResponse(['status' => 'error', 'msg' => $validator->errors()->getMessages()]);
+                    }
+                }
+                $user->password = \Hash::make($request->password_new);
+            } elseif ($request->act == 'x-password2') {
+                //数据验证
+                $validator = Validator::make($request->all(), [
+                    'password2' => 'required|required_with:password_new',
+                    'password2_new' => 'required',
+                    'password2_new_confirmation' => 'required|same:password_new',
+                ], [
+                    'password2.required' => '请输入登陆密码',
+                    'password2_new.required' => '请输入新密码',
+                    'password2_new_confirmation.required' => '请输入确认密码',
+                    'password2_new_confirmation.same' => '确认密码不正确'
+                ]);
+                $validator->after(function($validator) {
+                    if (!\Hash::check($validator->getData()['password2'], \Auth::user()->password2)) {
+                        $validator->errors()->add('password2', '登陆密码不正确');
+                    }
+                });
+                if ($validator->fails()) {
+                    if ($request->expectsJson()) {
+                        return new JsonResponse(['status' => 'error', 'msg' => $validator->errors()->getMessages()]);
+                    }
+                }
+                $user->password2 = \Hash::make($request->password2);
+            }else{
+                return new JsonResponse(['msg' => trans('web.require_error')]);
             }
             $user->save();
-            return new JsonResponse(['msg' => '更新成功'], 200);
-
+            return new JsonResponse(['status' => 'success', 'msg' => '更新成功']);
         }
-        return view('home.user_info',[
-            'page_title'=>trans('menu.user_info'),
-            'user'=>$user
+        return view('home.user_info', [
+            'page_title' => trans('menu.user_info'),
+            'user' => $user
         ]);
     }
 
@@ -216,7 +250,7 @@ class UserController extends Controller
                 'parent_name' => $user->parent_name
             ]), 200);
         }
-        return new JsonResponse(trans('user.get_user_info.not_exist'), 200);
+        return new JsonResponse(trans('user.get_user_info.not_exist'));
     }
 
     /**
