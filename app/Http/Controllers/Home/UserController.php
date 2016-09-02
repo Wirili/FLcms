@@ -178,12 +178,12 @@ class UserController extends Controller
             } elseif ($request->act == 'x-password') {
                 //数据验证
                 $validator = Validator::make($request->all(), [
-                    'password' => 'required|required_with:password_new|password:admin',
+                    'password' => 'required|required_with:password_new|hash:'.$user->password,
                     'password_new' => 'required',
                     'password_new_confirmation' => 'required|same:password_new',
                 ], [
                     'password.required' => '请输入登陆密码',
-                    'password.password' => '登陆密码不正确',
+                    'password.hash' => '登陆密码不正确',
                     'password_new.required' => '请输入新密码',
                     'password_new_confirmation.required' => '请输入确认密码',
                     'password_new_confirmation.same' => '确认密码不正确'
@@ -197,20 +197,16 @@ class UserController extends Controller
             } elseif ($request->act == 'x-password2') {
                 //数据验证
                 $validator = Validator::make($request->all(), [
-                    'password2' => 'required|required_with:password_new',
+                    'password2' => 'required|required_with:password2_new|hash:'.$user->password2,
                     'password2_new' => 'required',
-                    'password2_new_confirmation' => 'required|same:password_new',
+                    'password2_new_confirmation' => 'required|same:password2_new',
                 ], [
-                    'password2.required' => '请输入登陆密码',
+                    'password2.required' => '请输入安全密码',
+                    'password2.hash' => '安全密码不正确',
                     'password2_new.required' => '请输入新密码',
                     'password2_new_confirmation.required' => '请输入确认密码',
                     'password2_new_confirmation.same' => '确认密码不正确'
                 ]);
-                $validator->after(function($validator) {
-                    if (!\Hash::check($validator->getData()['password2'], \Auth::user()->password2)) {
-                        $validator->errors()->add('password2', '登陆密码不正确');
-                    }
-                });
                 if ($validator->fails()) {
                     if ($request->expectsJson()) {
                         return new JsonResponse(['status' => 'error', 'msg' => $validator->errors()->getMessages()]);

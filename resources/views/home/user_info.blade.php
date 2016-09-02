@@ -20,14 +20,14 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">基本信息</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">修改登陆密码</a></li>
-                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">修改安全密码</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">登陆密码</a></li>
+                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">安全密码</a></li>
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="home">
-                            <div id="info" class="form-horizontal">
+                            <div data-action="info" class="form-horizontal">
                                 <div class="form-group">
                                     <label for="" class="col-md-2 control-label">真实姓名</label>
                                     <div class="col-md-4">
@@ -77,14 +77,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-4">
-                                        <button id="info-btn" class="btn btn-warning">马上修改</button>
+                                    <div class="col-md-offset-2 col-md-4 text-center">
+                                        <button type="submit" class="btn btn-warning">马上修改</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="profile">
-                            <div id="x-password" class="form-horizontal">
+                            <div data-action="x-password" class="form-horizontal">
                                 <div class="form-group">
                                     <label for="" class="col-md-2 control-label">当前密码</label>
                                     <div class="col-md-4">
@@ -104,14 +104,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-4">
-                                        <button id="x-password-btn" class="btn btn-warning">马上修改</button>
+                                    <div class="col-md-offset-2 col-md-4 text-center">
+                                        <button type="submit" class="btn btn-warning">马上修改</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="messages">
-                            <div id="x-password2" class="form-horizontal">
+                            <div data-action="x-password2" class="form-horizontal">
                                 <div class="form-group">
                                     <label for="" class="col-md-2 control-label">当前安全密码</label>
                                     <div class="col-md-4">
@@ -131,8 +131,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-4">
-                                        <button id="x-password2-btn" class="btn btn-warning">马上修改</button>
+                                    <div class="col-md-offset-2 col-md-4 text-center">
+                                        <button type="submit" class="btn btn-warning">马上修改</button>
                                     </div>
                                 </div>
                             </div>
@@ -148,46 +148,18 @@
 @section('footer')
     <script>
         $(function(){
-            $('#info-btn').on('click',function(e){
-                var load=layer.load();
-                var data={};
-                data['act']='info';
-                $('#info input').each(function(e,val){
-                    data[val.name]=val.value;
-                });
-                $.ajax({
-                    type:'POST',
-                    url: '{{URL::route('user_info')}}',
-                    data: data,
-                    success:function(result){
-                        layer.close(load);
-                        if(result.status=='error'){
-                            $.each(result.msg,function(id,arr){
-                                var str="";
-                                $.each(arr,function(a,b){
-                                    str+=b+"<br>";
-                                });
-                                layer.tips(str, '#'+id,{
-                                    tips: [1, '#ec971f'],
-                                    time: 2000,
-                                    tipsMore:true
-                                });
-                            });
-                        }else if(result.status=='success'){
-                            layer.msg(result.msg);
-                            window.location.reload(true);
-                        }else{
-                            layer.msg(result.msg);
-                        }
-                    }
-                });
-            });
+            var a=1;
 
-            $('#x-password-btn').on('click',function(e){
+            $('.form-horizontal').on('click','button[type=submit]',function(e){
+                var me=$(this);
+                var parent = $(e.delegateTarget);
+                me.prop('disabled', true);
+                me.addClass('disabled');
+                me.text('提交中...');
                 var load=layer.load();
                 var data={};
-                data['act']='x-password';
-                $('#x-password input').each(function(e,val){
+                data['act']=parent.data('action');
+                parent.find('input').each(function(e,val){
                     data[val.name]=val.value;
                 });
                 $.ajax({
@@ -214,41 +186,9 @@
                         }else{
                             layer.msg(result.msg);
                         }
-                    }
-                });
-            });
-
-            $('#x-password2-btn').on('click',function(e){
-                var load=layer.load();
-                var data={};
-                data['act']='x-password2';
-                $('#x-password input').each(function(e,val){
-                    data[val.name]=val.value;
-                });
-                $.ajax({
-                    type:'POST',
-                    url: '{{URL::route('user_info')}}',
-                    data: data,
-                    success:function(result){
-                        layer.close(load);
-                        if(result.status=='error'){
-                            $.each(result.msg,function(id,arr){
-                                var str="";
-                                $.each(arr,function(a,b){
-                                    str+=b+"<br>";
-                                });
-                                layer.tips(str, '#'+id,{
-                                    tips: [1, '#ec971f'],
-                                    time: 2000,
-                                    tipsMore:true
-                                });
-                            });
-                        }else if(result.status=='success'){
-                            layer.msg(result.msg);
-                            window.location.reload(true);
-                        }else{
-                            layer.msg(result.msg);
-                        }
+                        me.prop('disabled', false);
+                        me.removeClass('disabled');
+                        me.text('马上修改');
                     }
                 });
             });
