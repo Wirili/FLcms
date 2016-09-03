@@ -25,4 +25,7 @@ return [
     'account_detail'=>'账号明细',
     'point2_log_in'=>'金币收入',
     'point2_log_out'=>'金币支出',
+
+    'trade_manager'=>'交易管理',
+    'point2_transfer'=>'金币转账',
 ];

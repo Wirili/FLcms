@@ -63,12 +63,12 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="btn btn-long" href="#" role="button"><span class="glyphicon glyphicon-retweet llong0" aria-hidden="true"></span><span class="llong2">交易系统</span><span class="glyphicon glyphicon-menu-left llong1"></span></a>
+                        <a class="btn btn-long" href="#" role="button"><span class="glyphicon glyphicon-retweet llong0" aria-hidden="true"></span><span class="llong2">@lang('menu.trade_manager')</span><span class="glyphicon glyphicon-menu-left llong1"></span></a>
                         <ul class="sub-menu">
                             <li><a class="btn btn-long8" href="/member/point2_sell_list.php" id="m45">金币拍卖</a></li>
                             <li><a class="btn btn-long8" href="/member/point2_buy_log.php" id="m46">金币购买记录</a></li>
                             <li><a class="btn btn-long8" href="/member/point2_sell_log.php" id="m47">金币卖出记录</a></li>
-                            <li><a class="btn btn-long8" href="/member/point2_transfer.php" id="m42">金币转账</a></li>
+                            <li><a class="btn btn-long8" href="{{URL::route('point2_transfer')}}" id="m42">@lang('menu.point2_transfer')</a></li>
                             <li><a class="btn btn-long8" href="/member/point2_withdraw.php" id="m44">申请提现</a></li>
                             <li><a class="btn btn-long8" href="/member/point2_withdraw_log.php" id="m44">提现记录</a></li>
                         </ul>

@@ -137,6 +137,46 @@ class UserController extends Controller
     }
 
     /**
+     * 金币转账
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function point2_transfer(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $user=\Auth::user();
+            $validator = Validator::make($request->all(), [
+                'num'=>'required|max:'. intval($user->point2),
+                'name' => 'required|not_in:'.$user->name.'|exists:users,name',
+                'password2' => 'required|hash:'.$user->password2,
+            ], [
+                'num.required' => '请输入转账金额',
+                'num.max' => '转账金额不足',
+                'name.required' => '请输入转账用户',
+                'name.not_in' => '不能给自己转账',
+                'name.exists' => '输入的转账用户不存在',
+                'password2.required' => '请输入资金密码',
+                'password2.hash' => '资金密码不正确',
+            ]);
+            if ($validator->fails()) {
+                if ($request->expectsJson()) {
+                    return new JsonResponse(['status' => 'error', 'msg' => $validator->errors()->getMessages()]);
+                }
+            }
+
+            $user->point2-=intval($request->num);
+            $user->save();
+            $to_user=User::where('name',$request->name)->first();
+            $to_user->point2+=intval($request->num);
+            $to_user->save();
+            return new JsonResponse(['status' => 'success', 'msg' => '转账成功']);
+        }
+        return view('home.point2_transfer', [
+            'page_title' => trans('menu.point2_transfer')
+        ]);
+    }
+
+    /**
      * 用户登陆日志
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
