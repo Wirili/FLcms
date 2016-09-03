@@ -6,9 +6,9 @@
         <div class="col-md-12 text-center">
             @lang('web.lock_fail')
             @if(Auth::check())
-                <a href="{{URL::route('logout')}}">@lang('web.logout')</a>
+                <a href="{{URL::route('logout')}}">@lang('login.logout')</a>
             @else
-                <a href="{{URL::route('login')}}">@lang('web.back')</a>
+                <a href="{{URL::route('login')}}">@lang('login.back')</a>
             @endif
         </div>
     </div>

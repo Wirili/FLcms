@@ -31,17 +31,7 @@
                 <td></td>
             </tr>
             <tr>
-                <td colspan="2">
-                    <div class="form-horizontal">
-                        <label for="" class="control-label col-md-2">@lang('user.referral_link')</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control input-sm">
-                        </div>
-                        <div class="col-md-2">
-                            <a href="#" class="btn btn-info">@lang('user.click_copy')</a>
-                        </div>
-                    </div>
-                </td>
+                <td colspan="2">@lang('user.referral_link'): <a href="{{URL::route('register',['r'=>\Auth::user()->name])}}">{{URL::route('register',['r'=>\Auth::user()->name])}}</a></td>
             </tr>
         </table>
     </div>

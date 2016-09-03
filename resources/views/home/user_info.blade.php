@@ -21,13 +21,13 @@
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">基本信息</a></li>
                         <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">登陆密码</a></li>
-                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">安全密码</a></li>
+                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">资金密码</a></li>
                     </ul>
 
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="home">
-                            <div data-action="info" class="form-horizontal">
+                            <form data-action="info" class="form-horizontal" onsubmit="return false;">
                                 <div class="form-group">
                                     <label for="" class="col-md-2 control-label">真实姓名</label>
                                     <div class="col-md-4">
@@ -81,10 +81,10 @@
                                         <button type="submit" class="btn btn-warning">马上修改</button>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="profile">
-                            <div data-action="x-password" class="form-horizontal">
+                            <form data-action="x-password" class="form-horizontal" onsubmit="return false;">
                                 <div class="form-group">
                                     <label for="" class="col-md-2 control-label">当前密码</label>
                                     <div class="col-md-4">
@@ -108,20 +108,20 @@
                                         <button type="submit" class="btn btn-warning">马上修改</button>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="messages">
-                            <div data-action="x-password2" class="form-horizontal">
+                            <form data-action="x-password2" class="form-horizontal" onsubmit="return false;">
                                 <div class="form-group">
-                                    <label for="" class="col-md-2 control-label">当前安全密码</label>
+                                    <label for="" class="col-md-2 control-label">当前资金密码</label>
                                     <div class="col-md-4">
-                                        <input type="password" id="password2" name="password2" class="form-control input-sm" placeholder="请填写您当前安全密码">
+                                        <input type="password" id="password2" name="password2" class="form-control input-sm" placeholder="请填写您当前资金密码">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="" class="col-md-2 control-label">新安全密码</label>
+                                    <label for="" class="col-md-2 control-label">新资金密码</label>
                                     <div class="col-md-4">
-                                        <input type="password" id="password2_new" name="password2_new" class="form-control input-sm" placeholder="新的安全密码" >
+                                        <input type="password" id="password2_new" name="password2_new" class="form-control input-sm" placeholder="新的资金密码" >
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -135,7 +135,7 @@
                                         <button type="submit" class="btn btn-warning">马上修改</button>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

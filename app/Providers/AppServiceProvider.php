@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 use Validator, Hash;
 
@@ -16,8 +17,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Validator::extend('hash', function ($attribute, $value, $parameters) {
-
             return Hash::check($value, count($parameters)>0?$parameters[0]:null);
+        });
+        Validator::extend('parent_name', function ($attribute, $value, $parameters) {
+            return User::where('name',$value)->count() > 0;
         });
     }
 

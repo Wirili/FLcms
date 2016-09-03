@@ -16,8 +16,7 @@
             @lang('menu.act_user')
         </div>
         <div class="panel-body">
-            <div class="form-horizontal">
-                {{csrf_field()}}
+            <form class="form-horizontal" onsubmit="return false;">
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="">@lang('user.point1_bal')</label>
                     <div class="col-md-4">
@@ -44,7 +43,7 @@
                         <button type="submit" class="btn btn-warning act_user_btn">@lang('user.act_user_btn')</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     </div>
@@ -55,12 +54,12 @@
     <script>
         mgo('23');
         $(function(){
-            $('.act_user_btn').on('click',function(e){
+            $('.form-horizontal button[type=submit]').on('click',function(e){
                 var load=layer.load();
                 $.ajax({
                     type: 'POST',
                     url: '{{URL::route('act_user')}}',
-                    data: {_token:'{{csrf_token()}}',act_user:$('#act_user').val()},
+                    data: {act_user:$('#act_user').val()},
                     success:function(result){
                         debugger;
                         layer.close(load);
@@ -83,8 +82,7 @@
                                 window.location.reload(true);
                             });
                         }
-                    },
-                    dataType: 'json'
+                    }
                 });
             });
 
@@ -98,8 +96,7 @@
                             $('#msg').html(result);
                         else
                             $('#msg').html('');
-                    },
-                    dataType: 'json'
+                    }
                 });
             })
         });
