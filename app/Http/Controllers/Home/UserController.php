@@ -4,7 +4,6 @@ namespace App\Http\Controllers\home;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use Illuminate\Http\JsonResponse;
 use Validator;
 use App\Models\User;

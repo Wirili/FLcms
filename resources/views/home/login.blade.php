@@ -52,6 +52,13 @@
                         @lang('login.forget')
                     </a>
                 </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <p class="help-block">您还不是{{$C['web_title']}}的会员?
+                            <a href="{{ URL::route('register') }}">创建一个新账号</a>
+                        </p>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

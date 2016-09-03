@@ -18,13 +18,16 @@ body {
   }
 }
 
-.login-box {
+.login-box ,.reg-box{
   padding: 15px;
-  width: 300px;
+  max-width: 374px;
   margin: 7% auto;
   background: url(../images/tm30.png);
   .login-box-body {
   }
+}
+.login-box{
+  max-width: 300px;
 }
 
 .top {
@@ -198,7 +201,7 @@ body {
       padding-bottom: 5px;
     }
   }
-  .login-box {
+  .login-box ,.reg-box{
     width: 90%;
     margin-top: 20px;
   }

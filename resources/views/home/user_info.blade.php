@@ -148,8 +148,6 @@
 @section('footer')
     <script>
         $(function(){
-            var a=1;
-
             $('.form-horizontal').on('click','button[type=submit]',function(e){
                 var me=$(this);
                 var parent = $(e.delegateTarget);

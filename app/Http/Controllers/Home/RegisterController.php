@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Home;
 use App\Models\User;
 use Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class RegisterController extends Controller
 {
@@ -26,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/index';
 
     /**
      * Create a new controller instance.
@@ -39,18 +41,39 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Show the application registration form.
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return \Illuminate\Http\Response
      */
-    protected function validator(array $data)
+    public function showRegistrationForm()
     {
-        return Validator::make($data, [
+        return view('home.register');
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $validator =Validator::make($request->all(), [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'code' => 'required|captcha',
         ]);
+        if ($validator->fails()) {
+            if ($request->expectsJson()) {
+                return new JsonResponse(['status' => 'error', 'msg' => $validator->errors()->getMessages()]);
+            }
+        }
+
+        $this->guard()->login($this->create($request->all()));
+
+        return new JsonResponse(['status' => 'success', 'msg' => '注册成功']);
+//        return redirect($this->redirectPath());
     }
 
     /**

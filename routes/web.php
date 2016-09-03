@@ -18,6 +18,10 @@ Route::get('/',['uses'=>'Home\IndexController@index','as'=>'index']);
 Route::post('login', 'Home\LoginController@login');
 Route::get('login', 'Home\LoginController@showLoginForm')->name('login');
 Route::get('logout', 'Home\LoginController@logout')->name('logout');
+// Registration Routes...
+Route::get('register', 'Home\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Home\RegisterController@register');
+
 Route::get('index',['uses'=>'Home\IndexController@index','as'=>'index']);
 Route::get('pass_fail', 'Home\IndexController@pass_fail')->name('pass_fail');
 Route::get('lock_fail', 'Home\IndexController@lock_fail')->name('lock_fail');
