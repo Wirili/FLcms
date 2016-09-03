@@ -163,12 +163,25 @@ class UserController extends Controller
                     return new JsonResponse(['status' => 'error', 'msg' => $validator->errors()->getMessages()]);
                 }
             }
-
+            $log=[];
             $user->point2-=intval($request->num);
             $user->save();
             $to_user=User::where('name',$request->name)->first();
             $to_user->point2+=intval($request->num);
             $to_user->save();
+            $log[]=[
+                'user_id'=>$user->user_id,
+                'price'=> '-'.intval($request->num),
+                'type'=>'金币转出',
+                'about'=>'转出金币给玩家编号：'.$to_user->name
+            ];
+            $log[]=[
+                'user_id'=>$to_user->user_id,
+                'price'=> intval($request->num),
+                'type'=>'金币转如',
+                'about'=>'玩家编号：'.$user->name.' 转出金币给您'
+            ];
+            \App\Models\LogPoint2::create_mult($log);
             return new JsonResponse(['status' => 'success', 'msg' => '转账成功']);
         }
         return view('home.point2_transfer', [
