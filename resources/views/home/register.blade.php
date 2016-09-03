@@ -5,7 +5,7 @@
         <div class="reg-box">
             <div class="text-center h4">注册账号</div>
             <div class="reg-box-body">
-                <div class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                <form class="form-horizontal">
                     {{ csrf_field() }}
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                         <label for="parent_name" class="col-md-4 control-label">直推会员</label>
@@ -100,7 +100,7 @@
                             @endif
                         </div>
                         <div class="col-xs-6">
-                            <img src="{{captcha_src()}}" alt="" style="height:34px;">
+                            <img id="code_img" src="{{captcha_src()}}" alt="" style="cursor: pointer;">
                         </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                             <p>已经注册的有账号? <a href="{{URL::route('login')}}">立即登陆</a></p>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -130,6 +130,10 @@
 @section('footer')
     <script>
         $(function(){
+            $('#code_img').on('click',function(){
+                var rand= parseInt(100000000*Math.random())+1;
+                this.src='{{url('captcha/default')}}?'+rand;
+            });
             $('.form-horizontal').on('click','button[type=submit]',function(e){
                 var me=$(this);
                 var parent = $(e.delegateTarget);
@@ -165,6 +169,9 @@
                         }else{
                             layer.msg(result.msg);
                         }
+                        var rand= parseInt(100000000*Math.random())+1;
+                        debugger;
+                        $('#code_img').attr('src','{{url('captcha/default')}}?'+rand);
                         me.prop('disabled', false);
                         me.removeClass('disabled');
                         me.text('马上修改');
