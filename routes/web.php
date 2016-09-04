@@ -22,6 +22,9 @@ Route::get('logout', 'Home\LoginController@logout')->name('logout');
 Route::get('register', 'Home\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Home\RegisterController@register');
 
+Route::get('message/{act}', 'Home\UserController@message')->name('message');
+
+
 Route::get('index',['uses'=>'Home\IndexController@index','as'=>'index']);
 Route::get('pass_fail', 'Home\IndexController@pass_fail')->name('pass_fail');
 Route::get('lock_fail', 'Home\IndexController@lock_fail')->name('lock_fail');

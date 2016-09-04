@@ -11,6 +11,8 @@ return [
     'log_login' => '登陆日志',
     'logout' => '登陆注销',
 
+    'message' => '我的信息',
+
     'farm_manager' => '乐园管理',
     'farm' => '我的乐园',
     'farm_detail' => '乐园详情',

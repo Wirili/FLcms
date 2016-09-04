@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\LogPoint1;
 use App\Models\LogPoint2;
 use App\Models\LogUserLogin;
+use App\Models\UserMsg;
 
 
 class UserController extends Controller
@@ -144,11 +145,11 @@ class UserController extends Controller
     public function point2_transfer(Request $request)
     {
         if ($request->isMethod('post')) {
-            $user=\Auth::user();
+            $user = \Auth::user();
             $validator = Validator::make($request->all(), [
-                'num'=>'required|max:'. intval($user->point2),
-                'name' => 'required|not_in:'.$user->name.'|exists:users,name',
-                'password2' => 'required|hash:'.$user->password2,
+                'num' => 'required|max:' . intval($user->point2),
+                'name' => 'required|not_in:' . $user->name . '|exists:users,name',
+                'password2' => 'required|hash:' . $user->password2,
             ], [
                 'num.required' => '请输入转账金额',
                 'num.max' => '转账金额不足',
@@ -163,23 +164,23 @@ class UserController extends Controller
                     return new JsonResponse(['status' => 'error', 'msg' => $validator->errors()->getMessages()]);
                 }
             }
-            $log=[];
-            $user->point2-=intval($request->num);
+            $log = [];
+            $user->point2 -= intval($request->num);
             $user->save();
-            $to_user=User::where('name',$request->name)->first();
-            $to_user->point2+=intval($request->num);
+            $to_user = User::where('name', $request->name)->first();
+            $to_user->point2 += intval($request->num);
             $to_user->save();
-            $log[]=[
-                'user_id'=>$user->user_id,
-                'price'=> '-'.intval($request->num),
-                'type'=>'金币转出',
-                'about'=>'转出金币给玩家编号：'.$to_user->name
+            $log[] = [
+                'user_id' => $user->user_id,
+                'price' => '-' . intval($request->num),
+                'type' => '金币转出',
+                'about' => '转出金币给玩家编号：' . $to_user->name
             ];
-            $log[]=[
-                'user_id'=>$to_user->user_id,
-                'price'=> intval($request->num),
-                'type'=>'金币转如',
-                'about'=>'玩家编号：'.$user->name.' 转出金币给您'
+            $log[] = [
+                'user_id' => $to_user->user_id,
+                'price' => intval($request->num),
+                'type' => '金币转如',
+                'about' => '玩家编号：' . $user->name . ' 转出金币给您'
             ];
             \App\Models\LogPoint2::create_mult($log);
             return new JsonResponse(['status' => 'success', 'msg' => '转账成功']);
@@ -230,7 +231,7 @@ class UserController extends Controller
             } elseif ($request->act == 'x-password') {
                 //数据验证
                 $validator = Validator::make($request->all(), [
-                    'password' => 'required|required_with:password_new|hash:'.$user->password,
+                    'password' => 'required|required_with:password_new|hash:' . $user->password,
                     'password_new' => 'required',
                     'password_new_confirmation' => 'required|same:password_new',
                 ], [
@@ -249,7 +250,7 @@ class UserController extends Controller
             } elseif ($request->act == 'x-password2') {
                 //数据验证
                 $validator = Validator::make($request->all(), [
-                    'password2' => 'required|required_with:password2_new|hash:'.$user->password2,
+                    'password2' => 'required|required_with:password2_new|hash:' . $user->password2,
                     'password2_new' => 'required',
                     'password2_new_confirmation' => 'required|same:password2_new',
                 ], [
@@ -265,7 +266,7 @@ class UserController extends Controller
                     }
                 }
                 $user->password2 = \Hash::make($request->password2);
-            }else{
+            } else {
                 return new JsonResponse(['msg' => trans('web.require_error')]);
             }
             $user->save();
@@ -274,6 +275,22 @@ class UserController extends Controller
         return view('home.user_info', [
             'page_title' => trans('menu.user_info'),
             'user' => $user
+        ]);
+    }
+
+    public function message($act)
+    {
+        if ($act == 'out') {
+            $page_title='发件箱';
+            $where[]=['user_id',\Auth::user()->user_id];
+        } else {
+            $page_title='收件箱';
+            $where[]=['to_user_id',\Auth::user()->user_id];
+        }
+        $msg=UserMsg::where($where)->paginate(12);
+        return view('home.message',[
+            'page_title' => $page_title,
+            'msg' => $msg,
         ]);
     }
 
