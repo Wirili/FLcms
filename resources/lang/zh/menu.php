@@ -30,4 +30,5 @@ return [
 
     'trade_manager'=>'交易管理',
     'point2_transfer'=>'金币转账',
+    'point1_transfer'=>'激活币转账',
 ];

@@ -27,7 +27,7 @@
                 <td>@lang('user.point2sum'): 0</td>
             </tr>
             <tr>
-                <td>@lang('user.point1'): {{ Auth::user()->point1 }}</td>
+                <td>@lang('user.point1'): {{ Auth::user()->point1 }} <a href="{{URL::route('point1_transfer')}}" class="btn btn-info">激活币转账</a></td>
                 <td></td>
             </tr>
             <tr>

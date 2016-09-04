@@ -24,16 +24,16 @@
                 <tr>
                     <td>发件人</td>
                     <td>收件人</td>
-                    <td>时间</td>
                     <td>预览</td>
+                    <td>时间</td>
                     <td class="hidden-xs">操作</td>
                 </tr>
                 @forelse($msg as $item)
                     <tr>
                         <td>{{$item->user_name}}</td>
                         <td>{{$item->to_user_name}}</td>
-                        <td>{{$item->add_time}}</td>
                         <td>{{$item->info}}</td>
+                        <td>{{$item->add_time}}</td>
                         <td class="hidden-xs"></td>
                     </tr>
                 @empty

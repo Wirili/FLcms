@@ -179,7 +179,7 @@ class UserController extends Controller
             $log[] = [
                 'user_id' => $to_user->user_id,
                 'price' => intval($request->num),
-                'type' => '金币转如',
+                'type' => '金币转入',
                 'about' => '玩家编号：' . $user->name . ' 转出金币给您'
             ];
             \App\Models\LogPoint2::create_mult($log);
@@ -187,6 +187,58 @@ class UserController extends Controller
         }
         return view('home.point2_transfer', [
             'page_title' => trans('menu.point2_transfer')
+        ]);
+    }
+    /**
+     * 激活币转账
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function point1_transfer(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $user = \Auth::user();
+            $validator = Validator::make($request->all(), [
+                'num' => 'required|max:' . intval($user->point1),
+                'name' => 'required|not_in:' . $user->name . '|exists:users,name',
+                'password2' => 'required|hash:' . $user->password2,
+            ], [
+                'num.required' => '请输入转账激活币',
+                'num.max' => '转账激活币不足',
+                'name.required' => '请输入转账用户',
+                'name.not_in' => '不能给自己转账',
+                'name.exists' => '输入的转账用户不存在',
+                'password2.required' => '请输入资金密码',
+                'password2.hash' => '资金密码不正确',
+            ]);
+            if ($validator->fails()) {
+                if ($request->expectsJson()) {
+                    return new JsonResponse(['status' => 'error', 'msg' => $validator->errors()->getMessages()]);
+                }
+            }
+            $log = [];
+            $user->point1 -= intval($request->num);
+            $user->save();
+            $to_user = User::where('name', $request->name)->first();
+            $to_user->point1 += intval($request->num);
+            $to_user->save();
+            $log[] = [
+                'user_id' => $user->user_id,
+                'price' => '-' . intval($request->num),
+                'type' => '激活币转出',
+                'about' => '转出激活币给玩家编号：' . $to_user->name
+            ];
+            $log[] = [
+                'user_id' => $to_user->user_id,
+                'price' => intval($request->num),
+                'type' => '激活币转入',
+                'about' => '玩家编号：' . $user->name . ' 转出激活币给您'
+            ];
+            \App\Models\LogPoint1::create_mult($log);
+            return new JsonResponse(['status' => 'success', 'msg' => '转账成功']);
+        }
+        return view('home.point1_transfer', [
+            'page_title' => trans('menu.point1_transfer')
         ]);
     }
 

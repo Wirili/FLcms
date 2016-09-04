@@ -8,6 +8,8 @@ class UserMsg extends Model
 {
     //
     public $timestamps=false;
+    protected $fillable=['user_id','to_user_id','info','type','ip','add_time'];
+
 
     public function user()
     {

@@ -40,6 +40,7 @@ Route::get('point2_log_out','Home\UserController@point2_log_out')->name('point2_
 Route::get('log_login','Home\UserController@log_login')->name('log_login');
 Route::any('user_info','Home\UserController@user_info')->name('user_info');
 Route::any('point2_transfer','Home\UserController@point2_transfer')->name('point2_transfer');
+Route::any('point1_transfer','Home\UserController@point1_transfer')->name('point1_transfer');
 
 
 Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
