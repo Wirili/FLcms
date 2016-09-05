@@ -45,6 +45,11 @@ Route::any('user_info','Home\UserController@user_info')->name('user_info');
 Route::any('point2_transfer','Home\UserController@point2_transfer')->name('point2_transfer');
 Route::any('point1_transfer','Home\UserController@point1_transfer')->name('point1_transfer');
 
+Route::get('point2_sell_list','Home\Point2Controller@sell_list')->name('point2_sell_list');
+Route::get('point2_buy_log','Home\Point2Controller@buy_log')->name('point2_buy_log');
+Route::get('point2_sell_log','Home\Point2Controller@sell_log')->name('point2_sell_log');
+Route::get('point2_buy/{id}','Home\Point2Controller@buy')->name('point2_buy');
+
 
 Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
     Route::get('welcome', ['uses'=>'Admin\IndexController@welcome','as'=>'welcome']);

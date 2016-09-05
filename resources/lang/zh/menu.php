@@ -29,6 +29,9 @@ return [
     'point2_log_out'=>'金币支出',
 
     'trade_manager'=>'交易管理',
+    'point2_sell_list'=>'拍卖列表',
+    'point2_buy_log'=>'金币购买列表',
+    'point2_sell_log'=>'金币卖出列表',
     'point2_transfer'=>'金币转账',
     'point1_transfer'=>'激活币转账',
 ];

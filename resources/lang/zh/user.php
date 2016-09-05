@@ -22,6 +22,7 @@ return [
     ],
     'level_label'=>'VIP等级',
     'level'=>[
+        0=>'无等级',
         1=>'<span class="label label-default">VIP</span>',
         2=>'<span class="label label-danger">VIP1</span>',
         3=>'<span class="label label-danger">VIP2</span>',

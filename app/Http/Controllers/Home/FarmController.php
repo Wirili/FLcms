@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\LogPoint2;
+use App\models\UserMsg;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -76,7 +77,7 @@ class FarmController extends Controller
         foreach ($goods as $good) {
             $money=intval($good->money)*intval($num[$good->id]);
             $total_money+=$money;
-
+            //扣钱
             $user->point2-=$money;
             $user->save();
             $log2=[
@@ -105,6 +106,13 @@ class FarmController extends Controller
             $farm->end_time=date('Y-m-d',strtotime('+' . ($good->life + 1) . ' day'));
             $farm->save();
         }
+        UserMsg::create([
+            'to_user_id'=>$user->user_id,
+            'info'=>'恭喜您购买宠物成功，本次共消费'.$total_money.'金币',
+            'type'=>'[系统消息]',
+            'ip'=>$request->getClientIp(),
+            'add_time'=>date('Y-m-d H:i:s')
+        ]);
 
         return new JsonResponse(['status' => 'success', 'msg' => '购买宠物成功']);
     }
