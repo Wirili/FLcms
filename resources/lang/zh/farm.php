@@ -20,6 +20,9 @@ return [
         'market' => '市场',
         'attr' => '属性',
         'settle' => '结算',
+        'price' => '单价',
+        'num' => '数量',
+        'sub_total' => '小计',
     ],
     'attr_text' => '<b>:title</b><br>
                     数量：:num<br>
@@ -29,4 +32,8 @@ return [
                     宠物寿命：:end_time<br>
                     已生产金币：:settle_len天，共:settle_money金币<br>
                     还可生产金币：:left_len天，共:left_money金币<br>',
+    'desc_text' =>'<strong>:title</strong><br>
+                    产能: :point2_total金币 每天产生:point2_day金币,可生存:life天<br>
+                    每天限购: :buy_limit个,投资限定（同时存在）: :max_limit个<br>
+                    需要等级: :min_level<br>',
 ];

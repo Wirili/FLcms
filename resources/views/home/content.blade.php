@@ -41,7 +41,7 @@
                         <ul class="sub-menu">
                             <li><a class="btn btn-long8" href="{{URL::route('farm')}}" id="m11">@lang('menu.farm')</a></li>
                             <li><a class="btn btn-long8" href="{{URL::route('farm_detail')}}" id="m12">@lang('menu.farm_detail')</a></li>
-                            <li><a class="btn btn-long8" href="/member/farm_shop.php" id="m13">@lang('menu.farm_shop')</a></li>
+                            <li><a class="btn btn-long8" href="{{URL::route('farm_shop')}}" id="m13">@lang('menu.farm_shop')</a></li>
                         </ul>
                     </li>
                     <li>

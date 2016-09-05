@@ -2,6 +2,12 @@ body {
   font-family: "微软雅黑";
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+  -webkit-appearance: none !important;
+  margin: 0;
+}
+
 .custom-pagination {
   .pagination {
     margin: 0;
@@ -16,6 +22,9 @@ body {
   .tab-pane{
     padding: 30px 10px 10px 10px;
   }
+}
+.table > tbody > tr > td{
+  vertical-align: middle;
 }
 
 .login-box ,.reg-box{

@@ -182,7 +182,7 @@ class UserController extends Controller
                 'type' => '金币转入',
                 'about' => '玩家编号：' . $user->name . ' 转出金币给您'
             ];
-            \App\Models\LogPoint2::create_mult($log);
+            LogPoint2::create_mult($log);
             return new JsonResponse(['status' => 'success', 'msg' => '转账成功']);
         }
         return view('home.point2_transfer', [
@@ -234,7 +234,7 @@ class UserController extends Controller
                 'type' => '激活币转入',
                 'about' => '玩家编号：' . $user->name . ' 转出激活币给您'
             ];
-            \App\Models\LogPoint1::create_mult($log);
+            LogPoint1::create_mult($log);
             return new JsonResponse(['status' => 'success', 'msg' => '转账成功']);
         }
         return view('home.point1_transfer', [
@@ -327,22 +327,6 @@ class UserController extends Controller
         return view('home.user_info', [
             'page_title' => trans('menu.user_info'),
             'user' => $user
-        ]);
-    }
-
-    public function message($act)
-    {
-        if ($act == 'out') {
-            $page_title='发件箱';
-            $where[]=['user_id',\Auth::user()->user_id];
-        } else {
-            $page_title='收件箱';
-            $where[]=['to_user_id',\Auth::user()->user_id];
-        }
-        $msg=UserMsg::where($where)->paginate(12);
-        return view('home.message',[
-            'page_title' => $page_title,
-            'msg' => $msg,
         ]);
     }
 

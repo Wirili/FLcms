@@ -22,7 +22,7 @@ Route::get('logout', 'Home\LoginController@logout')->name('logout');
 Route::get('register', 'Home\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Home\RegisterController@register');
 
-Route::get('message/{act}', 'Home\UserController@message')->name('message');
+Route::get('message/{act}', 'Home\MessageController@message')->name('message');
 
 
 Route::get('index',['uses'=>'Home\IndexController@index','as'=>'index']);
@@ -30,6 +30,9 @@ Route::get('pass_fail', 'Home\IndexController@pass_fail')->name('pass_fail');
 Route::get('lock_fail', 'Home\IndexController@lock_fail')->name('lock_fail');
 Route::get('farm','Home\FarmController@farm')->name('farm');
 Route::get('farm_detail','Home\FarmController@farm_detail')->name('farm_detail');
+Route::get('farm_shop','Home\FarmController@farm_shop')->name('farm_shop');
+Route::post('cart_quick','Home\FarmController@cart_quick')->name('cart_quick');
+
 Route::get('child_list','Home\UserController@child_list')->name('child_list');
 Route::any('act_user','Home\UserController@act_user')->name('act_user');
 Route::post('get_user','Home\UserController@get_user')->name('get_user');
