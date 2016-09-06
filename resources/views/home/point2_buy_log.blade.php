@@ -45,7 +45,7 @@
                             'is_pay'=>trans('point2.is_pay')[$item->is_pay]
                         ]) !!}</td>
                         <td>{{$item->state}}</td>
-                        <td class="hidden-xs"><a href="" class="btn btn-danger btn-xs">放弃购买</a></td>
+                        <td class="hidden-xs"><button data-id="{{$item->id}}" class="btn btn-danger btn-xs buy-quit">放弃购买</button></td>
                     </tr>
                 @empty
                     <tr><td colspan="7" class="text-center">@lang('web.no_data')</td></tr>
@@ -66,5 +66,37 @@
 @section('footer')
     <script>
         mgo('47');
+        $(function(){
+            $('.buy-quit').on('click',function(e){
+                var me=$(this);
+                layer.confirm('确认要放弃这单吗?', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    debugger;
+                    var load=layer.load();
+                    var id=me.data('id');
+                    $.ajax({
+                        type: 'POST',
+                        url: '{{URL::route('point2_buy_quit')}}',
+                        data: {id:id},
+                        success:function(result){
+                            layer.close(load);
+                            if(result.status=='error'){
+                                layer.msg(result.msg,{
+                                    time: 2000
+                                });
+                            }else if(result.status=='success'){
+                                layer.alert(result.msg, {
+                                    closeBtn: 0
+                                }, function(){
+                                    window.location.reload(true);
+                                });
+                            }
+                        }
+                    });
+                }, function(){
+                });
+            });
+        })
     </script>
 @endsection

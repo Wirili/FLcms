@@ -82,7 +82,7 @@
 
 @section('footer')
     <script>
-        mgo('12');
+        mgo('13');
         function total(){
             var total=0;
             var total_num=0;

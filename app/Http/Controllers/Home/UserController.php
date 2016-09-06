@@ -279,6 +279,7 @@ class UserController extends Controller
                 $user->addr_name = $request->addr_name;
                 $user->addr_address = $request->addr_address;
                 $user->addr_tel = $request->addr_tel;
+                $user->mobile = $request->addr_tel;
                 $user->addr_postcode = $request->addr_postcode;
             } elseif ($request->act == 'x-password') {
                 //数据验证
