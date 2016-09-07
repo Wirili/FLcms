@@ -28,6 +28,10 @@ Route::get('message/{act}', 'Home\MessageController@message')->name('message');
 Route::get('index',['uses'=>'Home\IndexController@index','as'=>'index']);
 Route::get('pass_fail', 'Home\IndexController@pass_fail')->name('pass_fail');
 Route::get('lock_fail', 'Home\IndexController@lock_fail')->name('lock_fail');
+
+Route::get('new_list', 'Home\NewController@list')->name('new_list');
+Route::get('new_show/{id}', 'Home\NewController@show')->name('new_show');
+
 Route::get('farm','Home\FarmController@farm')->name('farm');
 Route::get('farm_detail','Home\FarmController@farm_detail')->name('farm_detail');
 Route::get('farm_shop','Home\FarmController@farm_shop')->name('farm_shop');

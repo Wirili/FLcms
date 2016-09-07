@@ -35,11 +35,9 @@
                         <div class="col-md-4">
                             <select class="form-control" name="min_level">
                                 <option value="0" @if($farm->min_level==0) selected @endif>@lang('farm.pls')</option>
-                                <option value="1" @if($farm->min_level==1) selected @endif>@lang('config.level1')</option>
-                                <option value="2" @if($farm->min_level==2) selected @endif>@lang('config.level2')</option>
-                                <option value="3" @if($farm->min_level==3) selected @endif>@lang('config.level3')</option>
-                                <option value="4" @if($farm->min_level==4) selected @endif>@lang('config.level4')</option>
-                                <option value="5" @if($farm->min_level==5) selected @endif>@lang('config.level5')</option>
+                                @foreach(trans('config.level') as $k => $v)
+                                <option value="{{$k}}" @if($farm->min_level==$k) selected @endif>{{$v}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

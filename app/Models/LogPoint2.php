@@ -14,7 +14,12 @@ class LogPoint2 extends Model
         return $this->hasOne(User::class,'user_id','user_id');
     }
 
-    public static function create_mult($data)
+    /**
+     * 创建多条日志
+     *
+     * @param array $data
+     */
+    public static function create_mult(array $data)
     {
         foreach ($data as $item) {
             $item['ip'] = array_get($data,'ip',\Request::getClientIp());
@@ -22,5 +27,12 @@ class LogPoint2 extends Model
             self::create($item);
         }
 
+    }
+
+    public static function create(array $attributes = [])
+    {
+        $attributes['ip']=array_get($attributes,'ip',\Request::getClientIp());
+        $attributes['add_time']=array_get($attributes,'add_time',date('Y-m-d H:i:s'));
+        return parent::create($attributes);
     }
 }

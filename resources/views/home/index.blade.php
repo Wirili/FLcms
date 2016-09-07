@@ -37,7 +37,7 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                @lang('new.new') <a href="">@lang('new.all')</a>
+                @lang('new.new') <a href="{{URL::route('new_list')}}">@lang('new.all')</a>
             </div>
             <table class="table table-striped table-hover">
                 <tr>
@@ -46,7 +46,7 @@
                 </tr>
                 @forelse($article as $item)
                     <tr>
-                        <td><a href="#">{{$item->title}}</a></td>
+                        <td>@if($item->category)[{{$item->category->title}}] @endif<a href="{{URL::route('new_show',['id'=>$item->id])}}">{{$item->title}}</a></td>
                         <td>{{$item->add_time}}</td>
                     </tr>
                 @empty

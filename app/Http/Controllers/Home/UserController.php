@@ -79,14 +79,13 @@ class UserController extends Controller
             $user->save();
 
             //记录激活日志
-            $log = new LogPoint1();
-            $log->user_id = \Auth::user()->user_id;
-            $log->price = intval($this->config['user_act_point1']);
-            $log->about = trans('log1.about.act_user', ['name' => $request->act_user]);
-            $log->ip = $request->getClientIp();
-            $log->type = trans('log1.type.act_user');
-            $log->add_time = $date;
-            $log->save();
+            LogPoint1::create([
+                'user_id' => \Auth::user()->user_id,
+                'price' => -intval($this->config['user_act_point1']),
+                'about' => trans('log1.about.act_user', ['name' => $request->act_user]),
+                'type' => trans('log1.type.act_user'),
+            ]);
+
             return new JsonResponse(['status' => 'success', 'msg' => trans('user.act_user_success', ['name' => $request->act_user])]);
         } else
             return view('home.act_user', [
@@ -164,31 +163,31 @@ class UserController extends Controller
                     return new JsonResponse(['status' => 'error', 'msg' => $validator->errors()->getMessages()]);
                 }
             }
-            $log = [];
             $user->point2 -= intval($request->num);
             $user->save();
             $to_user = User::where('name', $request->name)->first();
             $to_user->point2 += intval($request->num);
             $to_user->save();
-            $log[] = [
+
+            //金币转出转入日志
+            LogPoint2::create_mult([[
                 'user_id' => $user->user_id,
                 'price' => '-' . intval($request->num),
-                'type' => '金币转出',
-                'about' => '转出金币给玩家编号：' . $to_user->name
-            ];
-            $log[] = [
+                'type' => trans('log2.type.transfer_out'),
+                'about' => trans('log2.about.transfer_out', ['name' => $to_user->name]),
+            ], [
                 'user_id' => $to_user->user_id,
                 'price' => intval($request->num),
-                'type' => '金币转入',
-                'about' => '玩家编号：' . $user->name . ' 转出金币给您'
-            ];
-            LogPoint2::create_mult($log);
+                'type' => trans('log2.type.transfer_in'),
+                'about' => trans('log2.about.transfer_in', ['name' => $user->name]),
+            ]]);
             return new JsonResponse(['status' => 'success', 'msg' => '转账成功']);
         }
         return view('home.point2_transfer', [
             'page_title' => trans('menu.point2_transfer')
         ]);
     }
+
     /**
      * 激活币转账
      *
@@ -216,25 +215,27 @@ class UserController extends Controller
                     return new JsonResponse(['status' => 'error', 'msg' => $validator->errors()->getMessages()]);
                 }
             }
-            $log = [];
-            $user->point1 -= intval($request->num);
+            //金额
+            $num=intval($request->num);
+            //扣钱
+            $user->point1 -= $num;
             $user->save();
+            //加钱
             $to_user = User::where('name', $request->name)->first();
-            $to_user->point1 += intval($request->num);
+            $to_user->point1 += $num;
             $to_user->save();
-            $log[] = [
+
+            LogPoint1::create_mult([[
                 'user_id' => $user->user_id,
-                'price' => '-' . intval($request->num),
-                'type' => '激活币转出',
-                'about' => '转出激活币给玩家编号：' . $to_user->name
-            ];
-            $log[] = [
+                'price' => -$num,
+                'type' => trans('log1.type.transfer_out'),
+                'about' => trans('log1.about.transfer_out', ['name' => $to_user->name]),
+            ], [
                 'user_id' => $to_user->user_id,
-                'price' => intval($request->num),
-                'type' => '激活币转入',
-                'about' => '玩家编号：' . $user->name . ' 转出激活币给您'
-            ];
-            LogPoint1::create_mult($log);
+                'price' => $num,
+                'type' => trans('log1.type.transfer_in'),
+                'about' => trans('log1.about.transfer_in', ['name' => $user->name]),
+            ]]);
             return new JsonResponse(['status' => 'success', 'msg' => '转账成功']);
         }
         return view('home.point1_transfer', [

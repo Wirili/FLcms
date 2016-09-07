@@ -4,6 +4,8 @@ return [
     'home' => '乐园首页',
     'index' => '首页',
     'new' => '乐园公告',
+    'new_list' => '公告列表',
+    'new_show' => '公告详情',
     'user_center' => '个人中心',
     'mail' => '站内信',
     'user_info' => '修改资料',

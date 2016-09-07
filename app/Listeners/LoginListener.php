@@ -36,6 +36,7 @@ class LoginListener
             $event->user->last_time = date('Y-m-d H:i:s');
             $event->user->login_count += 1;
             $event->user->save();
+
             $login = new LogUserLogin();
             $login->user_id = $event->user->user_id;
             $login->ip = \Request::getClientIp();

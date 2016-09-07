@@ -9,7 +9,7 @@
             <div class="col-sm-8 an">
                 <div class="btn-group btn-group-lg">
                     <button type="button" class="btn btn-default clearfix visible-xs-block menu-btn"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></button>
-                    <button  type="button" class="btn btn-default clearfix"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span><span class="hidden-xs"> @lang('menu.home')</span></button>
+                    <a href="{{URL::route('new_list')}}" type="button" class="btn btn-default clearfix"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span><span class="hidden-xs"> @lang('menu.new')</span></a>
                     <a href="{{URL::route('message',['act'=>'in'])}}" type="button" class="btn btn-default clearfix"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span class="hidden-xs"> @lang('menu.mail')</span></a>
                     <div class="btn-group btn-group-lg" role="group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,8 +69,6 @@
                             <li><a class="btn btn-long8" href="{{URL::route('point2_buy_log')}}" id="m47">@lang('menu.point2_buy_log')</a></li>
                             <li><a class="btn btn-long8" href="{{URL::route('point2_sell_log')}}" id="m46">@lang('menu.point2_sell_log')</a></li>
                             <li><a class="btn btn-long8" href="{{URL::route('point2_transfer')}}" id="m42">@lang('menu.point2_transfer')</a></li>
-                            <li><a class="btn btn-long8" href="/member/point2_withdraw.php" id="m44">申请提现</a></li>
-                            <li><a class="btn btn-long8" href="/member/point2_withdraw_log.php" id="m44">提现记录</a></li>
                         </ul>
                     </li>
 

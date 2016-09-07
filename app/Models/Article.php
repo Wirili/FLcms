@@ -11,6 +11,6 @@ class Article extends Model
 
     public function category()
     {
-        return $this->hasOne(Article::class,'cat_id','cat_id');
+        return $this->hasOne(ArticleCat::class,'cat_id','cat_id');
     }
 }

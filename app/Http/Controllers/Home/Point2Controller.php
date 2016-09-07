@@ -13,15 +13,25 @@ class Point2Controller extends Controller
 {
     //
 
+    /**
+     * 拍卖列表
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function sell_list()
     {
-        $list=Point2Sell::where([['state','挂单中'],['is_delete',0]])->orderBy('id','asc')->take(5)->get();
+        $list=Point2Sell::where([['state',trans('log2.state.sell')],['is_delete',0]])->orderBy('id','asc')->take(5)->get();
         return view('home.point2_sell_list',[
             'page_title' => trans('menu.point2_sell_list'),
             'list'=>$list
         ]);
     }
 
+    /**
+     * 马上挂单
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function sell(Request $request)
     {
         //数据验证
@@ -53,10 +63,8 @@ class Point2Controller extends Controller
         LogPoint2::create([
             'user_id'=>$user->user_id,
             'price'=> - $num,
-            'about'=>'挂单拍卖金币',
-            'ip'=>$request->getClientIp(),
-            'type'=>'金币拍卖',
-            'add_time'=>date('Y-m-d H:i:s'),
+            'about'=>trans('log2.about.sell'),
+            'type'=>trans('log2.type.sell'),
         ]);
         //插入拍卖记录
         $sell=new Point2Sell();
@@ -71,15 +79,19 @@ class Point2Controller extends Controller
         $sell->save();
         //系统消息
         UserMsg::create([
-            'user_id'=>$user->user_id,
+            'to_user_id'=>$user->user_id,
             'info'=>$num.'金币挂单中',
             'type'=>'[系统消息]',
-            'ip'=>$request->getClientIp(),
-            'add_time'=>date('Y-m-d H:i:s'),
         ]);
         return new JsonResponse(['status' => 'success', 'msg' => '金币拍卖成功']);
     }
 
+    /**
+     * 马上购买
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function buy(Request $request)
     {
         $request->has('id')?$id=$request->id:$id=0;
@@ -91,7 +103,7 @@ class Point2Controller extends Controller
                 return new JsonResponse(['status' => 'error', 'msg' => '不能购买自己出售的金币']);
             $sell->buy_user_id=$user->user_id;
             $sell->buy_time=date('Y-m-d H:i:s');
-            $sell->state='等待买家付款';
+            $sell->state=trans('log2.state.buy');
             $sell->save();
             return new JsonResponse(['status' => 'success', 'msg' => '购买成功']);
         }else{
@@ -99,15 +111,21 @@ class Point2Controller extends Controller
         }
     }
 
+    /**
+     * 卖家放弃出售
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function sell_quit(Request $request)
     {
         $request->has('id')?$id=$request->id:$id=0;
         //数据验证
         $user=\Auth::user();
-        $sell=Point2Sell::where([['id',$id],['state','挂单中'],['user_id',$user->user_id]])->first();
+        $sell=Point2Sell::where([['id',$id],['state',trans('log2.state.sell')],['user_id',$user->user_id]])->first();
         if($sell){
             $sell->buy_time=null;
-            $sell->state='放弃拍卖';
+            $sell->state=trans('log2.state.quit');
             $sell->save();
             return new JsonResponse(['status' => 'success', 'msg' => '放弃成功']);
         }else{
@@ -115,16 +133,22 @@ class Point2Controller extends Controller
         }
     }
 
+    /**
+     * 买家放弃购买
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function buy_quit(Request $request)
     {
         $request->has('id')?$id=$request->id:$id=0;
         //数据验证
         $user=\Auth::user();
-        $sell=Point2Sell::where([['id',$id],['state','等待买家付款'],['buy_user_id',$user->user_id]])->first();
+        $sell=Point2Sell::where([['id',$id],['state',trans('log2.state.buy')],['buy_user_id',$user->user_id]])->first();
         if($sell){
             $sell->buy_user_id=0;
             $sell->buy_time=null;
-            $sell->state='挂单中';
+            $sell->state=trans('log2.state.sell');
             $sell->save();
             return new JsonResponse(['status' => 'success', 'msg' => '放弃成功']);
         }else{
@@ -132,6 +156,11 @@ class Point2Controller extends Controller
         }
     }
 
+    /**
+     * 金币拍卖购买列表
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function buy_log()
     {
         $list=Point2Sell::where('buy_user_id',\Auth::user()->user_id)->paginate(15);
@@ -141,6 +170,11 @@ class Point2Controller extends Controller
         ]);
     }
 
+    /**
+     * 金币拍卖出售列表
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function sell_log()
     {
         $list=Point2Sell::where('user_id',\Auth::user()->user_id)->paginate(15);
