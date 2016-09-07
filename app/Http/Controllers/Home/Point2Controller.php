@@ -69,7 +69,7 @@ class Point2Controller extends Controller
         //插入拍卖记录
         $sell=new Point2Sell();
         $sell->user_id=$user->user_id;
-        $sell->state='挂单中';
+        $sell->state=trans('log2.state.sell');
         $sell->alipay_name=$user->alipay_name;
         $sell->alipay_fullname=$user->alipay_fullname;
         $sell->weixin=$user->weixin;
@@ -80,8 +80,8 @@ class Point2Controller extends Controller
         //系统消息
         UserMsg::create([
             'to_user_id'=>$user->user_id,
-            'info'=>$num.'金币挂单中',
-            'type'=>'[系统消息]',
+            'info'=>trans('msg.info.point2_sell',['num'=>$num]),
+            'type'=>trans('msg.type.system'),
         ]);
         return new JsonResponse(['status' => 'success', 'msg' => '金币拍卖成功']);
     }
