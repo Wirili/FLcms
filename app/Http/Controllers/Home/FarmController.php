@@ -80,15 +80,12 @@ class FarmController extends Controller
             //扣钱
             $user->point2-=$money;
             $user->save();
-            $log2=[
+            LogPoint2::create([
                 'user_id'=>$user->user_id,
                 'price'=>-$money,
                 'type'=>'购买宠物',
                 'about'=>$good->title.' 数量:'.$num[$good->id],
-                'ip'=>$request->getClientIp(),
-                'add_time'=>date('Y-m-d H:i:s')
-            ];
-            LogPoint2::create($log2);
+            ]);
             //增加宠物
             $farm=new UserFarm();
             $farm->user_id=$user->user_id;
@@ -103,7 +100,7 @@ class FarmController extends Controller
             $farm->settle_len=0;
             $farm->settle_time=null;
             $farm->add_time=date('Y-m-d');
-            $farm->end_time=date('Y-m-d',strtotime('+' . ($good->life + 1) . ' day'));
+            $farm->end_time=date('Y-m-d',strtotime('+' . $good->life . ' day'));
             $farm->save();
         }
         UserMsg::create([

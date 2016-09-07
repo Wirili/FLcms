@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\home;
 
+use App\Functions\Settle;
 use App\Models\LogPoint2;
 use App\models\UserMsg;
 use Illuminate\Http\Request;
@@ -20,6 +21,7 @@ class Point2Controller extends Controller
      */
     public function sell_list()
     {
+        $farm=Settle::settle_day(\Auth::user()->user_id);
         $list=Point2Sell::where([['state',trans('log2.state.sell')],['is_delete',0]])->orderBy('id','asc')->take(5)->get();
         return view('home.point2_sell_list',[
             'page_title' => trans('menu.point2_sell_list'),

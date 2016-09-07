@@ -15,6 +15,7 @@ class UserFarmTableSeeder extends Seeder
         //
         $lists=[[
             'user_id'=>1,
+            'farm_id'=>1,
             'title'=>'蓝冰',
             'image'=>'\data\farm\1_2016082908062957194.gif',
             'num'=>1,

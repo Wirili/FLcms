@@ -24,7 +24,7 @@ return [
         'transfer_out'=>'转出金币给玩家编号：:name',
         'transfer_in'=>'玩家编号：:name 转出金币给您',
         'sell'=>'挂单拍卖金币',
-
+        'farm_return'=>'宠物产币收益',
     ],
     'state'=>[
         'sell'=>'挂单中',
