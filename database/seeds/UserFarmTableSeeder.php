@@ -14,7 +14,7 @@ class UserFarmTableSeeder extends Seeder
     {
         //
         $lists=[[
-            'user_id'=>1,
+            'user_id'=>7,
             'farm_id'=>1,
             'title'=>'蓝冰',
             'image'=>'\data\farm\1_2016082908062957194.gif',
@@ -22,8 +22,8 @@ class UserFarmTableSeeder extends Seeder
             'point2_day'=>9,
             'life'=>7,
             'money'=>55,
-            'add_time'=>date('Y-m-d'),
-            'end_time'=>date('Y-m-d',strtotime('+7 day'))
+            'add_time'=>date('Y-m-d',strtotime('-1 day')),
+            'end_time'=>date('Y-m-d',strtotime('+6 day'))
         ]];
         foreach ($lists as $list) {
             UserFarm::create($list);
