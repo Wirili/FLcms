@@ -190,9 +190,39 @@ class RoleTableSeeder extends Seeder
             'name'=>'userfarm_del',
             'parent_id'=>'41',
             'display_name'=>'删除会员宠物'
+        ],[
+            'name'=>'log1_show',
+            'display_name'=>'激活币明细'
+        ],[
+            'name'=>'log1_new',
+            'parent_id'=>'45',
+            'display_name'=>'新增激活币记录'
+        ],[
+            'name'=>'log1_edit',
+            'parent_id'=>'45',
+            'display_name'=>'修改激活币记录'
+        ],[
+            'name'=>'log1_del',
+            'parent_id'=>'45',
+            'display_name'=>'删除激活币记录'
+        ],[
+            'name'=>'log2_show',
+            'display_name'=>'金币明细'
+        ],[
+            'name'=>'log2_new',
+            'parent_id'=>'49',
+            'display_name'=>'新增金币记录'
+        ],[
+            'name'=>'log2_edit',
+            'parent_id'=>'49',
+            'display_name'=>'修改金币记录'
+        ],[
+            'name'=>'log2_del',
+            'parent_id'=>'49',
+            'display_name'=>'删除金币记录'
         ]];
 
-        for ($i=1;$i<=44;$i++) {
+        for ($i=1;$i<=52;$i++) {
             $permission_role[]=[
                 'permission_id'=>$i,
                 'role_id'=>1

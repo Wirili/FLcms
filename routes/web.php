@@ -84,13 +84,29 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
     Route::post('farm/save', ['uses'=>'Admin\FarmController@save','as'=>'farm.save']);
     Route::post('farm/ajax', ['uses'=>'Admin\FarmController@ajax','as'=>'farm.ajax']);
 
-    //宠物管理路由
+    //会员宠物管理路由
     Route::get('userfarm/index', ['uses'=>'Admin\UserFarmController@index','as'=>'userfarm.index']);
     Route::get('userfarm/edit/{id}', ['uses'=>'Admin\UserFarmController@edit','as'=>'userfarm.edit']);
     Route::get('userfarm/create', ['uses'=>'Admin\UserFarmController@create','as'=>'userfarm.create']);
     Route::get('userfarm/del/{id}', ['uses'=>'Admin\UserFarmController@del','as'=>'userfarm.del']);
     Route::post('userfarm/save', ['uses'=>'Admin\UserFarmController@save','as'=>'userfarm.save']);
     Route::post('userfarm/ajax', ['uses'=>'Admin\UserFarmController@ajax','as'=>'userfarm.ajax']);
+
+    //激活币路由
+    Route::get('log1/index', ['uses'=>'Admin\Log1Controller@index','as'=>'log1.index']);
+    Route::get('log1/edit/{id}', ['uses'=>'Admin\Log1Controller@edit','as'=>'log1.edit']);
+    Route::get('log1/create', ['uses'=>'Admin\Log1Controller@create','as'=>'log1.create']);
+    Route::get('log1/del/{id}', ['uses'=>'Admin\Log1Controller@del','as'=>'log1.del']);
+    Route::post('log1/save', ['uses'=>'Admin\Log1Controller@save','as'=>'log1.save']);
+    Route::post('log1/ajax', ['uses'=>'Admin\Log1Controller@ajax','as'=>'log1.ajax']);
+
+    //金币路由
+    Route::get('log2/index', ['uses'=>'Admin\Log2Controller@index','as'=>'log2.index']);
+    Route::get('log2/edit/{id}', ['uses'=>'Admin\Log2Controller@edit','as'=>'log2.edit']);
+    Route::get('log2/create', ['uses'=>'Admin\Log2Controller@create','as'=>'log2.create']);
+    Route::get('log2/del/{id}', ['uses'=>'Admin\Log2Controller@del','as'=>'log2.del']);
+    Route::post('log2/save', ['uses'=>'Admin\Log2Controller@save','as'=>'log2.save']);
+    Route::post('log2/ajax', ['uses'=>'Admin\Log2Controller@ajax','as'=>'log2.ajax']);
 
     //文章管理路由
     Route::get('article/index', ['uses'=>'Admin\ArticleController@index','as'=>'article.index']);

@@ -111,6 +111,23 @@
                 <li class="treeview">
                     <a href="javascript:void(0);">
                         <i class="fa fa-dashboard"></i>
+                        <span>资金管理</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="{{URL::route('admin.log1.index')}}" target="main-content"><i class="fa fa-circle-o"></i>激活币明细</a>
+                        </li>
+                        <li>
+                            <a href="{{URL::route('admin.log2.index')}}" target="main-content"><i class="fa fa-circle-o"></i>金币明细</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="javascript:void(0);">
+                        <i class="fa fa-dashboard"></i>
                         <span>商品管理</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
