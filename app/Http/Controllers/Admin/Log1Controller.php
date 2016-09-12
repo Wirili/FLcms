@@ -61,11 +61,11 @@ class Log1Controller extends Controller
             return $this->Msg(trans('sys.no_permission'),'','error');
         }
         $validator = Validator::make($request->all(), [
-            'user_name'=>'required|exists:users,name',
+            'name'=>'required|exists:users,name',
             'price'=>'required|numeric'
         ], [
-            'user_name.required'=>'请填写用户编号',
-            'user_name.exists'=>'用户编号不存在',
+            'name.required'=>'请填写用户编号',
+            'name.exists'=>'用户编号不存在',
             'price.required'=>'请填写金额',
             'price.numeric'=>'请填写数字'
         ]);
@@ -74,9 +74,11 @@ class Log1Controller extends Controller
             return $this->Msg('',null,'error')->withErrors($validator);
         }
         $user=User::where('name',$request->name)->first();
+        $user->point1+=intval($request->price);
+        $user->save();
         LogPoint1::create([
             'type'=>trans('log1.type.admin'),
-            'about'=>trans('log1.type.admin'),
+            'about'=>$request->about ?? trans('log1.type.admin'),
             'price'=>intval($request->price),
             'user_id'=>$user->user_id,
         ]);

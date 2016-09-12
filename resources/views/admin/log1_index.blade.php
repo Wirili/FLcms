@@ -11,12 +11,12 @@
                             <thead>
                             <tr align="center">
                                 <th class="text-center" width="40">@lang('sys.id')</th>
-                                <th class="text-center" width="80">@lang('log1.name')</th>
-                                <th class="text-center">@lang('log1.type')</th>
-                                <th class="text-center">@lang('log1.price')</th>
-                                <th class="text-center">@lang('log1.about')</th>
-                                <th class="text-center">@lang('log1.ip')</th>
-                                <th class="text-center" width="80">@lang('log1.add_time')</th>
+                                <th class="text-center" width="80">@lang('log1.label.name')</th>
+                                <th class="text-center">@lang('log1.label.type')</th>
+                                <th class="text-center">@lang('log1.label.price')</th>
+                                <th class="text-center">@lang('log1.label.about')</th>
+                                <th class="text-center">@lang('log1.label.ip')</th>
+                                <th class="text-center" width="80">@lang('log1.label.add_time')</th>
                                 <th class="text-center" width="100">@lang('sys.handle')</th>
                             </tr>
                             </thead>
@@ -64,6 +64,7 @@
                         ],
                         order: [[0, "desc"]]
                     });
+            $('#dt_length').append("<a class='btn btn-primary pull-right' href='{{URL::route('admin.log1.create')}}'>@lang('log1.create')</a>");
         });
     </script>
 @endsection

@@ -1,28 +1,28 @@
 <?php
 return [
-    'list'=>'激活币明细',
+    'list'=>'金币明细',
     'edit'=>'编辑激活日志',
-    'create'=>'加减激活币',
+    'create'=>'加减金币',
 
     'tab_basic'=>'通用信息',
 
     'type' => [
         'act_user'=>'激活玩家',
-        'transfer_out'=>'激活币转出',
-        'transfer_in'=>'激活币转入',
+        'transfer_out'=>'金币转出',
+        'transfer_in'=>'金币转入',
         'admin'=>'管理员操作',
     ],
     'about'=>[
         'act_user'=>'激活玩家编号：:name',
-        'transfer_out'=>'转出激活币给玩家编号：:name',
-        'transfer_in'=>'玩家编号：:name 转出激活币给您',
-        'admin'=>'加减激活币',
+        'transfer_out'=>'转出金币给玩家编号：:name',
+        'transfer_in'=>'玩家编号：:name 转出金币给您',
+        'admin'=>'加减金币',
     ],
 
     'label'=>[
         'name'=>'会员账号',
         'type'=>'类型',
-        'price'=>'激活币',
+        'price'=>'金币',
         'about'=>'说明',
         'add_time'=>'操作时间',
         'ip'=>'操作IP',
