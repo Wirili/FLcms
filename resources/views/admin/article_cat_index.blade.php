@@ -53,7 +53,7 @@
                         orderable: false,
                         render: function (data, type, row) {
                             data = "<a href='/admin/article_cat/edit/" + data + "' data-toggle='tooltip' data-placement='bottom' title='@lang('sys.edit')' style='padding:0 5px;'><i class='fa fa-edit'></i></a>"
-                                    + "<a href='/admin/article_cat/del/" + data + "' class='text-danger' data-toggle='tooltip' data-placement='bottom' title='@lang('sys.del')' style='padding:0 5px;'><i class='fa fa-remove'></i></a>";
+                                    + "<a href='javascript:js_confirm(\"确认要删除文章类别？\",\"/admin/article_cat/del/" + data + "\")' class='text-danger' data-toggle='tooltip' data-placement='bottom' title='@lang('sys.del')' style='padding:0 5px;'><i class='fa fa-remove'></i></a>";
                             return data;
                         }
                     }

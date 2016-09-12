@@ -6,6 +6,7 @@ return [
     'handle' => '操作',
     'edit' => '编辑',
     'del' => '删除',
+    'settle' => '结算',
     'submit' => '确定',
     'reset' => '重置',
     'add_time' => '新增时间',

@@ -175,9 +175,24 @@ class RoleTableSeeder extends Seeder
             'name'=>'user_del',
             'parent_id'=>'37',
             'display_name'=>'删除会员'
+        ],[
+            'name'=>'userfarm_show',
+            'display_name'=>'会员宠物管理'
+        ],[
+            'name'=>'userfarm_new',
+            'parent_id'=>'41',
+            'display_name'=>'新增会员宠物'
+        ],[
+            'name'=>'userfarm_edit',
+            'parent_id'=>'41',
+            'display_name'=>'修改会员宠物'
+        ],[
+            'name'=>'userfarm_del',
+            'parent_id'=>'41',
+            'display_name'=>'删除会员宠物'
         ]];
 
-        for ($i=1;$i<=40;$i++) {
+        for ($i=1;$i<=44;$i++) {
             $permission_role[]=[
                 'permission_id'=>$i,
                 'role_id'=>1

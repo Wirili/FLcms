@@ -44,3 +44,14 @@ $(function(){
     });
 
 });
+
+function js_confirm(msg,url)
+{
+    //询问框
+    layer.confirm(msg, {
+        btn: ['确定','取消'] //按钮
+    }, function(){
+        window.location.href=url;
+    }, function(){
+    });
+}

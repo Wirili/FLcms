@@ -53,7 +53,7 @@
                         orderable: false,
                         render: function (data, type, row) {
                             data = "<a href='/admin/role/edit/" + data + "' data-toggle='tooltip' data-placement='bottom' title='@lang('sys.edit')' style='padding:0 5px;'><i class='fa fa-edit'></i></a>"
-                                    + "<a href='/admin/role/del/" + data + "' class='text-danger' data-toggle='tooltip' data-placement='bottom' title='@lang('sys.del')' style='padding:0 5px;'><i class='fa fa-remove'></i></a>";
+                                    + "<a href='javascript:js_confirm(\"确认要删除会员角色？\",\"/admin/role/del/" + data + "\")' class='text-danger' data-toggle='tooltip' data-placement='bottom' title='@lang('sys.del')' style='padding:0 5px;'><i class='fa fa-remove'></i></a>";
                             return data;
                         }
                     }

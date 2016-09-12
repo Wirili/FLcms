@@ -84,6 +84,14 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
     Route::post('farm/save', ['uses'=>'Admin\FarmController@save','as'=>'farm.save']);
     Route::post('farm/ajax', ['uses'=>'Admin\FarmController@ajax','as'=>'farm.ajax']);
 
+    //宠物管理路由
+    Route::get('userfarm/index', ['uses'=>'Admin\UserFarmController@index','as'=>'userfarm.index']);
+    Route::get('userfarm/edit/{id}', ['uses'=>'Admin\UserFarmController@edit','as'=>'userfarm.edit']);
+    Route::get('userfarm/create', ['uses'=>'Admin\UserFarmController@create','as'=>'userfarm.create']);
+    Route::get('userfarm/del/{id}', ['uses'=>'Admin\UserFarmController@del','as'=>'userfarm.del']);
+    Route::post('userfarm/save', ['uses'=>'Admin\UserFarmController@save','as'=>'userfarm.save']);
+    Route::post('userfarm/ajax', ['uses'=>'Admin\UserFarmController@ajax','as'=>'userfarm.ajax']);
+
     //文章管理路由
     Route::get('article/index', ['uses'=>'Admin\ArticleController@index','as'=>'article.index']);
     Route::get('article/edit/{id}', ['uses'=>'Admin\ArticleController@edit','as'=>'article.edit']);

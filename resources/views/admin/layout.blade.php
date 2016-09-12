@@ -48,6 +48,10 @@
     <script src="{{asset('build/common/plugin/datepicker/js/bootstrap-datetimepicker.js')}}"></script>
     <script src="{{asset('build/common/plugin/datepicker/js/locales/bootstrap-datetimepicker.zh-CN.js')}}"></script>
     <!-- end -->
+    <!-- layer -->
+    <link href="{{asset('build/common/plugin/layer/skin/layer.css')}}" rel="stylesheet" type='text/css'>
+    <script src="{{asset('build/common/plugin/layer/layer.js')}}"></script>
+    <!-- end layer -->
     <script src="{{asset('build/admin/js/app.js')}}"></script>
 
 @include('UEditor::head')

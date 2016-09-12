@@ -104,7 +104,7 @@
                             <a href="{{URL::route('admin.user.index')}}" target="main-content"><i class="fa fa-circle-o"></i>会员列表</a>
                         </li>
                         <li>
-                            <a href="index.html" target="main-content"><i class="fa fa-circle-o"></i>会员宠物列表</a>
+                            <a href="{{URL::route('admin.userfarm.index')}}" target="main-content"><i class="fa fa-circle-o"></i>会员宠物列表</a>
                         </li>
                     </ul>
                 </li>
