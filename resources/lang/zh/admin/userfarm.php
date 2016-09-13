@@ -22,6 +22,7 @@ return [
 
     'pls' => '请选择',
 
+    'settle_success' =>'会员宠物结算成功！',
     'save_success' =>'会员宠物保存成功！',
     'del_success'=>'会员宠物删除成功！',
     'del_fail'=>'删除会员宠物失败！<br>1、请确认会员宠物是否存在',

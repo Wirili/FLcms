@@ -91,6 +91,7 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
     Route::get('userfarm/del/{id}', ['uses'=>'Admin\UserFarmController@del','as'=>'userfarm.del']);
     Route::post('userfarm/save', ['uses'=>'Admin\UserFarmController@save','as'=>'userfarm.save']);
     Route::post('userfarm/ajax', ['uses'=>'Admin\UserFarmController@ajax','as'=>'userfarm.ajax']);
+    Route::get('userfarm/settle/{id}', ['uses'=>'Admin\UserFarmController@settle','as'=>'userfarm.settle']);
 
     //激活币路由
     Route::get('log1/index', ['uses'=>'Admin\Log1Controller@index','as'=>'log1.index']);
@@ -132,7 +133,7 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
     Route::post('article_cat/save', ['uses'=>'Admin\ArticleCatController@save','as'=>'article_cat.save']);
     Route::post('article_cat/ajax', ['uses'=>'Admin\ArticleCatController@ajax','as'=>'article_cat.ajax']);
 
-    //文章管理路由
+    //会员管理路由
     Route::get('user/index', ['uses'=>'Admin\UserController@index','as'=>'user.index']);
     Route::get('user/edit/{id}', ['uses'=>'Admin\UserController@edit','as'=>'user.edit']);
     Route::get('user/create', ['uses'=>'Admin\UserController@create','as'=>'user.create']);

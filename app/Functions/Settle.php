@@ -46,6 +46,7 @@ class Settle
             //加钱
             $user = User::find($user_id);
             $user->point2 += $total_money;
+            $user->settle_time=date('Y-m-d');
             $user->save();
             //记录
             LogPoint2::create([

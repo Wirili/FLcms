@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Functions\Settle;
 use Illuminate\Http\Request;
 use App\Models\UserFarm;
 
@@ -41,9 +42,10 @@ class UserFarmController extends Controller
             return $this->Msg(trans('userfarm.del_fail'),\URL::route('admin.userfarm.index'),'error');
     }
 
-    public function settle()
+    public function settle($id)
     {
-
+        Settle::settle_day($id);
+        return $this->Msg(trans('userfarm.settle_success'),\URL::route('admin.userfarm.index'));
     }
 
     public function ajax(Request $request)

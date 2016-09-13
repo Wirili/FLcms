@@ -8,6 +8,7 @@ class UserFarm extends Model
 {
     //
     public $timestamps=false;
+    public $appends=['is_settle'];
 
     public function user()
     {
@@ -27,5 +28,10 @@ class UserFarm extends Model
     public function getSettleTimeAttribute($value)
     {
         return $value?date('Y-m-d',strtotime($value)):'';
+    }
+
+    public function getIsSettleAttribute()
+    {
+        return date('Y-m-d')>$this->settle_time;
     }
 }
