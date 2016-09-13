@@ -106,6 +106,9 @@
                         <li>
                             <a href="{{URL::route('admin.userfarm.index')}}" target="main-content"><i class="fa fa-circle-o"></i>会员宠物列表</a>
                         </li>
+                        <li>
+                            <a href="{{URL::route('admin.loguserlogin.index')}}" target="main-content"><i class="fa fa-circle-o"></i>会员登陆日志</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="treeview">

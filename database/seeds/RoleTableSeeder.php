@@ -220,9 +220,16 @@ class RoleTableSeeder extends Seeder
             'name'=>'log2_del',
             'parent_id'=>'49',
             'display_name'=>'删除金币记录'
+        ],[
+            'name'=>'loguserlogin_show',
+            'display_name'=>'会员登陆日志'
+        ],[
+            'name'=>'loguserlogin_del',
+            'parent_id'=>'53',
+            'display_name'=>'删除登陆日志'
         ]];
 
-        for ($i=1;$i<=52;$i++) {
+        for ($i=1;$i<=54;$i++) {
             $permission_role[]=[
                 'permission_id'=>$i,
                 'role_id'=>1

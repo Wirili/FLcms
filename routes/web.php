@@ -108,6 +108,14 @@ Route::group(['prefix' => 'admin','as'=>'admin.'], function () {
     Route::post('log2/save', ['uses'=>'Admin\Log2Controller@save','as'=>'log2.save']);
     Route::post('log2/ajax', ['uses'=>'Admin\Log2Controller@ajax','as'=>'log2.ajax']);
 
+    //金币路由
+    Route::get('loguserlogin/index', ['uses'=>'Admin\LogUserLoginController@index','as'=>'loguserlogin.index']);
+    Route::get('loguserlogin/edit/{id}', ['uses'=>'Admin\LogUserLoginController@edit','as'=>'loguserlogin.edit']);
+    Route::get('loguserlogin/create', ['uses'=>'Admin\LogUserLoginController@create','as'=>'loguserlogin.create']);
+    Route::get('loguserlogin/del/{id}', ['uses'=>'Admin\LogUserLoginController@del','as'=>'loguserlogin.del']);
+    Route::post('loguserlogin/save', ['uses'=>'Admin\LogUserLoginController@save','as'=>'loguserlogin.save']);
+    Route::post('loguserlogin/ajax', ['uses'=>'Admin\LogUserLoginController@ajax','as'=>'loguserlogin.ajax']);
+
     //文章管理路由
     Route::get('article/index', ['uses'=>'Admin\ArticleController@index','as'=>'article.index']);
     Route::get('article/edit/{id}', ['uses'=>'Admin\ArticleController@edit','as'=>'article.edit']);

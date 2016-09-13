@@ -29,8 +29,8 @@ return [
     ],
     'pls' => '请选择',
 
-    'save_success' =>'激活日志保存成功！',
-    'del_success'=>'激活日志删除成功！',
-    'del_fail'=>'删除激活日志失败！<br>1、请确认激活日志是否存在',
-    'not_exist' =>'激活日志不存在！',
+    'save_success' =>'日志保存成功！',
+    'del_success'=>'日志删除成功！',
+    'del_fail'=>'删除日志失败！<br>1、请确认日志是否存在',
+    'not_exist' =>'日志不存在！',
 ];
